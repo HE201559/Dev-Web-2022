@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import Inscription from './pages/inscription';
+import Connexion from './pages/connexion';
+import NavBar from './component/navbar';
+import Footer from './component/footer';
+import Accueil from './pages/accueil';
+import Gdpr from './pages/gdpr';
+import Contact from './pages/contact';
+import Apropos from './pages/apropos';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+
+  render(){
+    return (
+      <div>
+      <NavBar />
+      <Router>
+          <Switch>
+              <Route exact path='/' component={Accueil}></Route>
+              <Route exact path='/inscription' component={Inscription}></Route>
+              <Route exact path='/connexion' component={Connexion}></Route>      
+              <Route exact path='/apropos' component={Apropos}></Route>  
+              <Route exact path='/contact' component={Contact}></Route>  
+              <Route exact path='/gdpr' component={Gdpr}></Route>       
+              <Redirect to="/" />
+          </Switch>
+      </Router>
+      <Footer />
+      </div>
+    )
+  }
 }
+
+
 
 export default App;
