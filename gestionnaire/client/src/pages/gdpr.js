@@ -1,14 +1,14 @@
-import {React, Component} from "react";
+import React from 'react';
+import Navigation from '../component/Navigation';
 
 
-class Gdpr extends Component {
-  render() {
+const Gdpr = () => {
     return (
-      <div>
-        <p>Page du gdpr</p>
-      </div>
+        <div>
+            <Navigation />
+            <p>Page du gdpr</p>
+        </div>
     );
-  }
-}
+};
 
 export default Gdpr;

@@ -2,13 +2,13 @@ import React from 'react';
 import Navigation from '../component/Navigation';
 
 
-const Contact = () => {
+const Home = () => {
     return (
         <div>
             <Navigation />
-            <p>Page de contact</p>
+            <p>Bienvenue sur la page d'accueil</p>
         </div>
     );
 };
 
-export default Contact;
+export default Home;
