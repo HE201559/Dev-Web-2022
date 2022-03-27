@@ -19,7 +19,8 @@ class Inscription extends Component {
 
 
     handleSubmit(event) {
-        alert('test recuperation données  : ' + this.state.nom + ' ' + this.state.prenom + ' ' + this.state.email + ' ' + this.state.pseudo + ' ' + this.state.motdepasse + ' ' + this.state.confirmmotdepasse);
+        // alert('test recuperation données  : ' + this.state.nom + ' ' + this.state.prenom + ' ' + this.state.email + ' ' + this.state.pseudo + ' ' + this.state.motdepasse + ' ' + this.state.confirmmotdepasse);
+        
         event.preventDefault();
 
     }
