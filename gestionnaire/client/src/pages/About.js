@@ -2,13 +2,13 @@ import React from 'react';
 import Navigation from '../component/Navigation';
 
 
-const Contact = () => {
+const About = () => {
     return (
         <div>
             <Navigation />
-            <p>Page de contact</p>
+            <h1>Page a propos</h1>
         </div>
     );
 };
 
-export default Contact;
+export default About;
