@@ -5,10 +5,9 @@
 
 $font-1: "font-1", sans-serif;
 
-$color-1: #61dafb;
-$color-2: salmon;
-$color-3: #282c34;
-$white: rgb(243, 243, 243);
+$color-green: #00AD6F;
+$color-white: #FFFFFF;
+$color-blue: #0096AD;
 
 @mixin verticalCenter {
   display: flex;
@@ -23,10 +22,15 @@ $white: rgb(243, 243, 243);
 }
 
 body {
-  background: $white;
+  background: $color-white;
   font-family: $font-1;
   @include verticalCenter;
+
+  #root {
+    width: 100%;
+  }
 }
+
 li {
   list-style-type: none;
 }

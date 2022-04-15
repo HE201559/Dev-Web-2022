@@ -9,7 +9,7 @@ import Inscription from "./pages/Inscription";
 
 const App = () => {
   return (
-    <div>
+    <div className="App">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
