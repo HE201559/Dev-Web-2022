@@ -4,7 +4,7 @@ const connexion = function () {
   };
 
   connexion.findUtilisateur=(email, result) => {
-    sql.query(`SELECT email, motdepasse from tb_Users WHERE tb_Users.email="${email}";`, (err,res) => {
+    sql.query(`SELECT email, motdepasse, id from tb_Users WHERE tb_Users.email="${email}";`, (err,res) => {
         if(err) {
             console.log("error : ", err);
             result (null ,err);

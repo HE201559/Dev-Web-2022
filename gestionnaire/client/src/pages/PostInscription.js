@@ -2,7 +2,7 @@ import React from 'react';
 import Navigation from '../component/Navigation';
 import { NavLink } from "react-router-dom";
 
-const PostConnexion = () => {
+const PostInscription = () => {
     return (
         <div>
             <Navigation />
@@ -18,4 +18,4 @@ const PostConnexion = () => {
     );
 };
 
-export default PostConnexion;
+export default PostInscription;

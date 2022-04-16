@@ -7,12 +7,15 @@ import Gdpr from "./pages/Gdpr";
 import Home from "./pages/Home";
 import Inscription from "./pages/Inscription";
 import Bibliothèques from "./pages/Bibliothèques";
-import PostConnexion from "./pages/PostConnexion";
+import PostInscription from "./pages/PostInscription";
+import Collection from "./pages/Collection"
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 
 const App = () => {
+
   return (
+    
     <div className="App">
       <BrowserRouter>
         <Routes>
@@ -24,7 +27,8 @@ const App = () => {
           <Route path="/Home" element={<Home />} />
           <Route path="/Inscription" element={<Inscription />} />
           <Route path="/Bibliotheques" element={<Bibliothèques />} />
-          <Route path="/PostConnexion" element={<PostConnexion />} />
+          <Route path="/PostInscription" element={<PostInscription />} />
+          <Route path="/Collection" element={<Collection />} />
         </Routes>
       </BrowserRouter>
     </div>

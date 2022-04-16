@@ -24,7 +24,31 @@ class Navigation extends Component {
       }
 
     render(){
-        if(this.state.connecte === "false" ){
+        if(this.state.connecte === "true" ){
+            return (
+                <div className="navigation">
+                    <ul>
+                        <NavLink to="/" className="logo">
+                            <li>Ucollect</li>
+                        </NavLink>
+                        <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
+                            <li>Accueil</li>
+                        </NavLink>
+                        <NavLink to="/Bibliotheques" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
+                            <li>Mes collections</li>
+                        </NavLink>
+                        <NavLink to="/About" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
+                            <li>About</li>
+                        </NavLink>
+                        <NavLink to="/Contact" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
+                            <li>Contact</li>
+                        </NavLink>
+                        <button onClick={this.handleDeconnect}> Se deconnecter </button>
+                    </ul>
+                </div>
+            );
+        }
+        else{
             return (
                 <div className="navigation">
                     <ul>
@@ -46,30 +70,6 @@ class Navigation extends Component {
                         <NavLink to="/Contact" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
                             <li>Contact</li>
                         </NavLink>
-                    </ul>
-                </div>
-            );
-        }
-        if(this.state.connecte === "true" ){
-            return (
-                <div className="navigation">
-                    <ul>
-                        <NavLink to="/" className="logo">
-                            <li>Ucollect</li>
-                        </NavLink>
-                        <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
-                            <li>Accueil</li>
-                        </NavLink>
-                        <NavLink to="/Bibliotheques" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
-                            <li>Mes collections</li>
-                        </NavLink>
-                        <NavLink to="/About" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
-                            <li>About</li>
-                        </NavLink>
-                        <NavLink to="/Contact" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
-                            <li>Contact</li>
-                        </NavLink>
-                        <button onClick={this.handleDeconnect}> Se deconnecter </button>
                     </ul>
                 </div>
             );

@@ -54,7 +54,9 @@ class Login extends Component {
             var bcrypt = require('bcryptjs');
                 bcrypt.compare(this.state.motdepasse, this.state.utilisateur[0].motdepasse, function(err,res){
                     if(res){
+                        console.log(localStorage.getItem('Connecte'))
                         localStorage.setItem('Connecte', true)
+                        console.log(localStorage.getItem('Connecte'))
                         window.location.href="http://localhost:3000/"
                         }
                     else{
