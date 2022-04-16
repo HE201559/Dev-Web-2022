@@ -37,18 +37,31 @@ class Login extends Component {
 
 
 
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault();
         if(this.state.tousEmailsArray.includes(this.state.email) === false){
             alert('Email inconnue')
         }
         else{
-            alert('Email OK')
-        fetch(`http://localhost:5000/connexion/${this.state.email}`)
-          .then(response => response.json())
-          .then(json => {
-            this.setState({utilisateur: json})
-          })
+            //alert('Email OK')
+            await fetch(`http://localhost:5000/connexion/${this.state.email}`)
+                .then(response => response.json())
+                .then(json => {
+                this.setState({utilisateur: json})
+                
+            })
+            console.log(this.state.utilisateur[0].email)
+            var bcrypt = require('bcryptjs');
+                bcrypt.compare(this.state.motdepasse, this.state.utilisateur[0].motdepasse, function(err,res){
+                    if(res){
+                        localStorage.setItem('Connecte', true)
+                        window.location.href="http://localhost:3000/"
+                        }
+                    else{
+                        alert("Mot de passe incorrect")
+                    }
+                })
+                localStorage.setItem('EmailUtilisateur',this.state.email )
         }
     }
 
@@ -66,7 +79,7 @@ class Login extends Component {
                     <br /><br />
                     <label>
                         Mot de passe :
-                        <input type="text" value={this.state.motdepasse} onChange={text => this.setState({ motdepasse: text.target.value })} />
+                        <input type="password" value={this.state.motdepasse} onChange={text => this.setState({ motdepasse: text.target.value })} />
                     </label>
                     <br /><br />
                     <input type="submit" value="Se connecter" />

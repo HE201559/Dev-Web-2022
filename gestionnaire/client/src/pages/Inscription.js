@@ -7,34 +7,63 @@ class Inscription extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nom:'flo',
+      /*nom:'flo',
       prenom:'deg',
       email:'flo.degives@live.be',
       datenaissance:'1998-08-08',
       motdepasse:'AA1811&&aa',
       confirmmotdepasse:'AA1811&&aa',
+      tousEmails:[],
+      tousEmailsArray:[],*/
+      nom:'',
+      prenom:'',
+      email:'',
+      datenaissance:'',
+      motdepasse:'',
+      confirmmotdepasse:'',
+      tousEmails:[],
+      tousEmailsArray:[],
       };
 
       this.handleSubmit = this.handleSubmit.bind(this);
 
   }
+  async componentDidMount(){
 
+    await fetch(`http://localhost:5000/findTousUtilisateurs`)
+    .then(response => response.json())
+    .then(json => {
+    this.setState({tousEmails: json})
+  
+  })
+
+    {this.state.tousEmails.map(email => (
+    this.state.tousEmailsArray.push(email.email)
+))};
+
+
+  }
 
 
     async handleSubmit(event) {
-        
+
+
   // Test que tous les champs sont remplis
     if(this.state.nom === '' || this.state.prenom === '' || this.state.email === '' || this.state.motdepasse === '' || this.state.confirmmotdepasse === ''){
         alert("Complétez tous les champs avant l'inscription")
     }
    // Test qu'une email a la bonne syntaxe
-    /*else if( this.state.email.length < 8 || this.state.email.includes('.') === false || this.state.email.includes('@') === false) {
+    else if( this.state.email.length < 8 || this.state.email.includes('.') === false || this.state.email.includes('@') === false) {
         alert("Inserez une email correcte");
-    }*/
+    }
 
 
     else if(this.state.password !== this.state.confirmPassword){
             alert("Les mots de passes ne correspondent pas");
+    }
+
+    else if(this.state.tousEmailsArray.includes(this.state.email) === true){
+            alert('Email déjà utilisée par un autre compte')
     }
    //A rajouter après que ça fonctionne et voir ce qu'on met en password policy
     /*else if(this.state.password.length <8 || this.state.password.match(/\d+/) == null || this.state.password === this.state.password.toLowerCase()){
@@ -43,7 +72,11 @@ class Inscription extends Component {
 
     else{ 
 
-    event.preventDefault();
+    event.preventDefault()
+    
+
+
+
     await fetch('http://localhost:5000/inscription',{
          
           method:'POST',
@@ -74,6 +107,7 @@ class Inscription extends Component {
 
     
     };
+    window.location.href="http://localhost:3000/PostConnexion"
 } 
 
 
@@ -101,17 +135,17 @@ class Inscription extends Component {
             <br /><br />
             <label>
               Date de naissance :
-              <input type="text" value={this.state.datenaissance} onChange={text => this.setState({datenaissance: text.target.value})} />
+              <input type="date" value={this.state.datenaissance} onChange={text => this.setState({datenaissance: text.target.value})} />
             </label>
             <br /><br />
             <label>
               Mot de passe :
-              <input type="text" value={this.state.motdepasse} onChange={text => this.setState({motdepasse: text.target.value})} />
+              <input type="password" value={this.state.motdepasse} onChange={text => this.setState({motdepasse: text.target.value})} />
             </label>
             <br /><br />
             <label>
               Confirmer mot de passe :
-              <input type="text" value={this.state.confirmmotdepasse} onChange={text => this.setState({confirmmotdepasse: text.target.value})} />
+              <input type="password" value={this.state.confirmmotdepasse} onChange={text => this.setState({confirmmotdepasse: text.target.value})} />
             </label>
             <br /><br />
             <input type="submit" value="S'inscrire" />
