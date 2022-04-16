@@ -69,9 +69,7 @@ class Inscription extends Component {
     
             
           }).catch((error) => {
-            console.log(error)
-            
-            alert("Echec de l'inscription");   
+
       });
 
     

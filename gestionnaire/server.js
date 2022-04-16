@@ -2,14 +2,17 @@ const http = require('http');
 const hostname = '127.0.0.1';
 const port = 5000;
 const cors = require('cors');
+const bcrypt = require('bcryptjs');
 
-//const bcrypt = require('bcryptjs');
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const routes = require("./routes/routes")(app);
-const bodyParser = require('body-parser')
-app.use(bodyParser.json());
 
+app.use(bodyParser.json())
+
+
+app.use(express.json());
 app.use(cors({
   
 }));

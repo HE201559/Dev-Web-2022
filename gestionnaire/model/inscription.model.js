@@ -5,8 +5,11 @@ const inscription = function () {
 
 
 inscription.creationUtilisateur=(utilisateur, result) => {
+    let bcrypt = require('bcryptjs');
+    bcrypt.genSalt(10, function(err, salt) {
+        bcrypt.hash(utilisateur.motdepasse, salt, function(err, hash) {
             var requete = "INSERT INTO tb_Users (nom,prenom,email,datenaissance,motdepasse) VALUES ? ";
-            var values = [[utilisateur.nom, utilisateur.prenom, utilisateur.email, utilisateur.datenaissance, utilisateur.motdepasse]];
+            var values = [[utilisateur.nom, utilisateur.prenom, utilisateur.email, utilisateur.datenaissance, hash]];
             mysql.query(requete, [values],
                 (err, res) => {
                     if (err) {
@@ -16,8 +19,10 @@ inscription.creationUtilisateur=(utilisateur, result) => {
                 }
                 console.log("Marche");
                 result(null, res);
+            });
         });
-    };
+    });
+};
 
 
 module.exports = inscription;

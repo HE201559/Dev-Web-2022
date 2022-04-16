@@ -7,18 +7,51 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            pseudo: '',
+            email: '',
             motdepasse: '',
+            utilisateur:[],
+            tousEmails:[],
+            tousEmailsArray:[],
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
 
     }
 
+
+    async componentDidMount(){
+
+        await fetch(`http://localhost:5000/findTousUtilisateurs`)
+          .then(response => response.json())
+          .then(json => {
+            this.setState({tousEmails: json})
+            
+          })
+
+          {this.state.tousEmails.map(email => (
+            this.state.tousEmailsArray.push(email.email)
+      ))}
+      console.log(this.state.tousEmailsArray)
+    };
+
+
+
+
     handleSubmit(event) {
-        alert('test recuperation données  : ' + this.state.pseudo + ' ' + this.state.motdepasse);
         event.preventDefault();
+        if(this.state.tousEmailsArray.includes(this.state.email) === false){
+            alert('Email inconnue')
+        }
+        else{
+            alert('Email OK')
+        fetch(`http://localhost:5000/connexion/${this.state.email}`)
+          .then(response => response.json())
+          .then(json => {
+            this.setState({utilisateur: json})
+          })
+        }
     }
+
 
     render() {
         return (
@@ -27,8 +60,8 @@ class Login extends Component {
                 <p>Page de connexion</p>
                 <form style={{ textAlign: "center" }} onSubmit={this.handleSubmit}>
                     <label>
-                        Pseudo :
-                        <input type="text" value={this.state.pseudo} onChange={text => this.setState({ pseudo: text.target.value })} />
+                        Email :
+                        <input type="text" value={this.state.email} onChange={text => this.setState({ email: text.target.value })} />
                     </label>
                     <br /><br />
                     <label>
