@@ -3,28 +3,28 @@ import { NavLink } from "react-router-dom";
 import Button from "react-bootstrap";
 
 class Navigation extends Component {
-    
+
     constructor(props) {
         super(props);
-        this.state={
-           connecte: localStorage.getItem('Connecte'),
-           } 
-      }
+        this.state = {
+            connecte: localStorage.getItem('Connecte'),
+        }
+    }
 
-      handleDeconnect=() => { 
+    handleDeconnect = () => {
 
 
-          localStorage.setItem('Connecte', false)
-          console.log(this.state.connecte)
-          this.state.connecte='false'
-          console.log(this.state.connecte)
-          localStorage.setItem('EmailUtilisateur', 'null')
-          
-          window.location.href="http://localhost:3000/";
-      }
+        localStorage.setItem('Connecte', false)
+        console.log(this.state.connecte)
+        this.state.connecte = 'false'
+        console.log(this.state.connecte)
+        localStorage.setItem('EmailUtilisateur', 'null')
 
-    render(){
-        if(this.state.connecte === "true" ){
+        window.location.href = "http://localhost:3000/";
+    }
+
+    render() {
+        if (this.state.connecte === "true") {
             return (
                 <div className="navigation">
                     <ul>
@@ -43,12 +43,12 @@ class Navigation extends Component {
                         <NavLink to="/Contact" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
                             <li>Contact</li>
                         </NavLink>
-                        <button onClick={this.handleDeconnect}> Se deconnecter </button>
+                        <button type="button" style={{ fontSize: '80%', marginTop: "-0.3%" }} class="btn btn-outline-dark" onClick={this.handleDeconnect}> Se deconnecter </button>
                     </ul>
                 </div>
             );
         }
-        else{
+        else {
             return (
                 <div className="navigation">
                     <ul>
@@ -74,7 +74,7 @@ class Navigation extends Component {
                 </div>
             );
         }
-    }   
+    }
 };
 
 export default Navigation;

@@ -21,4 +21,5 @@ module.exports = (app) => {
     app.get("/findBibliotheques/:email", bibliotheques.findBibliotheques)
     app.get("/findBiblioCollection/:biblioId", bibliotheques.findBiblioCollection)
     app.get("/findAllBiblioCollection", bibliotheques.findAllBiblioCollection)
+    app.get("/findCollectionInfos/:biblioId", jsonParser, bibliotheques.findCollectionInfos)
 }

@@ -70,6 +70,18 @@ bibliotheques.findBibliotheques = (email, result) => {
       })
   },
 
+  bibliotheques.findCollectionInfos = (biblioId, result) => {
+    sql.query(`SELECT SUM(tb_Objets.prix) as valeur, COUNT(tb_Objets.idObjet) as nombre from tb_Objets join tb_Bibliotheque ON tb_Objets.idObjet = tb_Bibliotheque.idObjet WHERE tb_Bibliotheque.biblioId = "${biblioId}";  ;`, (err, res) => {
+      if (err) {
+        console.log("error : ", err);
+        result(null, err);
+        return;
+      }
+      console.log("donnees :", res);
+      result(null, res);
+    })
+  },
+
   /*bibliotheques.creationObjet=(objet, result) => {
     var requete1 = "INSERT INTO tb_Bibliotheque (biblioId) VALUES ? ";
     var values1 = [[objet.biblioId]];
