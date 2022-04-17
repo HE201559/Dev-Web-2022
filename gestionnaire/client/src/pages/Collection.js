@@ -21,15 +21,17 @@ class Collection extends Component {
         this.setState({ donneesCollection: json })
         console.log(this.state.donneesCollection)
       })
-
-
   }
+
+
   render() {
     return (
       <div>
         <Navigation />
         <Container>
-          <p> page collection </p>
+          <NavLink to="/AjoutObjet" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
+            <li style={{ fontSize: '150%', marginTop: '10%', marginBottom: '5%' }}> Ajouter un objet </li>
+          </NavLink>
           <Row>
             {this.state.donneesCollection.map(collection => (
 

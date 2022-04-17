@@ -9,13 +9,14 @@ import Inscription from "./pages/Inscription";
 import Bibliothèques from "./pages/Bibliothèques";
 import PostInscription from "./pages/PostInscription";
 import Collection from "./pages/Collection"
+import AjoutObjet from "./pages/AjoutObjet"
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 
 const App = () => {
 
   return (
-    
+
     <div className="App">
       <BrowserRouter>
         <Routes>
@@ -29,6 +30,7 @@ const App = () => {
           <Route path="/Bibliotheques" element={<Bibliothèques />} />
           <Route path="/PostInscription" element={<PostInscription />} />
           <Route path="/Collection" element={<Collection />} />
+          <Route path="/AjoutObjet" element={<AjoutObjet />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -12,8 +12,13 @@ module.exports = (app) => {
 
 
     app.post("/inscription", jsonParser, inscription.creationUtilisateur);
+    app.post("/ajoutObjetTbBiblio", jsonParser, bibliotheques.creationObjetTbBiblio);
+    app.post("/ajoutObjetTbObjets", jsonParser, bibliotheques.creationObjetTbObjets);
+
+
     app.get("/connexion/:email", connexion.findUtilisateur)
     app.get("/findTousUtilisateurs", connexion.findTousUtilisateurs)
     app.get("/findBibliotheques/:email", bibliotheques.findBibliotheques)
     app.get("/findBiblioCollection/:biblioId", bibliotheques.findBiblioCollection)
+    app.get("/findAllBiblioCollection", bibliotheques.findAllBiblioCollection)
 }

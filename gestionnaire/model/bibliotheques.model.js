@@ -28,4 +28,75 @@ bibliotheques.findBibliotheques = (email, result) => {
     })
   },
 
+  bibliotheques.findAllBiblioCollection = (result) => {
+    sql.query(`SELECT MAX(idObjet) as max from tb_Bibliotheque`, (err, res) => {
+      if (err) {
+        console.log("error : ", err);
+        result(null, err);
+        return;
+      }
+      console.log("donnees :", res);
+      result(null, res);
+    })
+  },
+
+  bibliotheques.creationObjetTbBiblio = (objet, result) => {
+    var requete = "INSERT INTO tb_Bibliotheque (biblioId) VALUES ? ";
+    var values = [[objet.biblioId]];
+    sql.query(requete, [values],
+      (err, res) => {
+        if (err) {
+          console.log("error : ", err);
+          result(null, err);
+          return;
+        }
+        console.log("Marche");
+        result(null, res);
+      })
+  },
+
+  bibliotheques.creationObjetTbObjets = (objet, result) => {
+    var requete = "INSERT INTO tb_Objets (idObjet,prix,nom,description,dateAcquisition,etat,edition) VALUES ? ";
+    var values = [[objet.objetId, objet.prix, objet.nom, objet.description, objet.dateAcquisition, objet.etat, objet.edition]];
+    sql.query(requete, [values],
+      (err, res) => {
+        if (err) {
+          console.log("error : ", err);
+          result(null, err);
+          return;
+        }
+        console.log("Marche");
+        result(null, res);
+      })
+  },
+
+  /*bibliotheques.creationObjet=(objet, result) => {
+    var requete1 = "INSERT INTO tb_Bibliotheque (biblioId) VALUES ? ";
+    var values1 = [[objet.biblioId]];
+    var requete2 = "INSERT INTO tb_Objets (idObjet,prix,nom,description,dateAcquisition,etat,edition) VALUES ? ";
+    var values2 = [[objet.objetId,objet.prix, objet.nom, objet.description, objet.dateAcquisition, objet.etat, objet.edition]];
+    sql.query(requete1, [values1],
+        (err, res) => {
+            if (err) {
+                console.log("error : ", err);
+                result(null, err);
+                return;
+            }
+            console.log("Marche");
+            result(null, res);
+          })
+
+    sql.query(requete2, [values2],
+      (err, res) => {
+          if (err) {
+              console.log("error : ", err);
+              result(null, err);
+              return;
+          }
+          console.log("Marche");
+          result(null, res);
+        })
+  },
+*/
+
   module.exports = bibliotheques;

@@ -28,6 +28,7 @@ class Bibliothèques extends Component {
 
   }
 
+
   render() {
     return (
       <div>
@@ -37,7 +38,7 @@ class Bibliothèques extends Component {
             <Row>
               <Col>
                 <NavLink onClick={() => localStorage.setItem('biblioId', bibli.biblioId)} to="/Collection" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
-                  <li style={{ fontSize: '150%', marginTop: '15%' }}> {bibli.nomBibli}</li>
+                  <li onClick={() => localStorage.setItem('nomBibli', bibli.nomBibli)} style={{ fontSize: '150%', marginTop: '15%' }}> {bibli.nomBibli}</li>
                 </NavLink>
               </Col>
             </Row>
