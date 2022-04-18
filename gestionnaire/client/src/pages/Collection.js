@@ -80,12 +80,12 @@ class Collection extends Component {
               <Col md={6}>
                 <h3 style={{ fontSize: '170%', marginBottom: '3%', marginTop: '5%' }}> Objets de collection</h3>
               </Col>
-              <Col md={6} style={{ textAlign: 'center', paddingLeft: '6%', paddingTop: '1%' }}>
+              <Col md={6} style={{ textAlign: 'right', paddingTop: '1%' }}>
                 <button type="button" style={{ fontSize: '140%' }} class="btn btn-outline-success" onClick={this.navAjoutObjet}> Ajouter un objet </button>
               </Col>
             </Row>
             {this.state.donneesCollection.map(collection => (
-              <Col md={4}>
+              <Col md={3}>
                 <Card style={{ width: '18rem', marginBottom: '8%' }}>
                   <Card.Header>
                     <Card.Title>{collection.nom}</Card.Title>
