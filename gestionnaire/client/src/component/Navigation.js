@@ -27,10 +27,8 @@ class Navigation extends Component {
         if (this.state.connecte === "true") {
             return (
                 <div className="navigation">
+                    <div className='logo'><a className="logo-text" href="/">Ucollect</a></div>
                     <ul>
-                        <NavLink to="/" className="logo">
-                            <li>Ucollect</li>
-                        </NavLink>
                         <NavLink to="/" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
                             <li>Accueil</li>
                         </NavLink>
