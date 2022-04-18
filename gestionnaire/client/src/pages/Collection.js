@@ -50,7 +50,7 @@ class Collection extends Component {
             <Col md={4}>
 
 
-              <p>Valeur de la collection : <br></br> {this.state.valeurCollection}</p>
+              <p>Valeur de la collection : <br></br> {0 + this.state.valeurCollection}</p>
             </Col>
             <Col md={4}>
               <p>Nombre d'objets dans la collection : <br></br> {this.state.nombreObjets}</p>

@@ -3,7 +3,7 @@ import Navigation from "../component/Navigation";
 import { NavLink } from "react-router-dom";
 import { Row, Col, Container, Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 
-class Collection extends Component {
+class AjoutObjet extends Component {
 
   constructor(props) {
     super(props);
@@ -152,4 +152,4 @@ class Collection extends Component {
   }
 }
 
-export default Collection;
+export default AjoutObjet;

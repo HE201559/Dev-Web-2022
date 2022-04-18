@@ -40,6 +40,21 @@ bibliotheques.findBibliotheques = (email, result) => {
     })
   },
 
+  bibliotheques.creationBibliotheque = (bibliotheque, result) => {
+    var requete = "INSERT INTO tb_UsersBiblio (emailUser, nomBibli, biblioDateCre) VALUES ? ";
+    var values = [[bibliotheque.emailUser, bibliotheque.nomBibli, bibliotheque.biblioDateCre]];
+    sql.query(requete, [values],
+      (err, res) => {
+        if (err) {
+          console.log("error : ", err);
+          result(null, err);
+          return;
+        }
+        console.log("Marche");
+        result(null, res);
+      })
+  },
+
   bibliotheques.creationObjetTbBiblio = (objet, result) => {
     var requete = "INSERT INTO tb_Bibliotheque (biblioId) VALUES ? ";
     var values = [[objet.biblioId]];

@@ -1,7 +1,8 @@
 import { React, Component } from "react";
 import Navigation from "../component/Navigation";
-import { Row, Col, Container } from 'react-bootstrap';
+import { Row, Col, Container, Modal } from 'react-bootstrap';
 import { NavLink } from "react-router-dom";
+import AjoutBiblio from "./AjoutBiblio";
 
 
 class Bibliothèques extends Component {
@@ -12,9 +13,20 @@ class Bibliothèques extends Component {
       toutesBibliotheques: [],
       email: localStorage.getItem('EmailUtilisateur'),
       nombreCollection: 1,
+      show: false,
     };
-
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
   }
+
+  showModal = () => {
+    this.setState({ show: true });
+  };
+
+  hideModal = () => {
+    this.setState({ show: false });
+  };
+
 
   async componentDidMount() {
 
@@ -28,23 +40,38 @@ class Bibliothèques extends Component {
 
   }
 
+  navAjoutBiblio() {
+    window.location.href = "http://localhost:3000/AjoutBiblio"
+  }
+
+
+
 
   render() {
+
     return (
       <div>
         <Navigation />
         <Container>
+          <button type="button" style={{ fontSize: '170%', marginTop: '10%' }} class="btn btn-outline-success" onClick={this.showModal}> Ajouter une bibliotheque </button>
           {this.state.toutesBibliotheques.map(bibli => (
             <Row>
               <Col>
-                <NavLink onClick={() => localStorage.setItem('biblioId', bibli.biblioId)} to="/Collection" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
+                <NavLink style={{ width: '10%', marginTop: '5%' }} onClick={() => localStorage.setItem('biblioId', bibli.biblioId)} to="/Collection" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
                   <li onClick={() => localStorage.setItem('nomBibli', bibli.nomBibli)} style={{ fontSize: '150%', marginTop: '15%' }}> {bibli.nomBibli}</li>
                 </NavLink>
               </Col>
             </Row>
           )
-
           )}
+          <Modal show={this.state.show} onHide={this.hideModal}  >
+            <Modal.Header closeButton>
+              Ajoutez une bibliotheque
+            </Modal.Header>
+            <Modal.Body>
+              <AjoutBiblio />
+            </Modal.Body>
+          </Modal>
         </Container>
       </div >
     );

@@ -58,6 +58,27 @@ exports.findBiblioCollection = (req, res) => {
 
 }
 
+exports.creationBibliotheque = (req, res) => {
+
+  const bibliotheque = {
+    emailUser: req.body.emailUser,
+    nomBibli: req.body.nomBibli,
+    biblioDateCre: req.body.biblioDateCre,
+  };
+
+  bibliotheques.creationBibliotheque(bibliotheque, (err, data) => {
+    if (err) {
+      res.status(500).send({
+        message: "Marche pas"
+      });
+    }
+    else {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.send(data);
+    }
+  });
+};
+
 exports.creationObjetTbBiblio = (req, res) => {
 
   const objet = {

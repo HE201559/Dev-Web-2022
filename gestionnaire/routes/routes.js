@@ -14,6 +14,7 @@ module.exports = (app) => {
     app.post("/inscription", jsonParser, inscription.creationUtilisateur);
     app.post("/ajoutObjetTbBiblio", jsonParser, bibliotheques.creationObjetTbBiblio);
     app.post("/ajoutObjetTbObjets", jsonParser, bibliotheques.creationObjetTbObjets);
+    app.post("/ajoutBibliotheque", jsonParser, bibliotheques.creationBibliotheque);
 
 
     app.get("/connexion/:email", connexion.findUtilisateur)
