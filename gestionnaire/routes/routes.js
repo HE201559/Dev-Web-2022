@@ -20,7 +20,9 @@ module.exports = (app) => {
     app.get("/connexion/:email", connexion.findUtilisateur)
     app.get("/findTousUtilisateurs", connexion.findTousUtilisateurs)
     app.get("/findBibliotheques/:email", bibliotheques.findBibliotheques)
+    app.get("/findBibliothequesDateCrea/:biblioId", bibliotheques.findBibliothequesDateCrea)
     app.get("/findBiblioCollection/:biblioId", bibliotheques.findBiblioCollection)
     app.get("/findAllBiblioCollection", bibliotheques.findAllBiblioCollection)
     app.get("/findCollectionInfos/:biblioId", jsonParser, bibliotheques.findCollectionInfos)
+
 }

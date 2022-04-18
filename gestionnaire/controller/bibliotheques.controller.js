@@ -58,6 +58,27 @@ exports.findBiblioCollection = (req, res) => {
 
 }
 
+exports.findBibliothequesDateCrea = (req, res) => {
+  bibliotheques.findBibliothequesDateCrea(req.params.biblioId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+        });
+      } else {
+        res.status(500).send({
+
+        });
+      }
+    } else {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.send(data);
+    }
+  });
+
+}
+
+
+
 exports.creationBibliotheque = (req, res) => {
 
   const bibliotheque = {
