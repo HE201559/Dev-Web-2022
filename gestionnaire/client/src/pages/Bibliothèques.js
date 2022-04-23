@@ -3,6 +3,7 @@ import Navigation from "../component/Navigation";
 import { Row, Col, Container, Modal, Card } from 'react-bootstrap';
 import { NavLink } from "react-router-dom";
 import moment from "moment";
+import dateFormat from 'dateformat';
 
 
 class Bibliothèques extends Component {
@@ -131,15 +132,19 @@ class Bibliothèques extends Component {
               <input class="btn btn-outline-success" type="submit" value="Ajouter une bibliotheque" />
             </form>
           </Row>
-          {/*<button type="button" style={{ fontSize: '170%', marginTop: '10%' }} class="btn btn-outline-success" onClick={this.showModal}> Ajouter une bibliotheque </button>*/}
           {this.state.toutesBibliotheques.map(bibli => (
             <Row>
-              <Col>
-                <NavLink style={{ width: '10%', marginTop: '5%' }} onClick={() => localStorage.setItem('biblioId', bibli.biblioId)} to="/Collection" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
+              <Col lg={4} xs={4} style={{ textAlign: 'center' }}>
+                <NavLink style={{ width: 'auto', marginTop: '5%' }} onClick={() => localStorage.setItem('biblioId', bibli.biblioId)} to="/Collection" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
                   <li onClick={() => localStorage.setItem('nomBibli', bibli.nomBibli)} style={{ fontSize: '150%', marginTop: '15%' }}> {bibli.nomBibli}</li>
                 </NavLink>
+              </Col>
+              <Col lg={4}>
+                <p style={{ fontSize: '130%', marginTop: '21%' }}> Date de création : {dateFormat(bibli.biblioDateCre, 'dd-mm-yyyy')}</p>
+              </Col>
+              <Col lg={4}>
                 <Card.Link style={{ textAlign: 'center', marginBottom: '3%' }}>
-                  <button type="button" class="btn btn-outline-danger" onClick={() => { this.showModal(); this.setState({ idBibliAsupp: bibli.biblioId }); this.setState({ nomBibliAsupp: bibli.nomBibli }); }} > Supprimer la bibliotheque </button>
+                  <button style={{ fontSize: '100%', marginTop: '21%' }} type="button" class="btn btn-outline-danger" onClick={() => { this.showModal(); this.setState({ idBibliAsupp: bibli.biblioId }); this.setState({ nomBibliAsupp: bibli.nomBibli }); }} > Supprimer la bibliotheque </button>
                 </Card.Link>
               </Col>
             </Row>

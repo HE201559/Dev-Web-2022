@@ -76,6 +76,8 @@ exports.findAllObjets = (req, res) => {
 
 }
 
+
+
 exports.findBiblioCollection = (req, res) => {
   bibliotheques.findBiblioCollection(req.params.biblioId, (err, data) => {
     if (err) {
@@ -246,4 +248,6 @@ exports.supprimerObjet = (req, res) => {
     }
   });
 };
+
+
 

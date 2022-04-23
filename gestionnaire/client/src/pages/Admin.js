@@ -3,7 +3,7 @@ import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
-import { Button } from 'react-bootstrap';
+import { Button, Row, Col } from 'react-bootstrap';
 
 
 class Admin extends Component {
@@ -20,6 +20,7 @@ class Admin extends Component {
             allObjets: [],
             nodeDeuxiemeTree: 50000000,
             nodeTroisiemeTree: 100000000,
+            nombreUsers: [],
         };
     }
 
@@ -54,6 +55,8 @@ class Admin extends Component {
             })
 
 
+
+
     }
 
     supprimerUtilisateur() {
@@ -66,7 +69,19 @@ class Admin extends Component {
 
     render() {
         return (
+
             <div>
+                <Row>
+                    <Col>
+                        <p> Nombre d'utilisateurs : {this.state.tousEmailsArray.length} </p>
+                    </Col>
+                    <Col>
+                        <p> Nombre de collections  : {this.state.toutesBibliotheques.length} </p>
+                    </Col>
+                    <Col>
+                        <p> Nombre d'objets  : {this.state.allObjets.length} </p>
+                    </Col>
+                </Row>
                 <TreeView
                     aria-label="multi-select"
                     defaultCollapseIcon={<ExpandMoreIcon />}

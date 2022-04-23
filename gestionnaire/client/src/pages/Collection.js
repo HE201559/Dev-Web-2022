@@ -3,6 +3,8 @@ import Navigation from "../component/Navigation";
 import { NavLink } from "react-router-dom";
 import { Row, Col, Container, Card, ListGroup, ListGroupItem, Modal } from 'react-bootstrap'
 import dateFormat from 'dateformat';
+import lugia from '../images/lugia.jpg'
+
 
 class Collection extends Component {
 
@@ -20,6 +22,8 @@ class Collection extends Component {
       show: false,
       nomAsupp: '',
       idObjetASupp: '',
+      image: '',
+      imageFormat: '',
     };
 
     this.showModal = this.showModal.bind(this);
@@ -35,6 +39,10 @@ class Collection extends Component {
   hideModal = () => {
     this.setState({ show: false });
   };
+
+  // test = () => {
+  //   console.log(this.state.image)
+  // };
 
   async componentDidMount() {
 
@@ -103,6 +111,7 @@ class Collection extends Component {
   render() {
     return (
       <div>
+        {/* <button type="button" class="btn btn-outline-danger" onClick={() => this.test()}> Tester </button> */}
         <Navigation />
         <Container>
           <Row style={{ textAlign: 'center' }}>
@@ -132,13 +141,14 @@ class Collection extends Component {
             </Row>
             {this.state.donneesCollection.map(collection => (
               <Col md={3}>
-                <Card style={{ width: '18rem', marginBottom: '8%' }}>
+                <Card style={{ width: '18rem', marginBottom: '8%' }} >
                   <Card.Header>
                     <Card.Title>{collection.nom}</Card.Title>
                     <Card.Text>
                       {collection.description !== '' && (collection.description)}
                     </Card.Text>
                   </Card.Header>
+                  {<Card.Img variant="top" src={lugia} />}
                   <Card.Body>
                     <ListGroup className="list-group-flush">
                       {collection.prix !== '' && (<ListGroupItem>Prix : {collection.prix} €</ListGroupItem>)}
