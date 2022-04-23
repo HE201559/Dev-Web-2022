@@ -90,18 +90,19 @@ class Collection extends Component {
                   <Card.Header>
                     <Card.Title>{collection.nom}</Card.Title>
                     <Card.Text>
-                      {collection.description}
+                      {collection.description !== '' && (collection.description)}
                     </Card.Text>
                   </Card.Header>
                   <Card.Body>
                     <ListGroup className="list-group-flush">
-                      <ListGroupItem>Prix : {collection.prix} €</ListGroupItem>
-                      <ListGroupItem>Etat : {collection.etat}</ListGroupItem>
-                      <ListGroupItem>Edition : {collection.edition}</ListGroupItem>
+                      {collection.prix !== '' && (<ListGroupItem>Prix : {collection.prix} €</ListGroupItem>)}
+                      {collection.etat !== '' && (<ListGroupItem>Etat : {collection.etat}</ListGroupItem>)}
+                      {collection.edition !== '' && (<ListGroupItem>Edition : {collection.edition}</ListGroupItem>)}
                     </ListGroup>
                   </Card.Body>
                   <Card.Footer>
-                    <ListGroupItem>Date d'acquisition : {dateFormat(collection.dateAcquisition, 'dd-mm-yyyy')}</ListGroupItem>
+                    {collection.dateAcquisition !== '' && (<ListGroupItem>Date d'acquisition : {dateFormat(collection.dateAcquisition, 'dd-mm-yyyy')}</ListGroupItem>)}
+                    {collection.dateAcquisition === '' && (<ListGroupItem>Date d'acquisition : {'inconnu'}</ListGroupItem>)}
                   </Card.Footer>
                 </Card>
               </Col>
