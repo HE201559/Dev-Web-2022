@@ -136,18 +136,19 @@ class Collection extends Component {
                   <Card.Header>
                     <Card.Title>{collection.nom}</Card.Title>
                     <Card.Text>
-                      {collection.description}
+                      {collection.description !== '' && (collection.description)}
                     </Card.Text>
                   </Card.Header>
                   <Card.Body>
                     <ListGroup className="list-group-flush">
-                      <ListGroupItem>Prix : {collection.prix} €</ListGroupItem>
-                      <ListGroupItem>Etat : {collection.etat}</ListGroupItem>
-                      <ListGroupItem>Edition : {collection.edition}</ListGroupItem>
+                      {collection.prix !== '' && (<ListGroupItem>Prix : {collection.prix} €</ListGroupItem>)}
+                      {collection.etat !== '' && (<ListGroupItem>Etat : {collection.etat}</ListGroupItem>)}
+                      {collection.edition !== '' && (<ListGroupItem>Edition : {collection.edition}</ListGroupItem>)}
                     </ListGroup>
                   </Card.Body>
                   <Card.Footer>
-                    <ListGroupItem>Date d'acquisition : {dateFormat(collection.dateAcquisition, 'dd-mm-yyyy')}</ListGroupItem>
+                    {collection.dateAcquisition !== '' && (<ListGroupItem>Date d'acquisition : {dateFormat(collection.dateAcquisition, 'dd-mm-yyyy')}</ListGroupItem>)}
+                    {collection.dateAcquisition === '' && (<ListGroupItem>Date d'acquisition : {'inconnu'}</ListGroupItem>)}
                   </Card.Footer>
                   <Card.Link style={{ textAlign: 'center', marginBottom: '3%' }}>
                     <button type="button" class="btn btn-outline-danger" onClick={() => { this.showModal(); this.setState({ nomAsupp: collection.nom }); this.setState({ idObjetASupp: collection.idObjet }) }} > Supprimer l'objet {collection.nom} </button>
