@@ -10,7 +10,7 @@ import Bibliothèques from "./pages/Bibliothèques";
 import PostInscription from "./pages/PostInscription";
 import Collection from "./pages/Collection"
 import AjoutObjet from "./pages/AjoutObjet"
-import AjoutBiblio from "./pages/AjoutBiblio";
+import Admin from "./pages/Admin";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -32,7 +32,7 @@ const App = () => {
           <Route path="/PostInscription" element={<PostInscription />} />
           <Route path="/Collection" element={<Collection />} />
           <Route path="/AjoutObjet" element={<AjoutObjet />} />
-          <Route path="/AjoutBiblio" element={<AjoutBiblio />} />
+          <Route path="/Admin" element={<Admin />} />
         </Routes>
       </BrowserRouter>
     </div>

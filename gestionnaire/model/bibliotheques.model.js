@@ -15,6 +15,30 @@ bibliotheques.findBibliotheques = (email, result) => {
   })
 },
 
+  bibliotheques.findAllBibliotheques = (result) => {
+    sql.query(`SELECT * from tb_UsersBiblio `, (err, res) => {
+      if (err) {
+        console.log("error : ", err);
+        result(null, err);
+        return;
+      }
+      console.log("donnees :", res);
+      result(null, res);
+    })
+  },
+
+  bibliotheques.findAllObjets = (result) => {
+    sql.query(`SELECT tb_Bibliotheque.biblioId, tb_Objets.idObjet,  tb_Objets.prix, tb_Objets.nom, tb_Objets.description, tb_Objets.dateAcquisition, tb_Objets.etat, tb_Objets.edition from tb_Bibliotheque JOIN tb_Objets on tb_Bibliotheque.idObjet = tb_Objets.idObjet`, (err, res) => {
+      if (err) {
+        console.log("error : ", err);
+        result(null, err);
+        return;
+      }
+      console.log("donnees :", res);
+      result(null, res);
+    })
+  },
+
   bibliotheques.findBiblioCollection = (biblioId, result) => {
     sql.query(`SELECT tb_Bibliotheque.biblioId, tb_Objets.idObjet,  tb_Objets.prix, tb_Objets.nom, tb_Objets.description, tb_Objets.dateAcquisition, tb_Objets.etat, tb_Objets.edition from tb_Bibliotheque JOIN tb_Objets on tb_Bibliotheque.idObjet = tb_Objets.idObjet
     WHERE tb_Bibliotheque.biblioId = "${biblioId}";`, (err, res) => {
@@ -109,23 +133,37 @@ bibliotheques.findBibliotheques = (email, result) => {
     })
   },
 
-  /*bibliotheques.creationObjet=(objet, result) => {
-    var requete1 = "INSERT INTO tb_Bibliotheque (biblioId) VALUES ? ";
-    var values1 = [[objet.biblioId]];
-    var requete2 = "INSERT INTO tb_Objets (idObjet,prix,nom,description,dateAcquisition,etat,edition) VALUES ? ";
-    var values2 = [[objet.objetId,objet.prix, objet.nom, objet.description, objet.dateAcquisition, objet.etat, objet.edition]];
-    sql.query(requete1, [values1],
-        (err, res) => {
-            if (err) {
-                console.log("error : ", err);
-                result(null, err);
-                return;
-            }
-            console.log("Marche");
-            result(null, res);
-          })
+  bibliotheques.supprimerObjet = (idObjet, result) => {
+    sql.query(`DELETE from tb_Bibliotheque where idObjet="${idObjet}";`, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      console.log("contacts :", res);
+      result(null, res);
+    });
 
-    sql.query(requete2, [values2],
+  };
+
+
+bibliotheques.supprimerBiblio = (idBiblio, result) => {
+  sql.query(`DELETE from tb_UsersBiblio where biblioId="${idBiblio}";`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    console.log("contacts :", res);
+    result(null, res);
+  });
+};
+/*bibliotheques.creationObjet=(objet, result) => {
+  var requete1 = "INSERT INTO tb_Bibliotheque (biblioId) VALUES ? ";
+  var values1 = [[objet.biblioId]];
+  var requete2 = "INSERT INTO tb_Objets (idObjet,prix,nom,description,dateAcquisition,etat,edition) VALUES ? ";
+  var values2 = [[objet.objetId,objet.prix, objet.nom, objet.description, objet.dateAcquisition, objet.etat, objet.edition]];
+  sql.query(requete1, [values1],
       (err, res) => {
           if (err) {
               console.log("error : ", err);
@@ -135,7 +173,18 @@ bibliotheques.findBibliotheques = (email, result) => {
           console.log("Marche");
           result(null, res);
         })
-  },
+
+  sql.query(requete2, [values2],
+    (err, res) => {
+        if (err) {
+            console.log("error : ", err);
+            result(null, err);
+            return;
+        }
+        console.log("Marche");
+        result(null, res);
+      })
+},
 */
 
-  module.exports = bibliotheques;
+module.exports = bibliotheques;

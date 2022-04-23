@@ -6,7 +6,7 @@ const PostInscription = () => {
     return (
         <div>
             <Navigation />
-            <p>Page PostConnexion</p>
+            <p>Page PostInscription</p>
             <h1>Félicitation pour votre inscription !</h1>
             <NavLink to="/Connexion" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
                 <li>Connexion</li>

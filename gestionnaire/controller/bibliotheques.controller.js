@@ -19,9 +19,46 @@ exports.findBibliotheques = (req, res) => {
   });
 
 }
+exports.findAllBibliotheques = (req, res) => {
+  bibliotheques.findAllBibliotheques((err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+        });
+      } else {
+        res.status(500).send({
+
+        });
+      }
+    } else {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.send(data);
+    }
+  });
+
+}
 
 exports.findAllBiblioCollection = (req, res) => {
   bibliotheques.findAllBiblioCollection((err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+        });
+      } else {
+        res.status(500).send({
+
+        });
+      }
+    } else {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.send(data);
+    }
+  });
+
+}
+
+exports.findAllObjets = (req, res) => {
+  bibliotheques.findAllObjets((err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -171,4 +208,42 @@ exports.findCollectionInfos = (req, res) => {
   });
 
 }
+
+exports.supprimerBiblio = (req, res) => {
+  bibliotheques.supprimerBiblio(req.params.idBiblio, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Impossible de supprimer la bibliotheque ${req.params.idBiblio}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: "Error",
+        });
+      }
+    } else {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.send(data);
+    }
+  });
+};
+
+exports.supprimerObjet = (req, res) => {
+  bibliotheques.supprimerObjet(req.params.idObjet, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Impossible de supprimer l'objet ${req.params.idObjet}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: "Error",
+        });
+      }
+    } else {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.send(data);
+    }
+  });
+};
 

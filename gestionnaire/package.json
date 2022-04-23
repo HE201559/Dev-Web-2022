@@ -9,7 +9,9 @@
     "fetch": "^1.1.0",
     "mariadb": "^3.0.0",
     "mysql": "^2.18.1",
-    "node-fetch": "^3.2.3",
+    "node-fetch": "^3.2.3"
+  },
+  "devDependencies": {
     "nodemon": "^2.0.15"
   }
 }

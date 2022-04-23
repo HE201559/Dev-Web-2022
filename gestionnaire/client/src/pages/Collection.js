@@ -1,7 +1,7 @@
 import { React, Component } from "react";
 import Navigation from "../component/Navigation";
 import { NavLink } from "react-router-dom";
-import { Row, Col, Container, Card, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { Row, Col, Container, Card, ListGroup, ListGroupItem, Modal } from 'react-bootstrap'
 import dateFormat from 'dateformat';
 
 class Collection extends Component {
@@ -17,9 +17,25 @@ class Collection extends Component {
       valeurCollection: '',
       nombreObjets: '',
       biblioDateCre: '',
+      show: false,
+      nomAsupp: '',
+      idObjetASupp: '',
     };
 
+    this.showModal = this.showModal.bind(this);
+    this.hideModal = this.hideModal.bind(this);
+
   }
+
+  showModal() {
+    this.setState({ show: true });
+
+  };
+
+  hideModal = () => {
+    this.setState({ show: false });
+  };
+
   async componentDidMount() {
 
     await fetch(`http://localhost:5000/findBiblioCollection/${this.state.biblioId}`)
@@ -53,6 +69,36 @@ class Collection extends Component {
     window.location.href = "http://localhost:3000/AjoutObjet"
   }
 
+  handleSuppressionObjet(idObjetAsupp) {
+    console.log(idObjetAsupp)
+    fetch(`http://localhost:5000/supprimerObjet/${idObjetAsupp}`, {
+
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "true"
+      },
+      body: JSON.stringify({
+        idObjet: { idObjetAsupp }
+      }),
+
+
+    })
+      .then(res => res.text())
+      .then(text => console.log(text))
+      .then(response => response.json())
+      .then(json => {
+
+
+      }).catch((error) => {
+
+      });
+
+    window.location.href = "http://localhost:3000/Collection"
+  };
+
+
 
   render() {
     return (
@@ -78,9 +124,9 @@ class Collection extends Component {
           <Row>
             <Row style={{ marginTop: '4%', marginBottom: '3%' }}>
               <Col md={6}>
-                <h3 style={{ fontSize: '170%', marginBottom: '3%', marginTop: '5%' }}> Objets de collection</h3>
+                <h3 style={{ fontSize: '180%', marginBottom: '3%', marginTop: '5%' }}> Objets de collection</h3>
               </Col>
-              <Col md={6} style={{ textAlign: 'right', paddingTop: '1%' }}>
+              <Col md={6} style={{ textAlign: 'right', paddingTop: '1%', paddingRight: '0.5%' }}>
                 <button type="button" style={{ fontSize: '140%' }} class="btn btn-outline-success" onClick={this.navAjoutObjet}> Ajouter un objet </button>
               </Col>
             </Row>
@@ -103,11 +149,31 @@ class Collection extends Component {
                   <Card.Footer>
                     <ListGroupItem>Date d'acquisition : {dateFormat(collection.dateAcquisition, 'dd-mm-yyyy')}</ListGroupItem>
                   </Card.Footer>
+                  <Card.Link style={{ textAlign: 'center', marginBottom: '3%' }}>
+                    <button type="button" class="btn btn-outline-danger" onClick={() => { this.showModal(); this.setState({ nomAsupp: collection.nom }); this.setState({ idObjetASupp: collection.idObjet }) }} > Supprimer l'objet {collection.nom} </button>
+                  </Card.Link>
                 </Card>
+                <Modal show={this.state.show} onHide={this.hideModal}  >
+                  <Modal.Header closeButton>
+                    Êtes-vous certain de vouloir supprimer l'objet {this.state.nomAsupp}
+                  </Modal.Header>
+                  <Modal.Body>
+                    <Row>
+                      <Col style={{ textAlign: 'center' }}>
+                        <button type="button" class="btn btn-outline-danger" onClick={() => this.handleSuppressionObjet(this.state.idObjetASupp)}> Supprimer </button>
+                      </Col>
+                      <Col style={{ textAlign: 'center' }}>
+                        <button type="button" class="btn btn-outline-success" onClick={this.hideModal} > Oups non !  </button>
+                      </Col>
+                    </Row>
+                  </Modal.Body>
+                </Modal>
               </Col>
+
             )
             )}
           </Row>
+
         </Container>
       </div >
     );
