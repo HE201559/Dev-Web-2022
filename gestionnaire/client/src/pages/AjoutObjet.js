@@ -17,6 +17,7 @@ class AjoutObjet extends Component {
       biblioId: localStorage.getItem('biblioId'),
       objetId: '',
       image: '',
+      perso1: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -87,6 +88,7 @@ class AjoutObjet extends Component {
         //biblioId: this.state.biblioId,
         objetId: Number(this.state.objetId),
         image: this.state.image,
+        perso1: this.state.perso1,
       }),
 
 
@@ -148,6 +150,11 @@ class AjoutObjet extends Component {
             <br /><br />
             <label>
               Image :
+            </label>
+            <br /><br />
+            <label>
+              Perso1 :
+              <input type="text" value={this.state.perso1} onChange={text => this.setState({ perso1: text.target.value })} />
             </label>
             <br /><br />
             <input type="submit" value="Ajouter un objet" />

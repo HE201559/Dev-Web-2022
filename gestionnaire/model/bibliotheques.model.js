@@ -95,8 +95,8 @@ bibliotheques.findBibliotheques = (email, result) => {
   },
 
   bibliotheques.creationObjetTbObjets = (objet, result) => {
-    var requete = "INSERT INTO tb_Objets (idObjet,prix,nom,description,dateAcquisition,etat,edition, image) VALUES ? ";
-    var values = [[objet.objetId, objet.prix, objet.nom, objet.description, objet.dateAcquisition, objet.etat, objet.edition, objet.image]];
+    var requete = "INSERT INTO tb_Objets (idObjet,prix,nom,description,dateAcquisition,etat,edition, image, perso1) VALUES ? ";
+    var values = [[objet.objetId, objet.prix, objet.nom, objet.description, objet.dateAcquisition, objet.etat, objet.edition, objet.image, objet.perso1]];
     sql.query(requete, [values],
       (err, res) => {
         if (err) {
