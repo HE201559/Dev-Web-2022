@@ -18,6 +18,8 @@ class AjoutObjet extends Component {
       objetId: '',
       image: '',
       perso1: '',
+      perso2: '',
+      perso3: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -89,6 +91,8 @@ class AjoutObjet extends Component {
         objetId: Number(this.state.objetId),
         image: this.state.image,
         perso1: this.state.perso1,
+        perso2: this.state.perso2,
+        perso3: this.state.perso3,
       }),
 
 
@@ -155,6 +159,16 @@ class AjoutObjet extends Component {
             <label>
               Perso1 :
               <input type="text" value={this.state.perso1} onChange={text => this.setState({ perso1: text.target.value })} />
+            </label>
+            <br /><br />
+            <label>
+              Perso2 :
+              <input type="text" value={this.state.perso2} onChange={text => this.setState({ perso2: text.target.value })} />
+            </label>
+            <br /><br />
+            <label>
+              Perso3 :
+              <input type="text" value={this.state.perso3} onChange={text => this.setState({ perso3: text.target.value })} />
             </label>
             <br /><br />
             <input type="submit" value="Ajouter un objet" />

@@ -28,7 +28,7 @@ bibliotheques.findBibliotheques = (email, result) => {
   },
 
   bibliotheques.findAllObjets = (result) => {
-    sql.query(`SELECT tb_Bibliotheque.biblioId, tb_Objets.idObjet,  tb_Objets.prix, tb_Objets.nom, tb_Objets.description, tb_Objets.dateAcquisition, tb_Objets.etat, tb_Objets.edition from tb_Bibliotheque JOIN tb_Objets on tb_Bibliotheque.idObjet = tb_Objets.idObjet`, (err, res) => {
+    sql.query(`SELECT tb_Bibliotheque.biblioId, tb_Objets.idObjet,  tb_Objets.prix, tb_Objets.nom, tb_Objets.description, tb_Objets.dateAcquisition, tb_Objets.etat, tb_Objets.edition, perso1, perso2, perso3 from tb_Bibliotheque JOIN tb_Objets on tb_Bibliotheque.idObjet = tb_Objets.idObjet`, (err, res) => {
       if (err) {
         console.log("error : ", err);
         result(null, err);
@@ -40,7 +40,7 @@ bibliotheques.findBibliotheques = (email, result) => {
   },
 
   bibliotheques.findBiblioCollection = (biblioId, result) => {
-    sql.query(`SELECT tb_Bibliotheque.biblioId, tb_Objets.idObjet,  tb_Objets.prix, tb_Objets.nom, tb_Objets.description, tb_Objets.dateAcquisition, tb_Objets.etat, tb_Objets.edition, tb_Objets.image from tb_Bibliotheque JOIN tb_Objets on tb_Bibliotheque.idObjet = tb_Objets.idObjet
+    sql.query(`SELECT tb_Bibliotheque.biblioId, tb_Objets.idObjet,  tb_Objets.prix, tb_Objets.nom, tb_Objets.description, tb_Objets.dateAcquisition, tb_Objets.etat, tb_Objets.edition, tb_Objets.image, perso1, perso2, perso3 from tb_Bibliotheque JOIN tb_Objets on tb_Bibliotheque.idObjet = tb_Objets.idObjet
     WHERE tb_Bibliotheque.biblioId = "${biblioId}";`, (err, res) => {
       if (err) {
         console.log("error : ", err);
@@ -95,8 +95,8 @@ bibliotheques.findBibliotheques = (email, result) => {
   },
 
   bibliotheques.creationObjetTbObjets = (objet, result) => {
-    var requete = "INSERT INTO tb_Objets (idObjet,prix,nom,description,dateAcquisition,etat,edition, image, perso1) VALUES ? ";
-    var values = [[objet.objetId, objet.prix, objet.nom, objet.description, objet.dateAcquisition, objet.etat, objet.edition, objet.image, objet.perso1]];
+    var requete = "INSERT INTO tb_Objets (idObjet,prix,nom,description,dateAcquisition,etat,edition, image, perso1, perso2, perso3) VALUES ? ";
+    var values = [[objet.objetId, objet.prix, objet.nom, objet.description, objet.dateAcquisition, objet.etat, objet.edition, objet.image, objet.perso1, objet.perso2, objet.perso3]];
     sql.query(requete, [values],
       (err, res) => {
         if (err) {

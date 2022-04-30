@@ -176,7 +176,9 @@ exports.creationObjetTbObjets = (req, res) => {
     edition: req.body.edition,
     //biblioId: req.body.biblioId,
     objetId: req.body.objetId,
-    perso1: req.body.perso1
+    perso1: req.body.perso1,
+    perso2: req.body.perso2,
+    perso3: req.body.perso3
   };
 
   bibliotheques.creationObjetTbObjets(objet, (err, data) => {
