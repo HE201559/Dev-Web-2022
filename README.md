@@ -1,3 +1,4 @@
+[![CI](https://github.com/HE201559/Gestion-Collection-DevWeb3/actions/workflows/build_test_react.yml/badge.svg)](https://github.com/HE201559/Gestion-Collection-DevWeb3/actions/workflows/build_test_react.yml)
 # Dev-Web-2022
 Template de repo pour le projet Dev Web 2022
 
