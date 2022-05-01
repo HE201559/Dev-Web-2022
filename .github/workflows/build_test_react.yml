@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [17.x]
+        node-version: [17.8]
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -38,7 +38,8 @@ jobs:
           npm install bcryptjs --save
           npm install bcrypt -g
           npm install bcrypt --save
-          npm i
+          npm install crypto-browserify
+          npm audit fix --force
           npm ci
           npm run build --if-present
           npm test
