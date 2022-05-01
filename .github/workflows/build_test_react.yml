@@ -35,11 +35,6 @@ jobs:
         working-directory: ./gestionnaire/client/
         run: |
           npm i --save moment
-          npm install bcryptjs --save
-          npm install bcrypt -g
-          npm install bcrypt --save
-          npm install crypto-browserify
-          npm audit fix --force
           npm ci
           npm run build --if-present
           npm test
