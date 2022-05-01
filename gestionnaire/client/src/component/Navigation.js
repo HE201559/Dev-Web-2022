@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
-import Button from "react-bootstrap";
+// import Button from "react-bootstrap";
 
 class Navigation extends Component {
 
@@ -16,7 +16,8 @@ class Navigation extends Component {
 
         localStorage.setItem('Connecte', false)
         console.log(this.state.connecte)
-        this.state.connecte = 'false'
+        // this.state.connecte = 'false'
+        this.setState({ comment: 'false' })
         console.log(this.state.connecte)
         localStorage.setItem('EmailUtilisateur', 'null')
 

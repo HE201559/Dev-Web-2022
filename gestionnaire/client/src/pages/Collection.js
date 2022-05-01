@@ -1,6 +1,6 @@
 import { React, Component } from "react";
 import Navigation from "../component/Navigation";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import { Row, Col, Container, Card, ListGroup, ListGroupItem, Modal } from 'react-bootstrap'
 import dateFormat from 'dateformat';
 import lugia from '../images/lugia.jpg'
@@ -42,6 +42,7 @@ class Collection extends Component {
 
   // test = () => {
   //   console.log(this.state.image)
+
   // };
 
   async componentDidMount() {
@@ -148,7 +149,8 @@ class Collection extends Component {
                       {collection.description !== '' && (collection.description)}
                     </Card.Text>
                   </Card.Header>
-                  {<Card.Img variant="top" src={lugia} />}
+                  {collection.image !== '' && collection.image && (<Card.Img variant="top" src={lugia} />)}
+                  {/* {console.log(URL.createObjectURL(collection.image))} */}
                   <Card.Body>
                     <ListGroup className="list-group-flush">
                       {collection.prix !== '' && collection.prix && (<ListGroupItem>Prix : {collection.prix} €</ListGroupItem>)}

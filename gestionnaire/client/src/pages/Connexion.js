@@ -9,9 +9,9 @@ class Login extends Component {
         this.state = {
             email: '',
             motdepasse: '',
-            utilisateur:[],
-            tousEmails:[],
-            tousEmailsArray:[],
+            utilisateur: [],
+            tousEmails: [],
+            tousEmailsArray: [],
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,19 +19,19 @@ class Login extends Component {
     }
 
 
-    async componentDidMount(){
+    async componentDidMount() {
 
         await fetch(`http://localhost:5000/findTousUtilisateurs`)
-          .then(response => response.json())
-          .then(json => {
-            this.setState({tousEmails: json})
-            
-          })
+            .then(response => response.json())
+            .then(json => {
+                this.setState({ tousEmails: json })
 
-          {this.state.tousEmails.map(email => (
+            })
+
+        this.state.tousEmails.map(email => (
             this.state.tousEmailsArray.push(email.email)
-      ))}
-      console.log(this.state.tousEmailsArray)
+        ))
+        console.log(this.state.tousEmailsArray)
     };
 
 
@@ -39,31 +39,31 @@ class Login extends Component {
 
     async handleSubmit(event) {
         event.preventDefault();
-        if(this.state.tousEmailsArray.includes(this.state.email) === false){
+        if (this.state.tousEmailsArray.includes(this.state.email) === false) {
             alert('Email inconnue')
         }
-        else{
+        else {
             //alert('Email OK')
             await fetch(`http://localhost:5000/connexion/${this.state.email}`)
                 .then(response => response.json())
                 .then(json => {
-                this.setState({utilisateur: json})
-                
-            })
+                    this.setState({ utilisateur: json })
+
+                })
             console.log(this.state.utilisateur[0].email)
             var bcrypt = require('bcryptjs');
-                bcrypt.compare(this.state.motdepasse, this.state.utilisateur[0].motdepasse, function(err,res){
-                    if(res){
-                        console.log(localStorage.getItem('Connecte'))
-                        localStorage.setItem('Connecte', true)
-                        console.log(localStorage.getItem('Connecte'))
-                        window.location.href="http://localhost:3000/"
-                        }
-                    else{
-                        alert("Mot de passe incorrect")
-                    }
-                })
-                localStorage.setItem('EmailUtilisateur',this.state.email )
+            bcrypt.compare(this.state.motdepasse, this.state.utilisateur[0].motdepasse, function (err, res) {
+                if (res) {
+                    console.log(localStorage.getItem('Connecte'))
+                    localStorage.setItem('Connecte', true)
+                    console.log(localStorage.getItem('Connecte'))
+                    window.location.href = "http://localhost:3000/"
+                }
+                else {
+                    alert("Mot de passe incorrect")
+                }
+            })
+            localStorage.setItem('EmailUtilisateur', this.state.email)
         }
     }
 

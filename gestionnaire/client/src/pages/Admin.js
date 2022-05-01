@@ -3,7 +3,7 @@ import TreeView from '@material-ui/lab/TreeView';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
-import { Button, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 
 
 class Admin extends Component {
@@ -33,11 +33,11 @@ class Admin extends Component {
 
             })
 
-        {
-            this.state.tousEmails.map(email => (
-                this.state.tousEmailsArray.push(email.email)
-            ))
-        }
+
+        this.state.tousEmails.map(email => (
+            this.state.tousEmailsArray.push(email.email)
+        ))
+
         console.log(this.state.tousEmails)
 
         await fetch(`http://localhost:5000/findAllBibliotheques`)
@@ -97,12 +97,25 @@ class Admin extends Component {
 
                                 <TreeItem nodeId={this.state.nodeDeuxiemeTree} label={filterbibliotheques.nomBibli} >
                                     {/* <button type="button" class="btn btn-outline-danger"> Supprimer la collection {filterbibliotheques.nomBibli} </button> */}
-                                    <script>{this.state.nodeDeuxiemeTree = 1 + this.state.nodeDeuxiemeTree}</script>
+                                    <script>
+                                        {this.state.nodeDeuxiemeTree = 1 + this.state.nodeDeuxiemeTree}
+                                        {/* {this.setState({ nodeDeuxiemeTree: this.state.nodeDeuxiemeTree + 1 })} */}
+                                        {/* {this.setState((state) => { return { nodeDeuxiemeTree: state.nodeDeuxiemeTree + 1 } })} */}
+
+
+
+                                    </script>
                                     {
-                                        this.state.allObjets.filter(Objets => Objets.biblioId == filterbibliotheques.biblioId).map(filterObjets => (
+                                        this.state.allObjets.filter(Objets => Objets.biblioId === filterbibliotheques.biblioId).map(filterObjets => (
                                             <TreeItem nodeId={this.state.nodeTroisiemeTree} label={filterObjets.nom} >
                                                 {/* <button type="button" class="btn btn-outline-danger"> Supprimer l'objet {filterObjets.nom} </button> */}
-                                                <script>{this.state.nodeTroisiemeTree = 1 + this.state.nodeTroisiemeTree}</script>
+                                                <script>
+                                                    {this.state.nodeTroisiemeTree = 1 + this.state.nodeTroisiemeTree}
+                                                    {/* {this.setState({ nodeTroisiemeTree: this.state.nodeTroisiemeTree + 1 })} */}
+                                                    {/* {this.setState((state) => { return { nodeTroisiemeTree: state.nodeTroisiemeTree + 1 } })} */}
+
+
+                                                </script>
                                             </TreeItem>
                                         ))
                                     }
