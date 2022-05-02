@@ -38,7 +38,7 @@ class Bibliothèques extends Component {
 
   async componentDidMount() {
 
-    await fetch(`http://localhost:5000/findBibliothequesPossedeee/${this.state.email}`)
+    await fetch(`http://localhost:5000/findBibliotheques/${this.state.email}`)
       .then(response => response.json())
       .then(json => {
         this.setState({ toutesBibliotheques: json })
