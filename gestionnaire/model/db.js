@@ -4,7 +4,7 @@ const db = require("../config/db");
 const pool = mysql.createPool({
     host: '137.74.198.28',
     user: 'remote',
-    password: 'Welcom@2803',
+    password: '********',
     database: 'gestionnaire_collection'
 });
 
