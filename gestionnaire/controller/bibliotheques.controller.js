@@ -78,8 +78,8 @@ exports.findAllObjets = (req, res) => {
 
 
 
-exports.findBiblioCollection = (req, res) => {
-  bibliotheques.findBiblioCollection(req.params.biblioId, (err, data) => {
+exports.findBiblioCollectionPossedee = (req, res) => {
+  bibliotheques.findBiblioCollectionPossedee(req.params.biblioId, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -96,6 +96,45 @@ exports.findBiblioCollection = (req, res) => {
   });
 
 }
+
+exports.findBiblioCollectionVendu = (req, res) => {
+  bibliotheques.findBiblioCollectionVendu(req.params.biblioId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+        });
+      } else {
+        res.status(500).send({
+
+        });
+      }
+    } else {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.send(data);
+    }
+  });
+
+}
+
+exports.findBenefices = (req, res) => {
+  bibliotheques.findBenefices(req.params.biblioId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+        });
+      } else {
+        res.status(500).send({
+
+        });
+      }
+    } else {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.send(data);
+    }
+  });
+
+}
+
 
 exports.findBibliothequesDateCrea = (req, res) => {
   bibliotheques.findBibliothequesDateCrea(req.params.biblioId, (err, data) => {
@@ -232,6 +271,30 @@ exports.supprimerBiblio = (req, res) => {
     }
   });
 };
+
+
+exports.vendreObjet = (req, res) => {
+  bibliotheques.vendreObjet(req.body.prixRevente, req.params.idObjet, (err, data) => {
+    console.log(req.params.idObjet)
+    console.log(req)
+    console.log(req.body.prixRevente)
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Impossible de vendre l'objet ${req.params.idObjet}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: "Error",
+        });
+      }
+    } else {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.send(data);
+    }
+  });
+};
+
 
 exports.supprimerObjet = (req, res) => {
   bibliotheques.supprimerObjet(req.params.idObjet, (err, data) => {

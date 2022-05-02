@@ -39,9 +39,22 @@ bibliotheques.findBibliotheques = (email, result) => {
     })
   },
 
-  bibliotheques.findBiblioCollection = (biblioId, result) => {
-    sql.query(`SELECT tb_Bibliotheque.biblioId, tb_Objets.idObjet,  tb_Objets.prix, tb_Objets.nom, tb_Objets.description, tb_Objets.dateAcquisition, tb_Objets.etat, tb_Objets.edition, tb_Objets.image, perso1, perso2, perso3 from tb_Bibliotheque JOIN tb_Objets on tb_Bibliotheque.idObjet = tb_Objets.idObjet
-    WHERE tb_Bibliotheque.biblioId = "${biblioId}";`, (err, res) => {
+  bibliotheques.findBiblioCollectionPossedee = (biblioId, result) => {
+    sql.query(`SELECT tb_Bibliotheque.biblioId, tb_Objets.idObjet, tb_Objets.possede,  tb_Objets.prix, tb_Objets.nom, tb_Objets.description, tb_Objets.dateAcquisition, tb_Objets.etat, tb_Objets.edition, tb_Objets.image, perso1, perso2, perso3 from tb_Bibliotheque JOIN tb_Objets on tb_Bibliotheque.idObjet = tb_Objets.idObjet
+    WHERE tb_Bibliotheque.biblioId = "${biblioId}" AND tb_Objets.possede = '0' ;`, (err, res) => {
+      if (err) {
+        console.log("error : ", err);
+        result(null, err);
+        return;
+      }
+      console.log("donnees :", res);
+      result(null, res);
+    })
+  },
+
+  bibliotheques.findBiblioCollectionVendu = (biblioId, result) => {
+    sql.query(`SELECT tb_Bibliotheque.biblioId, tb_Objets.idObjet, tb_Objets.possede,  tb_Objets.prix, tb_Objets.nom, tb_Objets.description, tb_Objets.dateAcquisition, tb_Objets.etat, tb_Objets.edition, tb_Objets.prix_revente, tb_Objets.image, perso1, perso2, perso3 from tb_Bibliotheque JOIN tb_Objets on tb_Bibliotheque.idObjet = tb_Objets.idObjet
+    WHERE tb_Bibliotheque.biblioId = "${biblioId}" AND tb_Objets.possede = '1' ;`, (err, res) => {
       if (err) {
         console.log("error : ", err);
         result(null, err);
@@ -133,8 +146,9 @@ bibliotheques.findBibliotheques = (email, result) => {
     })
   },
 
-  bibliotheques.supprimerObjet = (idObjet, result) => {
-    sql.query(`DELETE from tb_Bibliotheque where idObjet="${idObjet}";`, (err, res) => {
+
+  bibliotheques.vendreObjet = (prixRevente, idObjet, result) => {
+    sql.query(`UPDATE tb_Objets SET tb_Objets.possede='1', tb_Objets.prix_revente="${prixRevente}" WHERE tb_Objets.idObjet="${idObjet}"`, (err, res) => {
       if (err) {
         console.log("error: ", err);
         result(null, err);
@@ -145,6 +159,20 @@ bibliotheques.findBibliotheques = (email, result) => {
     });
 
   };
+
+
+bibliotheques.supprimerObjet = (idObjet, result) => {
+  sql.query(`DELETE from tb_Bibliotheque where idObjet="${idObjet}";`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    console.log("contacts :", res);
+    result(null, res);
+  });
+
+};
 
 
 bibliotheques.supprimerBiblio = (idBiblio, result) => {
@@ -158,6 +186,21 @@ bibliotheques.supprimerBiblio = (idBiblio, result) => {
     result(null, res);
   });
 };
+
+bibliotheques.findBenefices = (idBiblio, result) => {
+  sql.query(`SELECT tb_Bibliotheque.biblioId, SUM(tb_Objets.prix_revente - tb_Objets.prix) AS benefice  FROM tb_Bibliotheque JOIN tb_Objets ON tb_Bibliotheque.idObjet = tb_Objets.idObjet WHERE tb_Bibliotheque.biblioId="${idBiblio}"`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    console.log("contacts :", res);
+    result(null, res);
+  });
+};
+
+
+
 /*bibliotheques.creationObjet=(objet, result) => {
   var requete1 = "INSERT INTO tb_Bibliotheque (biblioId) VALUES ? ";
   var values1 = [[objet.biblioId]];

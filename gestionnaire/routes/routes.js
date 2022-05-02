@@ -15,6 +15,8 @@ module.exports = (app) => {
     app.post("/ajoutObjetTbBiblio", jsonParser, bibliotheques.creationObjetTbBiblio);
     app.post("/ajoutObjetTbObjets", jsonParser, bibliotheques.creationObjetTbObjets);
     app.post("/ajoutBibliotheque", jsonParser, bibliotheques.creationBibliotheque);
+    app.post("/vendreObjet/:idObjet", jsonParser, bibliotheques.vendreObjet);
+
 
 
     app.get("/connexion/:email", connexion.findUtilisateur)
@@ -22,10 +24,12 @@ module.exports = (app) => {
     app.get("/findAllBibliotheques", bibliotheques.findAllBibliotheques)
     app.get("/findBibliotheques/:email", bibliotheques.findBibliotheques)
     app.get("/findBibliothequesDateCrea/:biblioId", bibliotheques.findBibliothequesDateCrea)
-    app.get("/findBiblioCollection/:biblioId", bibliotheques.findBiblioCollection)
+    app.get("/findBiblioCollectionPossedee/:biblioId", bibliotheques.findBiblioCollectionPossedee)
+    app.get("/findBiblioCollectionVendu/:biblioId", bibliotheques.findBiblioCollectionVendu)
     app.get("/findAllObjets", bibliotheques.findAllObjets)
     app.get("/findAllBiblioCollection", bibliotheques.findAllBiblioCollection)
     app.get("/findCollectionInfos/:biblioId", jsonParser, bibliotheques.findCollectionInfos)
+    app.get("/findBenefices/:biblioId", bibliotheques.findBenefices)
 
 
     app.delete("/supprimerObjet/:idObjet", bibliotheques.supprimerObjet);
