@@ -174,7 +174,7 @@ class Collection extends Component {
               <h4>Valeur de la collection : <br></br> {0 + this.state.valeurCollection} €</h4>
             </Col>
             <Col md={4} style={{ textAlign: 'center' }}>
-              <h4>Nombre d'objets dans la collection : <br></br> {this.state.nombreObjets}</h4>
+              <h4>Nombre d'objets dans la collection : <br></br> {this.state.donneesCollection.length}</h4>
             </Col>
             <Col md={4} style={{ textAlign: 'center' }}>
               <h4>Date de création de la bibliotheque : <br></br> {dateFormat(this.state.biblioDateCre, 'dd-mm-yyyy')}</h4>
@@ -205,9 +205,12 @@ class Collection extends Component {
                     {<Card.Img variant="top" src={lugia} />}
                     <Card.Body>
                       <ListGroup className="list-group-flush">
-                        {collection.prix !== '' && (<ListGroupItem>Prix d'achat : {collection.prix} €</ListGroupItem>)}
-                        {collection.etat !== '' && (<ListGroupItem>Etat : {collection.etat}</ListGroupItem>)}
-                        {collection.edition !== '' && (<ListGroupItem>Edition : {collection.edition}</ListGroupItem>)}
+                      {collection.prix !== '' && collection.prix && (<ListGroupItem>Prix : {collection.prix} €</ListGroupItem>)}
+                      {collection.etat !== '' && collection.etat && (<ListGroupItem>Etat : {collection.etat}</ListGroupItem>)}
+                      {collection.edition !== '' && collection.edition && (<ListGroupItem>Edition : {collection.edition}</ListGroupItem>)}
+                      {collection.perso1 !== '' && collection.perso1 && (<ListGroupItem>{collection.perso1}</ListGroupItem>)}
+                      {collection.perso2 !== '' && collection.perso2 && (<ListGroupItem>{collection.perso2}</ListGroupItem>)}
+                      {collection.perso3 !== '' && collection.perso3 && (<ListGroupItem>{collection.perso3}</ListGroupItem>)}
                       </ListGroup>
                     </Card.Body>
                     <Card.Footer>

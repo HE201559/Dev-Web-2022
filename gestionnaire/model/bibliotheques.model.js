@@ -123,7 +123,7 @@ bibliotheques.findBibliotheques = (email, result) => {
   },
 
   bibliotheques.findCollectionInfos = (biblioId, result) => {
-    sql.query(`SELECT SUM(tb_Objets.prix) as valeur, COUNT(tb_Objets.idObjet) as nombre from tb_Objets join tb_Bibliotheque ON tb_Objets.idObjet = tb_Bibliotheque.idObjet WHERE tb_Bibliotheque.biblioId = "${biblioId}";  ;`, (err, res) => {
+    sql.query(`SELECT SUM(tb_Objets.prix) as valeur, COUNT(tb_Objets.idObjet) as nombre from tb_Objets join tb_Bibliotheque ON tb_Objets.idObjet = tb_Bibliotheque.idObjet WHERE tb_Objets.possede='0' AND tb_Bibliotheque.biblioId = "${biblioId}";  ;`, (err, res) => {
       if (err) {
         console.log("error : ", err);
         result(null, err);
