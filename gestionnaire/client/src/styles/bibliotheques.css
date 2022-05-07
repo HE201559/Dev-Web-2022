@@ -1,12 +1,3 @@
-#principal {
-    background-image: url("../images/chill1.gif");
-    background-size: 100%;
-    background-repeat: no-repeat;
-    background-size: cover ;
-    background-attachment: fixed;
-    height: 100%;
-    background-position: center;
-}
 
 #texte{
 font-size: '130%';

@@ -4,7 +4,7 @@ import Navigation from '../component/Navigation';
 
 const Contact = () => {
     return (
-        <div>
+        <div style={{height:'47.1em'}}>
             <Navigation />
             <p>Page de contact</p>
         </div>

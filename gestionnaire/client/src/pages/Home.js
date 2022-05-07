@@ -1,6 +1,5 @@
 import React from 'react';
 import Navigation from '../component/Navigation';
-import "../styles/home.css"
 
 
 const Home = () => {

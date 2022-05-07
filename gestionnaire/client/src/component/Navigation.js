@@ -37,7 +37,7 @@ class Navigation extends Component {
                             <li>Mes collections</li>
                         </NavLink>
                         <NavLink to="/About" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
-                            <li>About</li>
+                            <li>A propos</li>
                         </NavLink>
                         <NavLink to="/Contact" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
                             <li>Contact</li>

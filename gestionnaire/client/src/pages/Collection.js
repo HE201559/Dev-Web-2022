@@ -5,7 +5,6 @@ import { Row, Col, Container, Card, ListGroup, ListGroupItem, Modal } from 'reac
 import Popup from 'reactjs-popup';
 import dateFormat from 'dateformat';
 import lugia from '../images/lugia.jpg'
-import "../styles/collection.css"
 
 
 

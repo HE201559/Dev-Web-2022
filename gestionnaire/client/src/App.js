@@ -11,6 +11,7 @@ import PostInscription from "./pages/PostInscription";
 import Collection from "./pages/Collection"
 import AjoutObjet from "./pages/AjoutObjet"
 import Admin from "./pages/Admin";
+import "./App.css"
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -18,7 +19,7 @@ const App = () => {
 
   return (
 
-    <div className="App">
+    <div className="App" id="app">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />

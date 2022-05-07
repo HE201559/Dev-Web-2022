@@ -4,7 +4,6 @@ import { Row, Col, Container, Modal, Card } from 'react-bootstrap';
 import { NavLink } from "react-router-dom";
 import moment from "moment";
 import dateFormat from 'dateformat';
-import "../styles/bibliotheques.css"
 
 
 class Bibliothèques extends Component {
