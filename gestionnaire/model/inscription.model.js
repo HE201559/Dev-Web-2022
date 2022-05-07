@@ -24,5 +24,19 @@ inscription.creationUtilisateur=(utilisateur, result) => {
     });
 };
 
+inscription.supprimerUtilisateur = (email, result) => {
+    mysql.query(`DELETE from tb_Users where email="${email}";`, (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      console.log("contacts :", res);
+      result(null, res);
+    });
+  
+  };
+  
+
 
 module.exports = inscription;

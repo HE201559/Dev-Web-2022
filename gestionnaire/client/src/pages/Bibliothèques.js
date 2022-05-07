@@ -4,6 +4,7 @@ import { Row, Col, Container, Modal, Card } from 'react-bootstrap';
 import { NavLink } from "react-router-dom";
 import moment from "moment";
 import dateFormat from 'dateformat';
+import "../styles/bibliotheques.css"
 
 
 class Bibliothèques extends Component {
@@ -35,6 +36,11 @@ class Bibliothèques extends Component {
     this.setState({ show: false });
   };
 
+  navCollection = () => {
+    window.location.href = "http://localhost:3000/Collection"
+  };
+
+
 
   async componentDidMount() {
 
@@ -51,9 +57,12 @@ class Bibliothèques extends Component {
 
   async handleSubmit(event) {
     event.preventDefault()
-    //console.log(this.state.biblioDateCre)
-    //console.log(this.state.nomBibli)
-    //console.log(this.state.emailUser)
+
+    if (this.state.nomBibli === '') {
+      alert("Une bibliothèque sans nom n'est pas une bonne idée... ")
+    }
+
+    else{
 
     await fetch('http://localhost:5000/ajoutBibliotheque', {
 
@@ -79,7 +88,11 @@ class Bibliothèques extends Component {
         console.log(error)
       });
 
-    window.location.href = "http://localhost:3000/Bibliotheques"
+      window.location.href = "http://localhost:3000/Bibliotheques"
+
+    }
+
+    
   };
 
   handleSuppressionBiblio(idBibliASupp) {
@@ -120,7 +133,7 @@ class Bibliothèques extends Component {
   render() {
 
     return (
-      <div>
+      <div id="principal">
         <Navigation />
         <Container>
           <Row>
@@ -129,22 +142,24 @@ class Bibliothèques extends Component {
                 <p style={{ fontSize: '140%' }}> Ajouter une bibliotheque : </p>
                 <input style={{ fontSize: '110%' }} type="text" value={this.state.nomBibli} onChange={text => this.setState({ nomBibli: text.target.value })} />
               </label>
-              <input class="btn btn-outline-success" type="submit" value="Ajouter une bibliotheque" />
+              <input class="btn btn-success" type="submit" value="Ajouter une bibliotheque" />
             </form>
           </Row>
           {this.state.toutesBibliotheques.map(bibli => (
             <Row>
               <Col lg={4} xs={4} style={{ textAlign: 'center' }}>
-                <NavLink style={{ width: 'auto', marginTop: '5%' }} onClick={() => localStorage.setItem('biblioId', bibli.biblioId)} to="/Collection" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
-                  <li onClick={() => localStorage.setItem('nomBibli', bibli.nomBibli)} style={{ fontSize: '150%', marginTop: '15%' }}> {bibli.nomBibli}</li>
+
+                 <NavLink id="texte" style={{ width: 'auto',  marginTop: '20%' }} onClick={() => localStorage.setItem('biblioId', bibli.biblioId)} to="/Collection" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
+                  <li  onClick={() => localStorage.setItem('nomBibli', bibli.nomBibli)} style={{ fontSize: '170%', fontWeight:'bold', color:'black'}}> {bibli.nomBibli}</li>
                 </NavLink>
+
               </Col>
-              <Col lg={4}>
-                <p style={{ fontSize: '130%', marginTop: '21%' }}> Date de création : {dateFormat(bibli.biblioDateCre, 'dd-mm-yyyy')}</p>
+              <Col id="texte" lg={4}>
+                <p style={{ fontSize: '130%', marginTop: '21%', fontWeight:'bold' }}> Date de création : {dateFormat(bibli.biblioDateCre, 'dd-mm-yyyy')}</p>
               </Col>
               <Col lg={4}>
                 <Card.Link style={{ textAlign: 'center', marginBottom: '3%' }}>
-                  <button style={{ fontSize: '100%', marginTop: '21%' }} type="button" class="btn btn-outline-danger" onClick={() => { this.showModal(); this.setState({ idBibliAsupp: bibli.biblioId }); this.setState({ nomBibliAsupp: bibli.nomBibli }); }} > Supprimer la bibliotheque </button>
+                  <button style={{ fontSize: '100%', marginTop: '21%' }} type="button" class="btn btn-danger" onClick={() => { this.showModal(); this.setState({ idBibliAsupp: bibli.biblioId }); this.setState({ nomBibliAsupp: bibli.nomBibli }); }} > Supprimer la bibliotheque </button>
                 </Card.Link>
               </Col>
             </Row>

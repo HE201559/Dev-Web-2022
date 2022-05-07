@@ -22,6 +22,8 @@ class Admin extends Component {
             nodeTroisiemeTree: 100000000,
             nombreUsers: [],
         };
+
+        this.supprimerUtilisateur = this.supprimerUtilisateur.bind(this);
     }
 
     async componentDidMount() {
@@ -59,8 +61,32 @@ class Admin extends Component {
 
     }
 
-    supprimerUtilisateur() {
-        console.log(this.state)
+    supprimerUtilisateur(email) {
+        console.log(email)
+        fetch(`http://localhost:5000/supprimerUtilisateur/${email}`, {
+
+            method: 'DELETE',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              "Access-Control-Allow-Origin": "true"
+            },
+            body: JSON.stringify({
+              email: { email },
+            }),
+      
+      
+          })
+            .then(res => res.text())
+            .then(text => console.log(text))
+            .then(response => response.json())
+            .then(json => {
+      
+      
+            }).catch((error) => {
+      
+            });
+            window.location.href = "http://localhost:3000/Admin"
     }
 
 
@@ -92,7 +118,7 @@ class Admin extends Component {
                     {this.state.tousEmails.map(email => (
 
                         <TreeItem nodeId={email.Id} label={email.email}>
-                            <button type="button" class="btn btn-outline-danger"> Supprimer l'utilisateur {email.email} </button>
+                            <button type="button" class="btn btn-outline-danger" onClick={() => { this.supprimerUtilisateur(email.email) }} > Supprimer l'utilisateur {email.email} </button>
                             {this.state.toutesBibliotheques.filter(bibliotheque => bibliotheque.emailUser === email.email).map(filterbibliotheques => (
 
                                 <TreeItem nodeId={this.state.nodeDeuxiemeTree} label={filterbibliotheques.nomBibli} >

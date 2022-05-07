@@ -34,5 +34,6 @@ module.exports = (app) => {
 
     app.delete("/supprimerObjet/:idObjet", bibliotheques.supprimerObjet);
     app.delete("/supprimerBiblio/:idBiblio", bibliotheques.supprimerBiblio);
+    app.delete("/supprimerUtilisateur/:email", inscription.supprimerUtilisateur);
 
 }

@@ -28,3 +28,22 @@ exports.creationUtilisateur = (req, res) => {
           }
       });
     };
+
+    exports.supprimerUtilisateur = (req, res) => {
+      inscription.supprimerUtilisateur(req.params.email, (err, data) => {
+        if (err) {
+          if (err.kind === "not_found") {
+            res.status(404).send({
+              message: `Impossible de supprimer l'utilisateur ${req.params.email}.`,
+            });
+          } else {
+            res.status(500).send({
+              message: "Error",
+            });
+          }
+        } else {
+          res.header("Access-Control-Allow-Origin", "*");
+          res.send(data);
+        }
+      });
+    };
