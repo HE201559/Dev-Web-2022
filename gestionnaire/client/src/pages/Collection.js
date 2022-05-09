@@ -89,7 +89,6 @@ class Collection extends Component {
       })
 
 
-
   }
 
   navAjoutObjet() {

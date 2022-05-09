@@ -49,49 +49,45 @@ class Bibliothèques extends Component {
         this.setState({ toutesBibliotheques: json })
         console.log(this.state.toutesBibliotheques)
       })
-
-
-
   }
 
   async handleSubmit(event) {
     event.preventDefault()
-
     if (this.state.nomBibli === '') {
       alert("Une bibliothèque sans nom n'est pas une bonne idée... ")
     }
 
-    else{
+    else {
 
-    await fetch('http://localhost:5000/ajoutBibliotheque', {
+      await fetch('http://localhost:5000/ajoutBibliotheque', {
 
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        "Access-Control-Allow-Origin": "true"
-      },
-      body: JSON.stringify({
-        emailUser: this.state.emailUser,
-        nomBibli: this.state.nomBibli,
-        biblioDateCre: this.state.biblioDateCre,
-      }),
-    })
-      .then(res => res.text())
-      .then(text => console.log(text))
-      .then(response => response.json())
-      .then(json => {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          "Access-Control-Allow-Origin": "true"
+        },
+        body: JSON.stringify({
+          emailUser: this.state.emailUser,
+          nomBibli: this.state.nomBibli,
+          biblioDateCre: this.state.biblioDateCre,
+        }),
+      })
+        .then(res => res.text())
+        .then(text => console.log(text))
+        .then(response => response.json())
+        .then(json => {
 
 
-      }).catch((error) => {
-        console.log(error)
-      });
+        }).catch((error) => {
+          console.log(error)
+        });
 
       window.location.href = "http://localhost:3000/Bibliotheques"
 
     }
 
-    
+
   };
 
   handleSuppressionBiblio(idBibliASupp) {
@@ -148,13 +144,13 @@ class Bibliothèques extends Component {
             <Row>
               <Col lg={4} xs={4} style={{ textAlign: 'center' }}>
 
-                 <NavLink id="texte" style={{ width: 'auto',  marginTop: '20%' }} onClick={() => localStorage.setItem('biblioId', bibli.biblioId)} to="/Collection" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
-                  <li  onClick={() => localStorage.setItem('nomBibli', bibli.nomBibli)} style={{ fontSize: '170%', fontWeight:'bold', color:'black'}}> {bibli.nomBibli}</li>
+                <NavLink id="texte" style={{ width: 'auto', marginTop: '20%' }} onClick={() => localStorage.setItem('biblioId', bibli.biblioId)} to="/Collection" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
+                  <li onClick={() => localStorage.setItem('nomBibli', bibli.nomBibli)} style={{ fontSize: '170%', fontWeight: 'bold', color: 'black' }}> {bibli.nomBibli}</li>
                 </NavLink>
 
               </Col>
               <Col id="texte" lg={4}>
-                <p style={{ fontSize: '130%', marginTop: '21%', fontWeight:'bold' }}> Date de création : {dateFormat(bibli.biblioDateCre, 'dd-mm-yyyy')}</p>
+                <p style={{ fontSize: '130%', marginTop: '21%', fontWeight: 'bold' }}> Date de création : {dateFormat(bibli.biblioDateCre, 'dd-mm-yyyy')}</p>
               </Col>
               <Col lg={4}>
                 <Card.Link style={{ textAlign: 'center', marginBottom: '3%' }}>

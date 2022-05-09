@@ -172,7 +172,7 @@ class AjoutObjet extends Component {
               <input type="text" value={this.state.perso3} onChange={text => this.setState({ perso3: text.target.value })} />
             </label>
             <br /><br />
-            <input type="submit" value="Ajouter un objet" />
+            <input type="submit" style={{ marginBottom: '4.5%' }} class="btn btn-success" value="Ajouter un objet" />
           </form>
         </Container>
       </div>
