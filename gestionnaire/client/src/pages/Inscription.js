@@ -113,42 +113,46 @@ class Inscription extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ textAlign: 'center', height: '47.1pc' }}>
         <Navigation />
-        <p>Page d'inscription</p>
+        <h1 style={{ marginTop: '6%', marginBottom: '13%' }}>Inscrivez-vous !</h1>
         <form style={{ textAlign: "center" }} onSubmit={this.handleSubmit}>
-          <label>
-            Nom :
-            <input type="text" value={this.state.nom} onChange={text => this.setState({ nom: text.target.value })} />   {/* onChange : permet que dés qu'il y a
+          <div style={{ width: '49%', float: 'left', textAlign: 'center' }}>
+            <label>
+              Nom : <br></br>
+              <input type="text" value={this.state.nom} onChange={text => this.setState({ nom: text.target.value })} />   {/* onChange : permet que dés qu'il y a
                un changement dans un champ texte, le texte est update dans le state ( ce qui permet par la suite de récupérer et envoyer ces données )*/}
-          </label>
-          <br /><br />
-          <label>
-            Prénom :
-            <input type="text" value={this.state.prenom} onChange={text => this.setState({ prenom: text.target.value })} />
-          </label>
-          <br /><br />
-          <label>
-            Email :
-            <input type="text" value={this.state.email} onChange={text => this.setState({ email: text.target.value })} />
-          </label>
-          <br /><br />
-          <label>
-            Date de naissance :
-            <input type="date" value={this.state.datenaissance} onChange={text => this.setState({ datenaissance: text.target.value })} />
-          </label>
-          <br /><br />
-          <label>
-            Mot de passe :
-            <input type="password" value={this.state.motdepasse} onChange={text => this.setState({ motdepasse: text.target.value })} />
-          </label>
-          <br /><br />
-          <label>
-            Confirmer mot de passe :
-            <input type="password" value={this.state.confirmmotdepasse} onChange={text => this.setState({ confirmmotdepasse: text.target.value })} />
-          </label>
-          <br /><br />
-          <input type="submit" value="S'inscrire" />
+            </label>
+            <br /><br />
+            <label>
+              Prénom : <br></br>
+              <input type="text" value={this.state.prenom} onChange={text => this.setState({ prenom: text.target.value })} />
+            </label>
+            <br /><br />
+            <label>
+              Email : <br></br>
+              <input type="text" value={this.state.email} onChange={text => this.setState({ email: text.target.value })} />
+            </label>
+            <br /><br />
+          </div>
+          <div style={{ width: '49%', float: 'left', textAlign: 'center' }}>
+            <label>
+              Date de naissance : <br></br>
+              <input type="date" value={this.state.datenaissance} onChange={text => this.setState({ datenaissance: text.target.value })} />
+            </label>
+            <br /><br />
+            <label>
+              Mot de passe : <br></br>
+              <input type="password" value={this.state.motdepasse} onChange={text => this.setState({ motdepasse: text.target.value })} />
+            </label>
+            <br /><br />
+            <label>
+              Confirmer mot de passe : <br></br>
+              <input type="password" value={this.state.confirmmotdepasse} onChange={text => this.setState({ confirmmotdepasse: text.target.value })} />
+            </label>
+            <br /><br />
+          </div>
+          <input style={{ fontSize: '130%', marginTop: '1%' }} type="submit" class="btn btn-success" value="S'inscrire" />
         </form>
       </div>
     );

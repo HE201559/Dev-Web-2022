@@ -56,7 +56,7 @@ class Navigation extends Component {
                             <li>Accueil</li>
                         </NavLink>
                         <NavLink to="/About" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
-                            <li>About</li>
+                            <li>A propos</li>
                         </NavLink>
                         <NavLink to="/Inscription" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
                             <li>Inscription</li>
