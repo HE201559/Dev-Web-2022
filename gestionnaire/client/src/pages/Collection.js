@@ -169,7 +169,7 @@ class Collection extends Component {
             <Col md={4} style={{ textAlign: 'center' }}>
 
 
-              <h4>Valeur de la collection : <br></br> {0 + this.state.valeurCollection} €</h4>
+              <h4>Valeur de la collection : <br></br> {Number(this.state.valeurCollection).toFixed(2)} €</h4>
             </Col>
             <Col md={4} style={{ textAlign: 'center' }}>
               <h4>Nombre d'objets dans la collection : <br></br> {this.state.donneesCollection.length}</h4>
@@ -203,7 +203,7 @@ class Collection extends Component {
                     {<Card.Img variant="top" src={lugia} />}
                     <Card.Body>
                       <ListGroup className="list-group-flush">
-                        {collection.prix !== '' && collection.prix && (<ListGroupItem>Prix : {collection.prix} €</ListGroupItem>)}
+                        {collection.prix !== '' && collection.prix && (<ListGroupItem>Prix : {Number(collection.prix).toFixed(2)} €</ListGroupItem>)}
                         {collection.etat !== '' && collection.etat && (<ListGroupItem>Etat : {collection.etat}</ListGroupItem>)}
                         {collection.edition !== '' && collection.edition && (<ListGroupItem>Edition : {collection.edition}</ListGroupItem>)}
                         {collection.perso1 !== '' && collection.perso1 && (<ListGroupItem>{collection.perso1}</ListGroupItem>)}
@@ -262,7 +262,7 @@ class Collection extends Component {
               <h3 style={{ fontSize: '150%', marginBottom: '3%', marginTop: '5%' }}> Nombre de reventes : {this.state.donneesCollectionVendu.length}  </h3>
             </Col>
             <Col md={4}>
-              <h3 style={{ fontSize: '150%', marginBottom: '3%', marginTop: '5%' }}> Bénéfices / Pertes total :  {this.state.benefices} € </h3>
+              <h3 style={{ fontSize: '150%', marginBottom: '3%', marginTop: '5%' }}> Bénéfices / Pertes total :  {Number(this.state.benefices).toFixed(2)} € </h3>
             </Col>
           </Row>
           <Row>
@@ -280,12 +280,12 @@ class Collection extends Component {
                     {<Card.Img variant="top" src={lugia} />}
                     <Card.Body>
                       <ListGroup className="list-group-flush">
-                        {collection.prix !== '' && (<ListGroupItem>Prix d'achat : {collection.prix} €</ListGroupItem>)}
-                        {collection.etat !== '' && (<ListGroupItem>Prix de revente : {collection.prix_revente} €</ListGroupItem>)}
+                        {collection.prix !== '' && (<ListGroupItem>Prix d'achat : {Number(collection.prix).toFixed(2)} €</ListGroupItem>)}
+                        {collection.etat !== '' && (<ListGroupItem>Prix de revente : {Number(collection.prix_revente).toFixed(2)} €</ListGroupItem>)}
                       </ListGroup>
                     </Card.Body>
                     <Card.Footer>
-                      <ListGroupItem>Bénéfices  : {collection.prix_revente - collection.prix} € </ListGroupItem>
+                      <ListGroupItem>Bénéfices  : {Number(collection.prix_revente - collection.prix).toFixed(2)} € </ListGroupItem>
                     </Card.Footer>
                     <Card.Link style={{ textAlign: 'center', marginBottom: '3%' }}>
                       <button type="button" class="btn btn-outline-danger" onClick={() => { this.showModal(); this.setState({ nomAsupp: collection.nom }); this.setState({ idObjetASupp: collection.idObjet }) }} > Supprimer l'objet {collection.nom} </button>

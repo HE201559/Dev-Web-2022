@@ -3,6 +3,7 @@ import Navigation from "../component/Navigation";
 // import { NavLink } from "react-router-dom";
 // import { Row, Col, Container, Card, ListGroup, ListGroupItem } from 'react-bootstrap'
 import { Container } from 'react-bootstrap'
+import moment from "moment";
 
 class AjoutObjet extends Component {
 
@@ -21,6 +22,7 @@ class AjoutObjet extends Component {
       perso1: '',
       perso2: '',
       perso3: '',
+      dateActuelle: moment().format("YYYY-MM-DD"),
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -40,75 +42,88 @@ class AjoutObjet extends Component {
 
   async handleSubmit(event) {
     event.preventDefault()
-    console.log(this.state.objetId)
-    await fetch('http://localhost:5000/ajoutObjetTbBiblio', {
 
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        "Access-Control-Allow-Origin": "true"
-      },
-      body: JSON.stringify({
-        // nom:this.state.nom,
-        // description:this.state.description,
-        // prix:this.state.prix,      
-        // dateAcquisition:this.state.dateAcquisition,
-        // etat:this.state.etat,
-        // edition:this.state.edition,
-        biblioId: this.state.biblioId,
-        //objetId:Number(this.state.objetId),
-      }),
+    if (this.state.dateAcquisition > this.state.dateActuelle) {
+      alert("La date du " + this.state.dateAcquisition + " n'est pas encore arrivée à moins que vous ne veniez du futur")
+    }
 
+    else if (this.state.nom === '' || this.state.description === '' || this.state.prix === '' || this.state.dateAcquisition === '' || this.state.etat === '' || this.state.edition === '') {
+      alert("Vous n'avez pas rempli tous les champs")
+    }
 
-    })
-      .then(res => res.text())
-      .then(text => console.log(text))
-      .then(response => response.json())
-      .then(json => {
+    else {
+      console.log(this.state.objetId)
+      await fetch('http://localhost:5000/ajoutObjetTbBiblio', {
 
-
-      }).catch((error) => {
-        console.log(error)
-      });
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          "Access-Control-Allow-Origin": "true"
+        },
+        body: JSON.stringify({
+          // nom:this.state.nom,
+          // description:this.state.description,
+          // prix:this.state.prix,      
+          // dateAcquisition:this.state.dateAcquisition,
+          // etat:this.state.etat,
+          // edition:this.state.edition,
+          biblioId: this.state.biblioId,
+          //objetId:Number(this.state.objetId),
+        }),
 
 
-    await fetch('http://localhost:5000/ajoutObjetTbObjets', {
-
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        "Access-Control-Allow-Origin": "true"
-      },
-      body: JSON.stringify({
-        nom: this.state.nom,
-        description: this.state.description,
-        prix: this.state.prix,
-        dateAcquisition: this.state.dateAcquisition,
-        etat: this.state.etat,
-        edition: this.state.edition,
-        //biblioId: this.state.biblioId,
-        objetId: Number(this.state.objetId),
-        image: this.state.image,
-        perso1: this.state.perso1,
-        perso2: this.state.perso2,
-        perso3: this.state.perso3,
-      }),
+      })
+        .then(res => res.text())
+        .then(text => console.log(text))
+        .then(response => response.json())
+        .then(json => {
 
 
-    })
-      .then(res => res.text())
-      .then(text => console.log(text))
-      .then(response => response.json())
-      .then(json => {
+        }).catch((error) => {
+          console.log(error)
+        });
 
 
-      }).catch((error) => {
-        console.log(error)
-      });
+      await fetch('http://localhost:5000/ajoutObjetTbObjets', {
 
-    window.location.href = "http://localhost:3000/Collection"
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          "Access-Control-Allow-Origin": "true"
+        },
+        body: JSON.stringify({
+          nom: this.state.nom,
+          description: this.state.description,
+          prix: this.state.prix,
+          dateAcquisition: this.state.dateAcquisition,
+          etat: this.state.etat,
+          edition: this.state.edition,
+          //biblioId: this.state.biblioId,
+          objetId: Number(this.state.objetId),
+          image: this.state.image,
+          perso1: this.state.perso1,
+          perso2: this.state.perso2,
+          perso3: this.state.perso3,
+        }),
+
+
+      })
+        .then(res => res.text())
+        .then(text => console.log(text))
+        .then(response => response.json())
+        .then(json => {
+
+
+        }).catch((error) => {
+          console.log(error)
+        });
+
+      window.location.href = "http://localhost:3000/Collection"
+    }
+
+
   };
 
 
@@ -135,7 +150,7 @@ class AjoutObjet extends Component {
             <br /><br />
             <label>
               Prix :
-              <input type="text" value={this.state.prix} onChange={text => this.setState({ prix: text.target.value })} />
+              <input type="number" value={this.state.prix} onChange={text => this.setState({ prix: text.target.value })} />
             </label>
             <br /><br />
             <label>
