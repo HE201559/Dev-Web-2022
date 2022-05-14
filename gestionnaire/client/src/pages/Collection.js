@@ -91,7 +91,7 @@ class Collection extends Component {
   }
 
   navAjoutObjet() {
-    window.location.href = "http://176.96.231.198:443/AjoutObjet"
+    window.location.href = "https://gestionnaire-collection.netlify.app/AjoutObjet"
   }
 
   async handleSubmit(event, idObjetAvendre) {
@@ -121,7 +121,7 @@ class Collection extends Component {
 
       });
 
-    window.location.href = "http://176.96.231.198:443/Collection"
+    window.location.href = "https://gestionnaire-collection.netlify.app/Collection"
 
 
   }
@@ -152,7 +152,7 @@ class Collection extends Component {
 
       });
 
-    window.location.href = "http://176.96.231.198:443/Collection"
+    window.location.href = "https://gestionnaire-collection.netlify.app/Collection"
   };
 
 

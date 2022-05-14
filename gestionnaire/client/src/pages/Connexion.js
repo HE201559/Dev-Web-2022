@@ -57,7 +57,7 @@ class Login extends Component {
                     console.log(localStorage.getItem('Connecte'))
                     localStorage.setItem('Connecte', true)
                     console.log(localStorage.getItem('Connecte'))
-                    window.location.href = "http://176.96.231.198:443/"
+                    window.location.href = "https://gestionnaire-collection.netlify.app/"
                 }
                 else {
                     alert("Mot de passe incorrect")

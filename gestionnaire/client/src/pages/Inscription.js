@@ -107,7 +107,7 @@ class Inscription extends Component {
 
 
     };
-    window.location.href = "http://176.96.231.198:443/PostInscription"
+    window.location.href = "https://gestionnaire-collection.netlify.app/PostInscription"
   }
 
 

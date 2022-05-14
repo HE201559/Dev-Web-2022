@@ -21,7 +21,7 @@ class Navigation extends Component {
         console.log(this.state.connecte)
         localStorage.setItem('EmailUtilisateur', 'null')
 
-        window.location.href = "http://localhost:3000/";
+        window.location.href = "https://gestionnaire-collection.netlify.app/";
     }
 
     render() {

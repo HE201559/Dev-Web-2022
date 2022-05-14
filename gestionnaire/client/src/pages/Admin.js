@@ -86,8 +86,8 @@ class Admin extends Component {
             }).catch((error) => {
 
             });
-        window.location.href = "http://176.96.231.198:443/Admin"
-        window.location.href = "http://176.96.231.198:443/Admin"
+        //window.location.href = "http://176.96.231.198/Admin"
+        window.location.href = "https://gestionnaire-collection.netlify.app/Admin"
     }
 
 

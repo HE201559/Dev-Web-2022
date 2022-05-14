@@ -36,7 +36,7 @@ class Bibliothèques extends Component {
   };
 
   navCollection = () => {
-    window.location.href = "http://176.96.231.198:443/Collection"
+    window.location.href = "https://gestionnaire-collection.netlify.app/Collection"
   };
 
 
@@ -83,7 +83,7 @@ class Bibliothèques extends Component {
           console.log(error)
         });
 
-      window.location.href = "http://176.96.231.198:443/Bibliotheques"
+      window.location.href = "https://gestionnaire-collection.netlify.app/Bibliotheques"
 
     }
 
@@ -116,7 +116,7 @@ class Bibliothèques extends Component {
 
       });
 
-    window.location.href = "http://176.96.231.198:443/Bibliotheques"
+    window.location.href = "https://gestionnaire-collection.netlify.app/Bibliotheques"
   };
 
 

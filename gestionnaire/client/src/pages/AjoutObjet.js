@@ -120,7 +120,7 @@ class AjoutObjet extends Component {
           console.log(error)
         });
 
-      window.location.href = "http://176.96.231.198:443/Collection"
+      window.location.href = "https://gestionnaire-collection.netlify.appCollection"
     }
 
 
