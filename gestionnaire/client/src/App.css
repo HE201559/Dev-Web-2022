@@ -6,10 +6,9 @@ body,
   width: 100%;
   margin: 0;
   background-image: url("../src/images/chill1.gif");
-  background-size: 100%;
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
-  height: 100%;
   background-position: center;
+  height: '100%';
 }
