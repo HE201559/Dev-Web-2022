@@ -1,5 +1,6 @@
 import { React, Component } from "react";
 import Navigation from "../component/Navigation";
+import moment from "moment";
 
 
 class Inscription extends Component {
@@ -23,6 +24,7 @@ class Inscription extends Component {
       confirmmotdepasse: '',
       tousEmails: [],
       tousEmailsArray: [],
+      dateActuelle: moment().format("YYYY-MM-DD"),
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -49,12 +51,16 @@ class Inscription extends Component {
 
 
     // Test que tous les champs sont remplis
-    if (this.state.nom === '' || this.state.prenom === '' || this.state.email === '' || this.state.motdepasse === '' || this.state.confirmmotdepasse === '') {
+    if (this.state.nom === '' || this.state.prenom === '' || this.state.email === '' || this.state.motdepasse === '' || this.state.confirmmotdepasse === '' || this.state.datenaissance === '') {
       alert("Complétez tous les champs avant l'inscription")
     }
     // Test qu'une email a la bonne syntaxe
     else if (this.state.email.length < 8 || this.state.email.includes('.') === false || this.state.email.includes('@') === false) {
       alert("Inserez une email correcte");
+    }
+
+    else if (this.state.datenaissance > this.state.dateActuelle) {
+      alert("La date du " + this.state.datenaissance + " n'est pas encore arrivée à moins que vous ne veniez du futur")
     }
 
 
@@ -105,9 +111,9 @@ class Inscription extends Component {
 
         });
 
-
+      window.location.href = "https://gestionnaire-collection.netlify.app/PostInscription"
     };
-    window.location.href = "https://gestionnaire-collection.netlify.app/PostInscription"
+
   }
 
 

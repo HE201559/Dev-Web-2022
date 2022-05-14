@@ -19,9 +19,6 @@ class AjoutObjet extends Component {
       biblioId: localStorage.getItem('biblioId'),
       objetId: '',
       image: '',
-      perso1: '',
-      perso2: '',
-      perso3: '',
       dateActuelle: moment().format("YYYY-MM-DD"),
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -120,7 +117,7 @@ class AjoutObjet extends Component {
           console.log(error)
         });
 
-      window.location.href = "https://gestionnaire-collection.netlify.appCollection"
+      window.location.href = "https://gestionnaire-collection.netlify.app/Collection"
     }
 
 
