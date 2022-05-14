@@ -1,6 +1,5 @@
 import { React, Component } from "react";
 import Navigation from "../component/Navigation";
-import { NavLink } from "react-router-dom";
 import { Row, Col, Container, Card, ListGroup, ListGroupItem, Modal } from 'react-bootstrap'
 import Popup from 'reactjs-popup';
 import dateFormat from 'dateformat';
@@ -192,7 +191,7 @@ class Collection extends Component {
             {this.state.donneesCollection.map(collection => (
 
               <Col md={3}>
-                {collection.possede == '0' && (
+                {collection.possede === '0' && (
                   <Card style={{ width: '18rem', marginBottom: '8%' }} >
                     <Card.Header>
                       <Card.Title>{collection.nom}</Card.Title>
@@ -215,7 +214,7 @@ class Collection extends Component {
                       {collection.dateAcquisition !== '' && (<ListGroupItem>Date d'acquisition : {dateFormat(collection.dateAcquisition, 'dd-mm-yyyy')}</ListGroupItem>)}
                       {collection.dateAcquisition === '' && (<ListGroupItem>Date d'acquisition : {'inconnu'}</ListGroupItem>)}
                     </Card.Footer>
-                    <Popup trigger={<button style={{ width: '78%', marginLeft: '11.1%', marginBottom: '2.5%' }} type="button" class="btn btn-outline-info" onClick={() => { { } }} > Vendre {collection.nom} </button>} modal>
+                    <Popup trigger={<button style={{ width: '78%', marginLeft: '11.1%', marginBottom: '2.5%' }} type="button" class="btn btn-outline-info" > Vendre {collection.nom} </button>} modal>
                       <Card>
                         <Card.Header>
                           <Card.Title>Vendre {collection.nom} </Card.Title>
@@ -269,7 +268,7 @@ class Collection extends Component {
             {this.state.donneesCollectionVendu.map(collection => (
 
               <Col md={3}>
-                {collection.possede == '1' && (
+                {collection.possede === '1' && (
                   <Card style={{ width: '18rem', marginBottom: '8%' }} >
                     <Card.Header>
                       <Card.Title>{collection.nom}</Card.Title>
