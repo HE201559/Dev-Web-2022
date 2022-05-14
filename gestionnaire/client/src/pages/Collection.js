@@ -268,7 +268,7 @@ class Collection extends Component {
             {this.state.donneesCollectionVendu.map(collection => (
 
               <Col md={3}>
-                {collection.possede === '1' && (
+                {collection.possede == '1' && (
                   <Card style={{ width: '18rem', marginBottom: '8%' }} >
                     <Card.Header>
                       <Card.Title>{collection.nom}</Card.Title>
