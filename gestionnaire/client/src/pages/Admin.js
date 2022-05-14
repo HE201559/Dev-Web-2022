@@ -87,6 +87,7 @@ class Admin extends Component {
 
             });
         window.location.href = "http://176.96.231.198:443/Admin"
+        window.location.href = "http://176.96.231.198:443/Admin"
     }
 
 
