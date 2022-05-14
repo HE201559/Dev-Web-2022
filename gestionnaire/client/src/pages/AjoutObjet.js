@@ -30,7 +30,7 @@ class AjoutObjet extends Component {
 
   async componentDidMount() {
 
-    await fetch(`http://localhost:5000/findAllBiblioCollection`)
+    await fetch(`http://176.96.231.198:5000/findAllBiblioCollection`)
       .then(response => response.json())
       .then(json => {
         this.setState({ objetId: 1 + json[0].max })
@@ -53,7 +53,7 @@ class AjoutObjet extends Component {
 
     else {
       console.log(this.state.objetId)
-      await fetch('http://localhost:5000/ajoutObjetTbBiblio', {
+      await fetch('http://176.96.231.198:5000/ajoutObjetTbBiblio', {
 
         method: 'POST',
         headers: {
@@ -85,7 +85,7 @@ class AjoutObjet extends Component {
         });
 
 
-      await fetch('http://localhost:5000/ajoutObjetTbObjets', {
+      await fetch('http://176.96.231.198:5000/ajoutObjetTbObjets', {
 
         method: 'POST',
         headers: {
@@ -120,7 +120,7 @@ class AjoutObjet extends Component {
           console.log(error)
         });
 
-      window.location.href = "http://localhost:3000/Collection"
+      window.location.href = "http://176.96.231.198:443/Collection"
     }
 
 

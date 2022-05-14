@@ -28,7 +28,7 @@ class Admin extends Component {
 
     async componentDidMount() {
 
-        await fetch(`http://localhost:5000/findTousUtilisateurs`)
+        await fetch(`http://176.96.231.198:5000/findTousUtilisateurs`)
             .then(response => response.json())
             .then(json => {
                 this.setState({ tousEmails: json })
@@ -42,14 +42,14 @@ class Admin extends Component {
 
         console.log(this.state.tousEmails)
 
-        await fetch(`http://localhost:5000/findAllBibliotheques`)
+        await fetch(`http://176.96.231.198:5000/findAllBibliotheques`)
             .then(response => response.json())
             .then(json => {
                 this.setState({ toutesBibliotheques: json })
                 console.log(this.state.toutesBibliotheques)
             })
 
-        await fetch(`http://localhost:5000/findAllObjets`)
+        await fetch(`http://176.96.231.198:5000/findAllObjets`)
             .then(response => response.json())
             .then(json => {
                 this.setState({ allObjets: json })
@@ -63,30 +63,30 @@ class Admin extends Component {
 
     supprimerUtilisateur(email) {
         console.log(email)
-        fetch(`http://localhost:5000/supprimerUtilisateur/${email}`, {
+        fetch(`http://176.96.231.198:5000/supprimerUtilisateur/${email}`, {
 
             method: 'DELETE',
             headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-              "Access-Control-Allow-Origin": "true"
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "true"
             },
             body: JSON.stringify({
-              email: { email },
+                email: { email },
             }),
-      
-      
-          })
+
+
+        })
             .then(res => res.text())
             .then(text => console.log(text))
             .then(response => response.json())
             .then(json => {
-      
-      
+
+
             }).catch((error) => {
-      
+
             });
-            window.location.href = "http://localhost:3000/Admin"
+        window.location.href = "http://176.96.231.198:443/Admin"
     }
 
 

@@ -21,7 +21,7 @@ class Login extends Component {
 
     async componentDidMount() {
 
-        await fetch(`http://localhost:5000/findTousUtilisateurs`)
+        await fetch(`http://176.96.231.198:5000/findTousUtilisateurs`)
             .then(response => response.json())
             .then(json => {
                 this.setState({ tousEmails: json })
@@ -44,7 +44,7 @@ class Login extends Component {
         }
         else {
             //alert('Email OK')
-            await fetch(`http://localhost:5000/connexion/${this.state.email}`)
+            await fetch(`http://176.96.231.198:5000/connexion/${this.state.email}`)
                 .then(response => response.json())
                 .then(json => {
                     this.setState({ utilisateur: json })
@@ -57,7 +57,7 @@ class Login extends Component {
                     console.log(localStorage.getItem('Connecte'))
                     localStorage.setItem('Connecte', true)
                     console.log(localStorage.getItem('Connecte'))
-                    window.location.href = "http://localhost:3000/"
+                    window.location.href = "http://176.96.231.198:443/"
                 }
                 else {
                     alert("Mot de passe incorrect")

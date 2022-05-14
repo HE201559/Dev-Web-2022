@@ -36,14 +36,14 @@ class Bibliothèques extends Component {
   };
 
   navCollection = () => {
-    window.location.href = "http://localhost:3000/Collection"
+    window.location.href = "http://176.96.231.198:443/Collection"
   };
 
 
 
   async componentDidMount() {
 
-    await fetch(`http://localhost:5000/findBibliotheques/${this.state.email}`)
+    await fetch(`http://176.96.231.198:5000/findBibliotheques/${this.state.email}`)
       .then(response => response.json())
       .then(json => {
         this.setState({ toutesBibliotheques: json })
@@ -59,7 +59,7 @@ class Bibliothèques extends Component {
 
     else {
 
-      await fetch('http://localhost:5000/ajoutBibliotheque', {
+      await fetch('http://176.96.231.198:5000/ajoutBibliotheque', {
 
         method: 'POST',
         headers: {
@@ -83,7 +83,7 @@ class Bibliothèques extends Component {
           console.log(error)
         });
 
-      window.location.href = "http://localhost:3000/Bibliotheques"
+      window.location.href = "http://176.96.231.198:443/Bibliotheques"
 
     }
 
@@ -92,7 +92,7 @@ class Bibliothèques extends Component {
 
   handleSuppressionBiblio(idBibliASupp) {
     console.log(idBibliASupp)
-    fetch(`http://localhost:5000/supprimerBiblio/${idBibliASupp}`, {
+    fetch(`http://176.96.231.198:5000/supprimerBiblio/${idBibliASupp}`, {
 
       method: 'DELETE',
       headers: {
@@ -116,7 +116,7 @@ class Bibliothèques extends Component {
 
       });
 
-    window.location.href = "http://localhost:3000/Bibliotheques"
+    window.location.href = "http://176.96.231.198:443/Bibliotheques"
   };
 
 

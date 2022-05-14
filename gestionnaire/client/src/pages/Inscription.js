@@ -30,7 +30,7 @@ class Inscription extends Component {
   }
   async componentDidMount() {
 
-    await fetch(`http://localhost:5000/findTousUtilisateurs`)
+    await fetch(`http://176.96.231.198:5000/findTousUtilisateurs`)
       .then(response => response.json())
       .then(json => {
         this.setState({ tousEmails: json })
@@ -77,7 +77,7 @@ class Inscription extends Component {
 
 
 
-      await fetch('http://localhost:5000/inscription', {
+      await fetch('http://176.96.231.198:5000/inscription', {
 
         method: 'POST',
         headers: {
@@ -107,7 +107,7 @@ class Inscription extends Component {
 
 
     };
-    window.location.href = "http://localhost:3000/PostInscription"
+    window.location.href = "http://176.96.231.198:443/PostInscription"
   }
 
 
