@@ -197,14 +197,39 @@ bibliotheques.findBenefices = (idBiblio, result) => {
   });
 };
 
+bibliotheques.ajoutModele = (modele, idObjet, result) => {
+  var requete = "INSERT INTO tb_Modeles (idObjet, nomModele, donneModele) VALUES ? ";
+  var values = [[idObjet, modele.nomModele, modele.donneModele]];
+  sql.query(requete, [values],
+    (err, res) => {
+      if (err) {
+        console.log("error : ", err);
+        result(null, err);
+        return;
+      }
+      console.log("Marche");
+      result(null, res);
+    })
+},
 
 
-/*bibliotheques.creationObjet=(objet, result) => {
-  var requete1 = "INSERT INTO tb_Bibliotheque (biblioId) VALUES ? ";
-  var values1 = [[objet.biblioId]];
-  var requete2 = "INSERT INTO tb_Objets (idObjet,prix,nom,description,dateAcquisition,etat,edition) VALUES ? ";
-  var values2 = [[objet.objetId,objet.prix, objet.nom, objet.description, objet.dateAcquisition, objet.etat, objet.edition]];
-  sql.query(requete1, [values1],
+  /*bibliotheques.creationObjet=(objet, result) => {
+    var requete1 = "INSERT INTO tb_Bibliotheque (biblioId) VALUES ? ";
+    var values1 = [[objet.biblioId]];
+    var requete2 = "INSERT INTO tb_Objets (idObjet,prix,nom,description,dateAcquisition,etat,edition) VALUES ? ";
+    var values2 = [[objet.objetId,objet.prix, objet.nom, objet.description, objet.dateAcquisition, objet.etat, objet.edition]];
+    sql.query(requete1, [values1],
+        (err, res) => {
+            if (err) {
+                console.log("error : ", err);
+                result(null, err);
+                return;
+            }
+            console.log("Marche");
+            result(null, res);
+          })
+  
+    sql.query(requete2, [values2],
       (err, res) => {
           if (err) {
               console.log("error : ", err);
@@ -214,20 +239,9 @@ bibliotheques.findBenefices = (idBiblio, result) => {
           console.log("Marche");
           result(null, res);
         })
-
-  sql.query(requete2, [values2],
-    (err, res) => {
-        if (err) {
-            console.log("error : ", err);
-            result(null, err);
-            return;
-        }
-        console.log("Marche");
-        result(null, res);
-      })
-},
-*/
+  },
+  */
 
 
 
-module.exports = bibliotheques;
+  module.exports = bibliotheques;

@@ -29,6 +29,8 @@ class Collection extends Component {
       imageFormat: '',
       prix_revente: '',
       benefices: '',
+      nomModele: '',
+      donneModele: '',
     };
 
     this.showModal = this.showModal.bind(this);
@@ -108,6 +110,7 @@ class Collection extends Component {
       body: JSON.stringify({
         idObjet: idObjetAvendre,
         prixRevente: this.state.prix_revente,
+
       }),
 
 
@@ -155,6 +158,39 @@ class Collection extends Component {
 
     window.location.href = "http://localhost:3000/Collection"
   };
+  async handleSubmitModele(event, idObjetModele) {
+    event.preventDefault()
+    await fetch(`http://localhost:5000/ajoutModele/${idObjetModele}`, {
+
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "true"
+      },
+      body: JSON.stringify({
+        idObjet: { idObjetModele },
+        nomModele: this.state.nomModele,
+        donneModele: this.state.donneModele,
+
+      }),
+
+
+    })
+      .then(res => res.text())
+      .then(text => console.log(text))
+      .then(response => response.json())
+      .then(json => {
+
+
+      }).catch((error) => {
+
+      });
+
+    window.location.href = "http://localhost:3000/Collection"
+
+
+  }
 
 
 
@@ -215,6 +251,36 @@ class Collection extends Component {
                       {collection.dateAcquisition !== '' && (<ListGroupItem>Date d'acquisition : {dateFormat(collection.dateAcquisition, 'dd-mm-yyyy')}</ListGroupItem>)}
                       {collection.dateAcquisition === '' && (<ListGroupItem>Date d'acquisition : {'inconnu'}</ListGroupItem>)}
                     </Card.Footer>
+                    <Popup trigger={<button style={{ width: '68%', marginLeft: '16.1%', marginBottom: '2.5%' }} type="button" class="btn btn-outline-primary" onClick={() => { { } }} >Champ personalisé </button>} modal>
+                      <Card>
+                        <Card.Header>
+                          <Card.Title> Ajouter un champ personalisé </Card.Title>
+                          <Card.Text>
+                            À l'objet : {collection.nom}
+                          </Card.Text>
+                        </Card.Header>
+                        <Card.Body>
+                          <form style={{ textAlign: 'center' }} onSubmit={event => this.handleSubmitModele(event, collection.idObjet)}>
+                            <label style={{ marginRight: '1%' }}>
+                              Nom du champ:
+                              <br></br>
+                              <input type="text" value={this.state.nomModele} onChange={text => this.setState({ nomModele: text.target.value })} />
+                            </label>
+                            <br></br>
+                            <label style={{ marginRight: '1%' }}>
+                              Information du champ:
+                              <input type="text" value={this.state.donneModele} onChange={text => this.setState({ donneModele: text.target.value })} />
+                            </label>
+                            <br></br>
+                            <input style={{ marginTop: '5%' }} type="submit" class="btn btn-outline-primary" value={"Ajouter"} />
+                          </form>
+                        </Card.Body>
+                        <Card.Footer>
+                          {collection.dateAcquisition !== '' && (<ListGroupItem>Date d'acquisition : {dateFormat(collection.dateAcquisition, 'dd-mm-yyyy')}</ListGroupItem>)}
+                          {collection.dateAcquisition === '' && (<ListGroupItem>Date d'acquisition : {'inconnu'}</ListGroupItem>)}
+                        </Card.Footer>
+                      </Card>
+                    </Popup>
                     <Popup trigger={<button style={{ width: '78%', marginLeft: '11.1%', marginBottom: '2.5%' }} type="button" class="btn btn-outline-info" onClick={() => { { } }} > Vendre {collection.nom} </button>} modal>
                       <Card>
                         <Card.Header>
@@ -239,6 +305,7 @@ class Collection extends Component {
                         </Card.Footer>
                       </Card>
                     </Popup>
+
                     <Card.Link style={{ textAlign: 'center', marginBottom: '3%' }}>
                       <button type="button" class="btn btn-outline-danger" onClick={() => { this.showModal(); this.setState({ nomAsupp: collection.nom }); this.setState({ idObjetASupp: collection.idObjet }) }} > Supprimer l'objet {collection.nom} </button>
                     </Card.Link>
