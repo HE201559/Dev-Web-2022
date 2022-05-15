@@ -126,9 +126,9 @@ class Collection extends Component {
 
   }
 
-  handleSuppressionObjet(idObjetAsupp) {
+  async handleSuppressionObjet(idObjetAsupp) {
     console.log(idObjetAsupp)
-    fetch(`https://176.96.231.198:5000/supprimerObjet/${idObjetAsupp}`, {
+    await fetch(`https://176.96.231.198:5000/supprimerObjet/${idObjetAsupp}`, {
 
       method: 'DELETE',
       headers: {
