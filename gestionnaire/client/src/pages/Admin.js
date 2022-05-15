@@ -61,9 +61,9 @@ class Admin extends Component {
 
     }
 
-    supprimerUtilisateur(email) {
+    async supprimerUtilisateur(email) {
         console.log(email)
-        fetch(`https://176.96.231.198:5000/supprimerUtilisateur/${email}`, {
+        await fetch(`https://176.96.231.198:5000/supprimerUtilisateur/${email}`, {
 
             method: 'DELETE',
             headers: {
