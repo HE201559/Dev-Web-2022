@@ -17,6 +17,14 @@ app.use(cors({
 
 }));
 
+app.use(function(request, response, next) {
+  response.header("Access-Control-Allow-Origin", '*');
+  response.header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+  response.header("Access-Control-Allow-Methods", "GET,HEAD,POST,PUT,DELETE,OPTIONS");
+  response.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
+
 
 /*const mariadb = require('mariadb');
 
