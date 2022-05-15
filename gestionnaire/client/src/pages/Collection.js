@@ -50,21 +50,21 @@ class Collection extends Component {
 
   async componentDidMount() {
 
-    await fetch(`http://176.96.231.198:5000/findBiblioCollectionPossedee/${this.state.biblioId}`)
+    await fetch(`https://176.96.231.198:5000/findBiblioCollectionPossedee/${this.state.biblioId}`)
       .then(response => response.json())
       .then(json => {
         this.setState({ donneesCollection: json })
         console.log(this.state.donneesCollection)
       })
 
-    await fetch(`http://176.96.231.198:5000/findBiblioCollectionVendu/${this.state.biblioId}`)
+    await fetch(`https://176.96.231.198:5000/findBiblioCollectionVendu/${this.state.biblioId}`)
       .then(response => response.json())
       .then(json => {
         this.setState({ donneesCollectionVendu: json })
         console.log(this.state.donneesCollectionVendu)
       })
 
-    await fetch(`http://176.96.231.198:5000/findBibliothequesDateCrea/${this.state.biblioId}`)
+    await fetch(`https://176.96.231.198:5000/findBibliothequesDateCrea/${this.state.biblioId}`)
       .then(response => response.json())
       .then(json => {
         this.setState({ toutesBibliotheques: json })
@@ -72,7 +72,7 @@ class Collection extends Component {
         console.log(this.state.biblioDateCre)
       })
 
-    await fetch(`http://176.96.231.198:5000/findCollectionInfos/${this.state.biblioId}`)
+    await fetch(`https://176.96.231.198:5000/findCollectionInfos/${this.state.biblioId}`)
       .then(response => response.json())
       .then(json => {
         this.setState({ valeurCollection: json[0].valeur })
@@ -80,7 +80,7 @@ class Collection extends Component {
         //this.setState({ biblioDateCre: json[0].biblioDateCre })
       })
 
-    await fetch(`http://176.96.231.198:5000/findBenefices/${this.state.biblioId}`)
+    await fetch(`https://176.96.231.198:5000/findBenefices/${this.state.biblioId}`)
       .then(response => response.json())
       .then(json => {
         this.setState({ benefices: json[0].benefice })
@@ -96,7 +96,7 @@ class Collection extends Component {
 
   async handleSubmit(event, idObjetAvendre) {
     event.preventDefault()
-    await fetch(`http://176.96.231.198:5000/vendreObjet/${idObjetAvendre}`, {
+    await fetch(`https://176.96.231.198:5000/vendreObjet/${idObjetAvendre}`, {
 
       method: 'POST',
       headers: {
@@ -128,7 +128,7 @@ class Collection extends Component {
 
   handleSuppressionObjet(idObjetAsupp) {
     console.log(idObjetAsupp)
-    fetch(`http://176.96.231.198:5000/supprimerObjet/${idObjetAsupp}`, {
+    fetch(`https://176.96.231.198:5000/supprimerObjet/${idObjetAsupp}`, {
 
       method: 'DELETE',
       headers: {

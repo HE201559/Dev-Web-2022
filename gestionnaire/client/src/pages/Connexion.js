@@ -21,7 +21,7 @@ class Login extends Component {
 
     async componentDidMount() {
 
-        await fetch(`http://176.96.231.198:5000/findTousUtilisateurs`)
+        await fetch(`https://176.96.231.198:5000/findTousUtilisateurs`)
             .then(response => response.json())
             .then(json => {
                 this.setState({ tousEmails: json })
@@ -44,7 +44,7 @@ class Login extends Component {
         }
         else {
             //alert('Email OK')
-            await fetch(`http://176.96.231.198:5000/connexion/${this.state.email}`)
+            await fetch(`https://176.96.231.198:5000/connexion/${this.state.email}`)
                 .then(response => response.json())
                 .then(json => {
                     this.setState({ utilisateur: json })
