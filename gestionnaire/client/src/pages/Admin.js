@@ -28,7 +28,7 @@ class Admin extends Component {
 
     async componentDidMount() {
 
-        await fetch(`http://176.96.231.198:5000/findTousUtilisateurs`)
+        await fetch(`https://176.96.231.198:5000/findTousUtilisateurs`)
             .then(response => response.json())
             .then(json => {
                 this.setState({ tousEmails: json })
@@ -42,14 +42,14 @@ class Admin extends Component {
 
         console.log(this.state.tousEmails)
 
-        await fetch(`http://176.96.231.198:5000/findAllBibliotheques`)
+        await fetch(`https://176.96.231.198:5000/findAllBibliotheques`)
             .then(response => response.json())
             .then(json => {
                 this.setState({ toutesBibliotheques: json })
                 console.log(this.state.toutesBibliotheques)
             })
 
-        await fetch(`http://176.96.231.198:5000/findAllObjets`)
+        await fetch(`https://176.96.231.198:5000/findAllObjets`)
             .then(response => response.json())
             .then(json => {
                 this.setState({ allObjets: json })
@@ -63,7 +63,7 @@ class Admin extends Component {
 
     supprimerUtilisateur(email) {
         console.log(email)
-        fetch(`http://176.96.231.198:5000/supprimerUtilisateur/${email}`, {
+        fetch(`https://176.96.231.198:5000/supprimerUtilisateur/${email}`, {
 
             method: 'DELETE',
             headers: {
