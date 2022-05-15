@@ -1,5 +1,6 @@
 const https = require('https');
-const hostname = '0.0.0.0';
+const fs = require('fs');
+const hostname = '176.96.231.198';
 const port = 5000;
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
@@ -8,6 +9,10 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const routes = require("./routes/routes")(app);
+const options = {
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem')
+};
 
 app.use(bodyParser.json())
 
@@ -16,7 +21,6 @@ app.use(express.json());
 app.use(cors({
 
 }));
-
 app.use(function (request, response, next) {
   response.header("Access-Control-Allow-Origin", '*');
   response.header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
@@ -24,7 +28,6 @@ app.use(function (request, response, next) {
   response.header("Access-Control-Allow-Credentials", "true");
   next();
 });
-
 
 /*const mariadb = require('mariadb');
 
@@ -51,9 +54,8 @@ async function main(){
 
 main();
 */
-/*
-app.listen(port, hostname, () => {
-  console.log(`Server running at http://${hostname}:${port}/`);
+/* app.listen(port, hostname, options, () => {
+  console.log(`Server running at https://${hostname}:${port}/`);
 }); */
 
 https.createServer(options, app).listen(5000);
