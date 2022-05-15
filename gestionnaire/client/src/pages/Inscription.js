@@ -32,7 +32,7 @@ class Inscription extends Component {
   }
   async componentDidMount() {
 
-    await fetch(`http://176.96.231.198:5000/findTousUtilisateurs`)
+    await fetch(`https://176.96.231.198:5000/findTousUtilisateurs`)
       .then(response => response.json())
       .then(json => {
         this.setState({ tousEmails: json })
@@ -83,7 +83,7 @@ class Inscription extends Component {
 
 
 
-      await fetch('http://176.96.231.198:5000/inscription', {
+      await fetch('https://176.96.231.198:5000/inscription', {
 
         method: 'POST',
         headers: {

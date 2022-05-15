@@ -27,7 +27,7 @@ class AjoutObjet extends Component {
 
   async componentDidMount() {
 
-    await fetch(`http://176.96.231.198:5000/findAllBiblioCollection`)
+    await fetch(`https://176.96.231.198:5000/findAllBiblioCollection`)
       .then(response => response.json())
       .then(json => {
         this.setState({ objetId: 1 + json[0].max })
@@ -50,7 +50,7 @@ class AjoutObjet extends Component {
 
     else {
       console.log(this.state.objetId)
-      await fetch('http://176.96.231.198:5000/ajoutObjetTbBiblio', {
+      await fetch('https://176.96.231.198:5000/ajoutObjetTbBiblio', {
 
         method: 'POST',
         headers: {
@@ -82,7 +82,7 @@ class AjoutObjet extends Component {
         });
 
 
-      await fetch('http://176.96.231.198:5000/ajoutObjetTbObjets', {
+      await fetch('https://176.96.231.198:5000/ajoutObjetTbObjets', {
 
         method: 'POST',
         headers: {

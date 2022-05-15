@@ -43,7 +43,7 @@ class Bibliothèques extends Component {
 
   async componentDidMount() {
 
-    await fetch(`http://176.96.231.198:5000/findBibliotheques/${this.state.email}`)
+    await fetch(`https://176.96.231.198:5000/findBibliotheques/${this.state.email}`)
       .then(response => response.json())
       .then(json => {
         this.setState({ toutesBibliotheques: json })
@@ -59,7 +59,7 @@ class Bibliothèques extends Component {
 
     else {
 
-      await fetch('http://176.96.231.198:5000/ajoutBibliotheque', {
+      await fetch('https://176.96.231.198:5000/ajoutBibliotheque', {
 
         method: 'POST',
         headers: {
@@ -92,7 +92,7 @@ class Bibliothèques extends Component {
 
   handleSuppressionBiblio(idBibliASupp) {
     console.log(idBibliASupp)
-    fetch(`http://176.96.231.198:5000/supprimerBiblio/${idBibliASupp}`, {
+    fetch(`https://176.96.231.198:5000/supprimerBiblio/${idBibliASupp}`, {
 
       method: 'DELETE',
       headers: {
