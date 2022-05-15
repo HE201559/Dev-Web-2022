@@ -72,24 +72,26 @@ class Login extends Component {
         return (
             <div style={{ textAlign: 'center', height: '47.1pc' }}>
                 <Navigation />
-                <h1 style={{ marginTop: '6%', marginBottom: '13%' }}>Connexion</h1>
-                <form style={{ textAlign: "center" }} onSubmit={this.handleSubmit}>
-                    <div style={{ width: '49%', float: 'left', textAlign: 'center' }}>
-                        <label>
-                            Email :
-                            <input style={{ marginLeft: '1%' }} type="text" value={this.state.email} onChange={text => this.setState({ email: text.target.value })} />
-                        </label>
-                        <br /><br />
-                    </div>
-                    <div style={{ width: '49%', float: 'right', textAlign: 'center' }}>
-                        <label>
-                            Mot de passe :
-                            <input style={{ marginLeft: '1%' }} type="password" value={this.state.motdepasse} onChange={text => this.setState({ motdepasse: text.target.value })} />
-                        </label>
-                        <br /><br />
-                    </div>
-                    <input style={{ marginTop: '5%', fontSize: '130%' }} class="btn btn-success" type="submit" value="Se connecter" />
-                </form>
+                <div style={{ textShadow: '1px 1px white' }}>
+                    <h1 style={{ marginTop: '6%', marginBottom: '13%' }}>Connectez-vous à votre compte Ucollect</h1>
+                    <form style={{ textAlign: "center" }} onSubmit={this.handleSubmit}>
+                        <div style={{ width: '49%', float: 'left', textAlign: 'center' }}>
+                            <label>
+                                Email :
+                                <input style={{ marginLeft: '1%' }} type="text" value={this.state.email} onChange={text => this.setState({ email: text.target.value })} />
+                            </label>
+                            <br /><br />
+                        </div>
+                        <div style={{ width: '49%', float: 'right', textAlign: 'center' }}>
+                            <label>
+                                Mot de passe :
+                                <input style={{ marginLeft: '1%' }} type="password" value={this.state.motdepasse} onChange={text => this.setState({ motdepasse: text.target.value })} />
+                            </label>
+                            <br /><br />
+                        </div>
+                        <input style={{ marginTop: '5%', fontSize: '130%' }} class="btn btn-success" type="submit" value="Se connecter" />
+                    </form>
+                </div>
             </div>
         );
     }

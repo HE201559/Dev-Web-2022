@@ -134,7 +134,7 @@ class Bibliothèques extends Component {
           <Row>
             <form style={{ marginTop: '5%' }} onSubmit={this.handleSubmit}>
               <label >
-                <p style={{ fontSize: '140%' }}> Ajouter une bibliotheque : </p>
+                <p style={{ fontSize: '140%', textShadow: '1px 1px white' }}> Ajouter une bibliotheque : </p>
                 <input style={{ fontSize: '110%' }} type="text" value={this.state.nomBibli} onChange={text => this.setState({ nomBibli: text.target.value })} />
               </label>
               <input class="btn btn-success" type="submit" value="Ajouter une bibliotheque" />
@@ -144,13 +144,13 @@ class Bibliothèques extends Component {
             <Row>
               <Col lg={4} xs={4} style={{ textAlign: 'center' }}>
 
-                <NavLink id="texte" style={{ width: 'auto', marginTop: '20%' }} onClick={() => localStorage.setItem('biblioId', bibli.biblioId)} to="/Collection" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
+                <NavLink id="texte" style={{ width: 'auto', marginTop: '20%', textShadow: '1px 1px white' }} onClick={() => localStorage.setItem('biblioId', bibli.biblioId)} to="/Collection" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
                   <li onClick={() => localStorage.setItem('nomBibli', bibli.nomBibli)} style={{ fontSize: '170%', fontWeight: 'bold', color: 'black' }}> {bibli.nomBibli}</li>
                 </NavLink>
 
               </Col>
               <Col id="texte" lg={4}>
-                <p style={{ fontSize: '130%', marginTop: '21%', fontWeight: 'bold' }}> Date de création : {dateFormat(bibli.biblioDateCre, 'dd-mm-yyyy')}</p>
+                <p style={{ fontSize: '130%', marginTop: '21%', fontWeight: 'bold', textShadow: '1px 1px white' }}> Date de création : {dateFormat(bibli.biblioDateCre, 'dd-mm-yyyy')}</p>
               </Col>
               <Col lg={4}>
                 <Card.Link style={{ textAlign: 'center', marginBottom: '3%' }}>

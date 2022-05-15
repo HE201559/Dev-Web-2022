@@ -132,7 +132,7 @@ class AjoutObjet extends Component {
       <div style={{ textAlign: "center" }}>
         <Navigation />
         <Container>
-          <h2 style={{ marginTop: '6%', marginBottom: '13%' }}> Ajoutez un nouvel objet à votre collection {localStorage.getItem('nomBibli')} </h2>
+          <h2 style={{ marginTop: '6%', marginBottom: '13%', textShadow: '2px 2px white' }}> Ajoutez un nouvel objet à votre collection {localStorage.getItem('nomBibli')} </h2>
           <form style={{ textAlign: "center" }} onSubmit={this.handleSubmit}>
             <div style={{ width: '49%', float: 'left', textAlign: 'center' }}>
               <label>
@@ -190,7 +190,7 @@ class AjoutObjet extends Component {
             <input type="submit" style={{ marginTop: '1%', fontSize: '120%' }} class="btn btn-success" value="Ajouter un objet" />
           </form>
         </Container>
-      </div>
+      </div >
     );
   }
 }

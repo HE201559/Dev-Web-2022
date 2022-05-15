@@ -6,7 +6,7 @@ const Home = () => {
     return (
         <div>
             <Navigation />
-            <div className='home' id='accueil'>
+            <div className='home' id='accueil' style={{ textShadow: '1px 1px white' }} >
                 <h2>Bienvenue sur votre gestionnaire de collection</h2>
                 <h1>Ucollect</h1>
                 <p style={{ marginBottom: '11%', fontSize: '120%' }}>Gérer simplement vos collections.</p>

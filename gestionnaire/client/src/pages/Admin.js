@@ -97,7 +97,7 @@ class Admin extends Component {
     render() {
         return (
 
-            <div>
+            <div style={{ textShadow: '1px 1px white' }}>
                 <Row>
                     <Col>
                         <p> Nombre d'utilisateurs : {this.state.tousEmailsArray.length} </p>
