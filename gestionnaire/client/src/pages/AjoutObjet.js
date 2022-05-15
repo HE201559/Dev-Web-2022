@@ -129,62 +129,65 @@ class AjoutObjet extends Component {
 
   render() {
     return (
-      <div>
+      <div style={{ textAlign: "center" }}>
         <Navigation />
         <Container>
-          <h2> Ajoutez un nouvel objet à votre collection {localStorage.getItem('nomBibli')} </h2>
+          <h2 style={{ marginTop: '6%', marginBottom: '13%' }}> Ajoutez un nouvel objet à votre collection {localStorage.getItem('nomBibli')} </h2>
           <form style={{ textAlign: "center" }} onSubmit={this.handleSubmit}>
-            <label>
-              Nom :
-              <input type="text" value={this.state.nom} onChange={text => this.setState({ nom: text.target.value })} />   {/* onChange : permet que dés qu'il y a
+            <div style={{ width: '49%', float: 'left', textAlign: 'center' }}>
+              <label>
+                Nom : <br></br>
+                <input type="text" value={this.state.nom} onChange={text => this.setState({ nom: text.target.value })} />   {/* onChange : permet que dés qu'il y a
                un changement dans un champ texte, le texte est update dans le state ( ce qui permet par la suite de récupérer et envoyer ces données )*/}
-            </label>
-            <br /><br />
-            <label>
-              Description de l'objet :
-              <input type="text" value={this.state.description} onChange={text => this.setState({ description: text.target.value })} />
-            </label>
-            <br /><br />
-            <label>
-              Prix :
-              <input type="number" value={this.state.prix} onChange={text => this.setState({ prix: text.target.value })} />
-            </label>
-            <br /><br />
-            <label>
-              Date d'acquisition :
-              <input type="date" value={this.state.dateAcquisition} onChange={text => this.setState({ dateAcquisition: text.target.value })} />
-            </label>
-            <br /><br />
-            <label>
-              Etat :
-              <input type="text" value={this.state.etat} onChange={text => this.setState({ etat: text.target.value })} />
-            </label>
-            <br /><br />
-            <label>
-              Edition :
-              <input type="text" value={this.state.edition} onChange={text => this.setState({ edition: text.target.value })} />
-            </label>
-            <br /><br />
-            <label>
-              Image :
-            </label>
-            <br /><br />
-            <label>
-              Perso1 :
-              <input type="text" value={this.state.perso1} onChange={text => this.setState({ perso1: text.target.value })} />
-            </label>
-            <br /><br />
-            <label>
-              Perso2 :
-              <input type="text" value={this.state.perso2} onChange={text => this.setState({ perso2: text.target.value })} />
-            </label>
-            <br /><br />
-            <label>
-              Perso3 :
-              <input type="text" value={this.state.perso3} onChange={text => this.setState({ perso3: text.target.value })} />
-            </label>
-            <br /><br />
-            <input type="submit" style={{ marginBottom: '4.5%' }} class="btn btn-success" value="Ajouter un objet" />
+              </label>
+              <br /><br />
+              <label>
+                Description de l'objet : <br></br>
+                <input type="text" value={this.state.description} onChange={text => this.setState({ description: text.target.value })} />
+              </label>
+              <br /><br />
+              <label>
+                Prix : <br></br>
+                <input type="number" value={this.state.prix} onChange={text => this.setState({ prix: text.target.value })} />
+              </label>
+              <br /><br />
+            </div>
+            <div style={{ width: '49%', float: 'right', textAlign: 'center' }}>
+              <label>
+                Date d'acquisition : <br></br>
+                <input type="date" value={this.state.dateAcquisition} onChange={text => this.setState({ dateAcquisition: text.target.value })} />
+              </label>
+              <br /><br />
+              <label>
+                Etat : <br></br>
+                <input type="text" value={this.state.etat} onChange={text => this.setState({ etat: text.target.value })} />
+              </label>
+              <br /><br />
+              <label>
+                Edition : <br></br>
+                <input type="text" value={this.state.edition} onChange={text => this.setState({ edition: text.target.value })} />
+              </label>
+              <br /><br />
+            </div><br></br>
+            <div style={{ textAlign: 'center', marginTop: "10%" }}>
+              <br /><br />
+              <label>
+                Perso1 :<br></br>
+                <input type="text" value={this.state.perso1} onChange={text => this.setState({ perso1: text.target.value })} />
+              </label>
+              <br /><br />
+              <label>
+                Perso2 :<br></br>
+                <input type="text" value={this.state.perso2} onChange={text => this.setState({ perso2: text.target.value })} />
+              </label>
+              <br /><br />
+              <label>
+                Perso3 : <br></br>
+                <input type="text" value={this.state.perso3} onChange={text => this.setState({ perso3: text.target.value })} />
+              </label>
+              <br /><br />
+            </div>
+            <input type="submit" style={{ marginTop: '1%', fontSize: '120%' }} class="btn btn-success" value="Ajouter un objet" />
           </form>
         </Container>
       </div>
