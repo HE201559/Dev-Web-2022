@@ -17,7 +17,7 @@ app.use(cors({
 
 }));
 
-app.use(function(request, response, next) {
+app.use(function (request, response, next) {
   response.header("Access-Control-Allow-Origin", '*');
   response.header("Access-Control-Allow-Headers", "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
   response.header("Access-Control-Allow-Methods", "GET,HEAD,POST,PUT,DELETE,OPTIONS");
@@ -51,6 +51,9 @@ async function main(){
 
 main();
 */
+/*
 app.listen(port, hostname, () => {
   console.log(`Server running at http://${hostname}:${port}/`);
-});
+}); */
+
+https.createServer(options, app).listen(5000);
