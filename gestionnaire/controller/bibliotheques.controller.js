@@ -250,6 +250,25 @@ exports.findCollectionInfos = (req, res) => {
 
 }
 
+exports.findChampsPersos = (req, res) => {
+  bibliotheques.findChampsPersos((err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+        });
+      } else {
+        res.status(500).send({
+
+        });
+      }
+    } else {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.send(data);
+    }
+  });
+
+}
+
 exports.supprimerBiblio = (req, res) => {
   bibliotheques.supprimerBiblio(req.params.idBiblio, (err, data) => {
     if (err) {

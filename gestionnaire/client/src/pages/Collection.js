@@ -31,6 +31,7 @@ class Collection extends Component {
       benefices: '',
       nomModele: '',
       donneModele: '',
+      champsPersos:[],
     };
 
     this.showModal = this.showModal.bind(this);
@@ -88,6 +89,13 @@ class Collection extends Component {
       .then(json => {
         this.setState({ benefices: json[0].benefice })
         console.log(this.state.benefices)
+      })
+
+      await fetch(`http://localhost:5000/findChampsPersos`)
+      .then(response => response.json())
+      .then(json => {
+        this.setState({ champsPersos: json })
+        console.log(this.state.champsPersos)
       })
 
 
@@ -238,14 +246,16 @@ class Collection extends Component {
                     </Card.Header>
                     {<Card.Img variant="top" src={lugia} />}
                     <Card.Body>
-                      <ListGroup className="list-group-flush">
+                    <ListGroup className="list-group-flush">
                         {collection.prix !== '' && collection.prix && (<ListGroupItem>Prix : {Number(collection.prix).toFixed(2)} €</ListGroupItem>)}
                         {collection.etat !== '' && collection.etat && (<ListGroupItem>Etat : {collection.etat}</ListGroupItem>)}
                         {collection.edition !== '' && collection.edition && (<ListGroupItem>Edition : {collection.edition}</ListGroupItem>)}
-                        {collection.perso1 !== '' && collection.perso1 && (<ListGroupItem>{collection.perso1}</ListGroupItem>)}
-                        {collection.perso2 !== '' && collection.perso2 && (<ListGroupItem>{collection.perso2}</ListGroupItem>)}
-                        {collection.perso3 !== '' && collection.perso3 && (<ListGroupItem>{collection.perso3}</ListGroupItem>)}
-                      </ListGroup>
+                        {this.state.champsPersos.filter(champs => champs.idObjet === collection.idObjet ).map(filterChamps => ( 
+                        
+                        <ListGroupItem> {filterChamps.nomModele} : {filterChamps.donneModele} </ListGroupItem>
+                                              ))}
+                      </ListGroup> 
+
                     </Card.Body>
                     <Card.Footer>
                       {collection.dateAcquisition !== '' && (<ListGroupItem>Date d'acquisition : {dateFormat(collection.dateAcquisition, 'dd-mm-yyyy')}</ListGroupItem>)}

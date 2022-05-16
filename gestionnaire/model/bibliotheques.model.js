@@ -132,6 +132,19 @@ bibliotheques.findBibliotheques = (email, result) => {
     })
   },
 
+  bibliotheques.findChampsPersos = (result) => {
+    sql.query(`SELECT idObjet, nomModele, donneModele from tb_Modeles`, (err, res) => {
+      if (err) {
+        console.log("error : ", err);
+        result(null, err);
+        return;
+      }
+      console.log("donnees :", res);
+      result(null, res);
+    })
+  },
+
+
   bibliotheques.findBibliothequesDateCrea = (biblioId, result) => {
     sql.query(`SELECT * from tb_UsersBiblio WHERE biblioId = "${biblioId}";  ;`, (err, res) => {
       if (err) {
