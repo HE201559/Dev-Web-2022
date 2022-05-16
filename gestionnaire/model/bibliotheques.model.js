@@ -120,6 +120,33 @@ bibliotheques.findBibliotheques = (email, result) => {
       })
   },
 
+  bibliotheques.ajoutModele = (modele, idObjet, result) => {
+    var requete = "INSERT INTO tb_Modeles (idObjet, nomModele, donneModele) VALUES ? ";
+    var values = [[idObjet, modele.nomModele, modele.donneModele]];
+    sql.query(requete, [values],
+      (err, res) => {
+        if (err) {
+          console.log("error : ", err);
+          result(null, err);
+          return;
+        }
+        console.log("Marche");
+        result(null, res);
+      })
+  },
+
+  bibliotheques.findChampsPersos = (result) => {
+    sql.query(`SELECT idObjet, nomModele, donneModele from tb_Modeles`, (err, res) => {
+      if (err) {
+        console.log("error : ", err);
+        result(null, err);
+        return;
+      }
+      console.log("donnees :", res);
+      result(null, res);
+    })
+  },
+
   bibliotheques.findCollectionInfos = (biblioId, result) => {
     sql.query(`SELECT SUM(tb_Objets.prix) as valeur, COUNT(tb_Objets.idObjet) as nombre from tb_Objets join tb_Bibliotheque ON tb_Objets.idObjet = tb_Bibliotheque.idObjet WHERE tb_Objets.possede='0' AND tb_Bibliotheque.biblioId = "${biblioId}";  ;`, (err, res) => {
       if (err) {

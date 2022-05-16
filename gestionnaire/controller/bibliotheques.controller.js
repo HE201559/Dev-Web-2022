@@ -155,6 +155,52 @@ exports.findBibliothequesDateCrea = (req, res) => {
 
 }
 
+exports.ajoutModele = (req, res) => {
+  const modele = {
+    nomModele: req.body.nomModele,
+    donneModele: req.body.donneModele,
+    idObjet: req.body.idObjet,
+  };
+  bibliotheques.ajoutModele(modele, req.params.idObjet, (err, data) => {
+    console.log(req.params.idObjet)
+    console.log(req)
+    console.log(req.body.nomModele)
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Impossible de vendre l'objet ${req.body.idObjet}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: "Error",
+        });
+      }
+    } else {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.send(data);
+    }
+  });
+};
+
+exports.findChampsPersos = (req, res) => {
+  bibliotheques.findChampsPersos((err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+        });
+      } else {
+        res.status(500).send({
+
+        });
+      }
+    } else {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.send(data);
+    }
+  });
+
+}
+
 
 
 exports.creationBibliotheque = (req, res) => {

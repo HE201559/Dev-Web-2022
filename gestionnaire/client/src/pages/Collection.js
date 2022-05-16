@@ -28,6 +28,9 @@ class Collection extends Component {
       imageFormat: '',
       prix_revente: '',
       benefices: '',
+      nomModele: '',
+      donneModele: '',
+      champsPersos: [],
     };
 
     this.showModal = this.showModal.bind(this);
@@ -85,6 +88,13 @@ class Collection extends Component {
       .then(json => {
         this.setState({ benefices: json[0].benefice })
         console.log(this.state.benefices)
+      })
+
+    await fetch(`https://176.96.231.198:5000/findChampsPersos`)
+      .then(response => response.json())
+      .then(json => {
+        this.setState({ champsPersos: json })
+        console.log(this.state.champsPersos)
       })
 
 
@@ -155,6 +165,41 @@ class Collection extends Component {
     window.location.href = "https://gestionnaire-collection.netlify.app/Collection"
   };
 
+  async handleSubmitModele(event, idObjetModele) {
+    event.preventDefault()
+    await fetch(`https://176.96.231.198:5000/ajoutModele/${idObjetModele}`, {
+
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        "Access-Control-Allow-Origin": "true"
+      },
+      body: JSON.stringify({
+        idObjet: { idObjetModele },
+        nomModele: this.state.nomModele,
+        donneModele: this.state.donneModele,
+
+      }),
+
+
+    })
+      .then(res => res.text())
+      .then(text => console.log(text))
+      .then(response => response.json())
+      .then(json => {
+
+
+      }).catch((error) => {
+
+      });
+
+    window.location.href = "https://gestionnaire-collection.netlify.app/Collection"
+
+
+  }
+
+
 
 
   render() {
@@ -206,15 +251,47 @@ class Collection extends Component {
                           {collection.prix !== '' && collection.prix && (<ListGroupItem>Prix : {Number(collection.prix).toFixed(2)} €</ListGroupItem>)}
                           {collection.etat !== '' && collection.etat && (<ListGroupItem>Etat : {collection.etat}</ListGroupItem>)}
                           {collection.edition !== '' && collection.edition && (<ListGroupItem>Edition : {collection.edition}</ListGroupItem>)}
-                          {collection.perso1 !== '' && collection.perso1 && (<ListGroupItem>{collection.perso1}</ListGroupItem>)}
-                          {collection.perso2 !== '' && collection.perso2 && (<ListGroupItem>{collection.perso2}</ListGroupItem>)}
-                          {collection.perso3 !== '' && collection.perso3 && (<ListGroupItem>{collection.perso3}</ListGroupItem>)}
+                          {this.state.champsPersos.filter(champs => champs.idObjet === collection.idObjet).map(filterChamps => (
+
+                            <ListGroupItem> {filterChamps.nomModele} : {filterChamps.donneModele} </ListGroupItem>
+                          ))}
                         </ListGroup>
+
                       </Card.Body>
                       <Card.Footer>
                         {collection.dateAcquisition !== '' && (<ListGroupItem>Date d'acquisition : {dateFormat(collection.dateAcquisition, 'dd-mm-yyyy')}</ListGroupItem>)}
                         {collection.dateAcquisition === '' && (<ListGroupItem>Date d'acquisition : {'inconnu'}</ListGroupItem>)}
                       </Card.Footer>
+                      <Popup trigger={<button style={{ width: '68%', marginLeft: '16.1%', marginBottom: '2.5%' }} type="button" class="btn btn-outline-primary" onClick={() => { { } }} >Champ personalisé </button>} modal>
+                        <Card>
+                          <Card.Header>
+                            <Card.Title> Ajouter un champ personalisé </Card.Title>
+                            <Card.Text>
+                              À l'objet : {collection.nom}
+                            </Card.Text>
+                          </Card.Header>
+                          <Card.Body>
+                            <form style={{ textAlign: 'center' }} onSubmit={event => this.handleSubmitModele(event, collection.idObjet)}>
+                              <label style={{ marginRight: '1%' }}>
+                                Nom du champ:
+                                <br></br>
+                                <input type="text" value={this.state.nomModele} onChange={text => this.setState({ nomModele: text.target.value })} />
+                              </label>
+                              <br></br>
+                              <label style={{ marginRight: '1%' }}>
+                                Information du champ:
+                                <input type="text" value={this.state.donneModele} onChange={text => this.setState({ donneModele: text.target.value })} />
+                              </label>
+                              <br></br>
+                              <input style={{ marginTop: '5%' }} type="submit" class="btn btn-outline-primary" value={"Ajouter"} />
+                            </form>
+                          </Card.Body>
+                          <Card.Footer>
+                            {collection.dateAcquisition !== '' && (<ListGroupItem>Date d'acquisition : {dateFormat(collection.dateAcquisition, 'dd-mm-yyyy')}</ListGroupItem>)}
+                            {collection.dateAcquisition === '' && (<ListGroupItem>Date d'acquisition : {'inconnu'}</ListGroupItem>)}
+                          </Card.Footer>
+                        </Card>
+                      </Popup>
                       <Popup trigger={<button style={{ width: '78%', marginLeft: '11.1%', marginBottom: '2.5%' }} type="button" class="btn btn-outline-info" > Vendre {collection.nom} </button>} modal>
                         <Card>
                           <Card.Header>

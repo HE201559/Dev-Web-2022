@@ -16,6 +16,7 @@ module.exports = (app) => {
     app.post("/ajoutObjetTbObjets", jsonParser, bibliotheques.creationObjetTbObjets);
     app.post("/ajoutBibliotheque", jsonParser, bibliotheques.creationBibliotheque);
     app.post("/vendreObjet/:idObjet", jsonParser, bibliotheques.vendreObjet);
+    app.post("/ajoutModele/:idObjet", jsonParser, bibliotheques.ajoutModele);
 
 
 
@@ -30,6 +31,7 @@ module.exports = (app) => {
     app.get("/findAllBiblioCollection", bibliotheques.findAllBiblioCollection)
     app.get("/findCollectionInfos/:biblioId", jsonParser, bibliotheques.findCollectionInfos)
     app.get("/findBenefices/:biblioId", bibliotheques.findBenefices)
+    app.get("/findChampsPersos", bibliotheques.findChampsPersos)
 
 
     app.delete("/supprimerObjet/:idObjet", bibliotheques.supprimerObjet);
