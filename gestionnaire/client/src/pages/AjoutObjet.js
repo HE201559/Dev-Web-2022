@@ -169,24 +169,6 @@ class AjoutObjet extends Component {
               </label>
               <br /><br />
             </div><br></br>
-            <div style={{ textAlign: 'center', marginTop: "10%" }}>
-              <br /><br />
-              <label>
-                Perso1 :<br></br>
-                <input type="text" value={this.state.perso1} onChange={text => this.setState({ perso1: text.target.value })} />
-              </label>
-              <br /><br />
-              <label>
-                Perso2 :<br></br>
-                <input type="text" value={this.state.perso2} onChange={text => this.setState({ perso2: text.target.value })} />
-              </label>
-              <br /><br />
-              <label>
-                Perso3 : <br></br>
-                <input type="text" value={this.state.perso3} onChange={text => this.setState({ perso3: text.target.value })} />
-              </label>
-              <br /><br />
-            </div>
             <input type="submit" style={{ marginTop: '1%', fontSize: '120%' }} class="btn btn-success" value="Ajouter un objet" />
           </form>
         </Container>
