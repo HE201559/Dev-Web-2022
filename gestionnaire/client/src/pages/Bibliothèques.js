@@ -90,9 +90,9 @@ class Bibliothèques extends Component {
 
   };
 
-  handleSuppressionBiblio(idBibliASupp) {
+  async handleSuppressionBiblio(idBibliASupp) {
     console.log(idBibliASupp)
-    fetch(`https://176.96.231.198:5000/supprimerBiblio/${idBibliASupp}`, {
+    await fetch(`https://176.96.231.198:5000/supprimerBiblio/${idBibliASupp}`, {
 
       method: 'DELETE',
       headers: {
