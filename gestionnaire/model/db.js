@@ -2,11 +2,11 @@ const mysql = require("mysql");
 const db = require("../config/db");
 
 const pool = mysql.createPool({
-    host: '137.74.198.28',
+    host: '51.141.115.222',
     user: 'remote',
     //password: '********',
     password: 'Welcom@2803',
-    database: 'gestionnaire_collection'
+    database: 'dev3'
 });
 
 module.exports = pool;
