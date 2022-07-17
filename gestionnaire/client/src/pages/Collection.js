@@ -105,6 +105,10 @@ class Collection extends Component {
     window.location.href = "http://localhost:3000/AjoutObjet"
   }
 
+  navTemplate() {
+    window.location.href = "http://localhost:3000/Template"
+  }
+
   async handleSubmit(event, idObjetAvendre) {
     event.preventDefault()
     await fetch(`http://localhost:5000/vendreObjet/${idObjetAvendre}`, {
@@ -228,6 +232,9 @@ class Collection extends Component {
             <Row style={{ marginTop: '4%', marginBottom: '3%' }}>
               <Col md={6}>
                 <h3 style={{ fontSize: '180%', marginBottom: '3%', marginTop: '5%' }}> Objets de collection</h3>
+              </Col>
+              <Col md={6} style={{ textAlign: 'right', paddingTop: '1%', paddingRight: '0.5%' }}>
+                <button type="button" style={{ fontSize: '140%' }} class="btn btn-success" onClick={this.navTemplate}> Ajouter une template </button>
               </Col>
               <Col md={6} style={{ textAlign: 'right', paddingTop: '1%', paddingRight: '0.5%' }}>
                 <button type="button" style={{ fontSize: '140%' }} class="btn btn-success" onClick={this.navAjoutObjet}> Ajouter un objet </button>

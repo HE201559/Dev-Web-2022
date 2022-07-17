@@ -13,6 +13,7 @@ import AjoutObjet from "./pages/AjoutObjet"
 import Admin from "./pages/Admin";
 import "./App.css"
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import Template from "./pages/Template";
 
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
           <Route path="/Collection" element={<Collection />} />
           <Route path="/AjoutObjet" element={<AjoutObjet />} />
           <Route path="/Admin" element={<Admin />} />
+          <Route path="/Template" element={<Template />} />
         </Routes>
       </BrowserRouter>
     </div >
