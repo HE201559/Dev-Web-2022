@@ -9,6 +9,7 @@ const Template = () => {
             hello
             <br />
             test : {secureLocalStorage.getItem("secureBiblioId")}
+            test
         </div>
     );
 };
