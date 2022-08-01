@@ -5,8 +5,9 @@ import { Row, Col, Container, Card, ListGroup, ListGroupItem, Modal } from 'reac
 import Popup from 'reactjs-popup';
 import dateFormat from 'dateformat';
 import lugia from '../images/lugia.jpg'
+import secureLocalStorage from "react-secure-storage";
 
-
+secureLocalStorage.setItem("secureBiblioId", secureLocalStorage.getItem('biblioId'));
 
 class Collection extends Component {
 
@@ -14,7 +15,7 @@ class Collection extends Component {
     super(props);
     this.state = {
       email: localStorage.getItem('EmailUtilisateur'),
-      biblioId: localStorage.getItem('biblioId'),
+      biblioId: secureLocalStorage.getItem('biblioId'),
       biblioNom: localStorage.getItem('nomBibli'),
       toutesBibliotheques: [],
       donneesCollection: [],
@@ -31,7 +32,7 @@ class Collection extends Component {
       benefices: '',
       nomModele: '',
       donneModele: '',
-      champsPersos:[],
+      champsPersos: [],
     };
 
     this.showModal = this.showModal.bind(this);
@@ -91,7 +92,7 @@ class Collection extends Component {
         console.log(this.state.benefices)
       })
 
-      await fetch(`http://localhost:5000/findChampsPersos`)
+    await fetch(`http://localhost:5000/findChampsPersos`)
       .then(response => response.json())
       .then(json => {
         this.setState({ champsPersos: json })
@@ -253,15 +254,15 @@ class Collection extends Component {
                     </Card.Header>
                     {<Card.Img variant="top" src={lugia} />}
                     <Card.Body>
-                    <ListGroup className="list-group-flush">
+                      <ListGroup className="list-group-flush">
                         {collection.prix !== '' && collection.prix && (<ListGroupItem>Prix : {Number(collection.prix).toFixed(2)} €</ListGroupItem>)}
                         {collection.etat !== '' && collection.etat && (<ListGroupItem>Etat : {collection.etat}</ListGroupItem>)}
                         {collection.edition !== '' && collection.edition && (<ListGroupItem>Edition : {collection.edition}</ListGroupItem>)}
-                        {this.state.champsPersos.filter(champs => champs.idObjet === collection.idObjet ).map(filterChamps => ( 
-                        
-                        <ListGroupItem> {filterChamps.nomModele} : {filterChamps.donneModele} </ListGroupItem>
-                                              ))}
-                      </ListGroup> 
+                        {this.state.champsPersos.filter(champs => champs.idObjet === collection.idObjet).map(filterChamps => (
+
+                          <ListGroupItem> {filterChamps.nomModele} : {filterChamps.donneModele} </ListGroupItem>
+                        ))}
+                      </ListGroup>
 
                     </Card.Body>
                     <Card.Footer>

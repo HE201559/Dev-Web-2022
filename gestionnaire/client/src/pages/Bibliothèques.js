@@ -4,6 +4,7 @@ import { Row, Col, Container, Modal, Card } from 'react-bootstrap';
 import { NavLink } from "react-router-dom";
 import moment from "moment";
 import dateFormat from 'dateformat';
+import secureLocalStorage from "react-secure-storage";
 
 
 class Bibliothèques extends Component {
@@ -18,7 +19,7 @@ class Bibliothèques extends Component {
       emailUser: localStorage.getItem('EmailUtilisateur'),
       nomBibli: '',
       biblioDateCre: moment().format("YYYY-MM-DD"),
-      biblioId: localStorage.getItem('biblioId'),
+      biblioId: secureLocalStorage.getItem('biblioId'),
       idBibliAsupp: '',
       nomBibliAsupp: ''
     };
@@ -144,7 +145,7 @@ class Bibliothèques extends Component {
             <Row>
               <Col lg={4} xs={4} style={{ textAlign: 'center' }}>
 
-                <NavLink id="texte" style={{ width: 'auto', marginTop: '20%' }} onClick={() => localStorage.setItem('biblioId', bibli.biblioId)} to="/Collection" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
+                <NavLink id="texte" style={{ width: 'auto', marginTop: '20%' }} onClick={() => secureLocalStorage.setItem('biblioId', bibli.biblioId)} to="/Collection" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
                   <li onClick={() => localStorage.setItem('nomBibli', bibli.nomBibli)} style={{ fontSize: '170%', fontWeight: 'bold', color: 'black' }}> {bibli.nomBibli}</li>
                 </NavLink>
 
