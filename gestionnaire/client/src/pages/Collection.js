@@ -336,7 +336,7 @@ class Collection extends Component {
             )
             )}
           </Row>
-
+          creationBibliotheque
         </Container>
         <Container>
           <Row style={{ marginTop: '4%', marginBottom: '3%' }}>
