@@ -17,6 +17,7 @@ module.exports = (app) => {
     app.post("/ajoutBibliotheque", jsonParser, bibliotheques.creationBibliotheque);
     app.post("/vendreObjet/:idObjet", jsonParser, bibliotheques.vendreObjet);
     app.post("/ajoutModele/:idObjet", jsonParser, bibliotheques.ajoutModele);
+    app.post("/ajoutTemplate", jsonParser, bibliotheques.ajoutTemplate);
 
 
 

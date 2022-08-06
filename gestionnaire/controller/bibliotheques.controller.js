@@ -358,3 +358,25 @@ exports.ajoutModele = (req, res) => {
   });
 };
 
+exports.ajoutTemplate = (req, res) => {
+
+  const template = {
+    nom_Template: req.body.nom_Template,
+    id_Bibli: req.body.id_Bibli,
+  };
+
+  bibliotheques.ajoutTemplate(template, (err, data) => {
+    console.log(req.body.nom_Template)
+    console.log(req)
+    console.log(req.body.id_Bibli)
+    if (err) {
+      res.status(500).send({
+        message: "Marche pas"
+      });
+    }
+    else {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.send(data);
+    }
+  });
+};
