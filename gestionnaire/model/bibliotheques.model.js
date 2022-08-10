@@ -240,6 +240,17 @@ bibliotheques.ajoutTemplate = (template, result) => {
     })
 };
 
+bibliotheques.ffindTemplateId = (templateDonnees, result) => {
+  sql.query(`SELECT id_Template FROM tb_Template WHERE id_Bibli="${templateDonnees.id_Bibli}" AND nom_Template="${templateDonnees.nom_Template}"`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    console.log("contacts :", res);
+    result(null, res);
+  });
+};
 
 /*bibliotheques.creationObjet=(objet, result) => {
   var requete1 = "INSERT INTO tb_Bibliotheque (biblioId) VALUES ? ";

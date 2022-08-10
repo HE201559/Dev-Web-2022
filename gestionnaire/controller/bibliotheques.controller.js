@@ -380,3 +380,26 @@ exports.ajoutTemplate = (req, res) => {
     }
   });
 };
+
+exports.findTemplateId = (req, res) => {
+
+  const templateDonnees = {
+    nom_Template: req.body.nom_Template,
+    id_Bibli: req.body.id_Bibli,
+  };
+
+  bibliotheques.findTemplateId(templateDonnees, (err, data) => {
+    console.log(req.body.nom_Template)
+    console.log(req)
+    console.log(req.body.id_Bibli)
+    if (err) {
+      res.status(500).send({
+        message: "Marche pas"
+      });
+    }
+    else {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.send(data);
+    }
+  });
+};

@@ -14,7 +14,7 @@ class Template extends React.Component {
             nom_Template: '',
             id_Bibli: secureLocalStorage.getItem("secureBiblioId"),
             donneesCollection: [],
-            count: 2
+            id_Template: ''
             // personne: []
         };
         this.templatePost = this.templatePost.bind(this);
@@ -47,6 +47,27 @@ class Template extends React.Component {
                     .then(json => {
                         this.setState({ donneesCollection: json })
                         console.log(this.state.donneesCollection)
+                    })
+            )
+            .then(
+                fetch('http://localhost:5000/findTemplateId', {
+                    method: 'GET',
+                    headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        "Access-Control-Allow-Origin": "true"
+                    },
+                    body: JSON.stringify({
+
+                        nom_Template: this.state.nom_Template,
+                        id_Bibli: this.state.id_Bibli,
+
+                    }),
+                })
+                    .then(response => response.json())
+                    .then(json => {
+                        this.setState({ donneesCollection: json[0].id_Template })
+                        console.log(this.state.id_Template)
                     })
             )
             .then(json => {
@@ -122,7 +143,7 @@ class Template extends React.Component {
                                         <Card.Body>
                                             <form style={{ textAlign: 'center' }} onSubmit={event => this.handleSubmitModele(event, collection.idObjet)}>
                                                 <label style={{ marginRight: '1%' }}>
-                                                    Donnée de template:
+                                                    Donnée de template: {this.state.id_Template}
                                                     <input type="text" value={this.state.donneModele} onChange={text => this.setState({ donneModele: text.target.value })} />
                                                 </label>
                                                 <br></br>
