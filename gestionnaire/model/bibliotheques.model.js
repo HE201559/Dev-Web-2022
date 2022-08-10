@@ -42,11 +42,11 @@ bibliotheques.findBibliotheques = (email, result) => {
   bibliotheques.findBiblioCollectionPossedee = (biblioId, result) => {
     sql.query(`SELECT tb_Bibliotheque.biblioId, tb_Objets.idObjet, tb_Objets.possede, tb_Objets.prix, tb_Objets.nom, tb_Objets.description, tb_Objets.dateAcquisition, tb_Objets.etat, tb_Objets.edition, tb_Objets.image from tb_Bibliotheque JOIN tb_Objets on tb_Bibliotheque.idObjet = tb_Objets.idObjet WHERE tb_Bibliotheque.biblioId = "${biblioId}" AND tb_Objets.possede = '0' ;`, (err, res) => {
       if (err) {
-        console.log("error : ", err);
+        //console.log("error : ", err);
         result(null, err);
         return;
       }
-      console.log("donnees :", res);
+      //console.log("donnees :", res);
       result(null, res);
     })
   },
@@ -226,31 +226,46 @@ bibliotheques.ajoutModele = (modele, idObjet, result) => {
 };
 
 bibliotheques.ajoutTemplate = (template, result) => {
-  var requete = "INSERT INTO tb_Template (nom_Template, id_Bibli) VALUES ? ";
-  var values = [[template.nom_Template, template.id_Bibli]];
-  sql.query(requete, [values],
+  var requete = `INSERT INTO tb_Template (nom_Template, id_Bibli) VALUES  ('${template.nom_Template}', '${template.id_Bibli}') RETURNING id_Template`;
+  //var values = [[template.nom_Template, template.id_Bibli]];
+  sql.query(requete,
     (err, res) => {
       if (err) {
         console.log("error : ", err);
         result(null, err);
         return;
       }
-      console.log("Marche");
+      console.log("Marche", res);
       result(null, res);
     })
 };
 
-bibliotheques.ffindTemplateId = (templateDonnees, result) => {
-  sql.query(`SELECT id_Template FROM tb_Template WHERE id_Bibli="${templateDonnees.id_Bibli}" AND nom_Template="${templateDonnees.nom_Template}"`, (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
-    console.log("contacts :", res);
-    result(null, res);
-  });
-};
+// bibliotheques.ajoutTemplate = (template, result) => {
+//   var requete = "INSERT INTO tb_Template (nom_Template, id_Bibli) VALUES ?  ";
+//   var values = [[template.nom_Template, template.id_Bibli]];
+//   sql.query(requete, [values], "SELECT id_Template FROM tb_Template",
+//     (err, res) => {
+//       if (err) {
+//         //console.log("error : ", err);
+//         result(null, err);
+//         return;
+//       }
+//       //console.log("Marche");
+//       result(null, res);
+//     })
+// };
+
+// bibliotheques.findTemplateId = (id_Bibli, nom_Template, result) => {
+//   sql.query(`SELECT id_Template FROM tb_Template WHERE id_Bibli=${id_Bibli} AND nom_Template="${nom_Template}";`, (err, res) => {
+//     if (err) {
+//       console.log("error: ", err);
+//       result(null, err);
+//       return;
+//     }
+//     console.log("donnees :", res);
+//     result(null, res);
+//   });
+// };
 
 /*bibliotheques.creationObjet=(objet, result) => {
   var requete1 = "INSERT INTO tb_Bibliotheque (biblioId) VALUES ? ";

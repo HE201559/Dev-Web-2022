@@ -34,7 +34,7 @@ module.exports = (app) => {
     app.get("/findCollectionInfos/:biblioId", jsonParser, bibliotheques.findCollectionInfos)
     app.get("/findBenefices/:biblioId", bibliotheques.findBenefices)
     app.get("/findChampsPersos", bibliotheques.findChampsPersos)
-    app.get("/findTemplateId", bibliotheques.findTemplateId)
+    //app.get("/findTemplateId/:donnees", bibliotheques.findTemplateId)
 
 
     app.delete("/supprimerObjet/:idObjet", bibliotheques.supprimerObjet);

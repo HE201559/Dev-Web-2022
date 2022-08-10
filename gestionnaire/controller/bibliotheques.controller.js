@@ -344,7 +344,7 @@ exports.ajoutModele = (req, res) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Impossible de vendre l'objet ${req.body.idObjet}.`,
+          //message: `Impossible de vendre l'objet ${req.body.idObjet}.`,
         });
       } else {
         res.status(500).send({
@@ -367,8 +367,8 @@ exports.ajoutTemplate = (req, res) => {
 
   bibliotheques.ajoutTemplate(template, (err, data) => {
     console.log(req.body.nom_Template)
-    console.log(req)
-    console.log(req.body.id_Bibli)
+    //console.log(req)
+    //console.log(req.body.id_Bibli)
     if (err) {
       res.status(500).send({
         message: "Marche pas"
@@ -381,25 +381,21 @@ exports.ajoutTemplate = (req, res) => {
   });
 };
 
-exports.findTemplateId = (req, res) => {
-
-  const templateDonnees = {
-    nom_Template: req.body.nom_Template,
-    id_Bibli: req.body.id_Bibli,
-  };
-
-  bibliotheques.findTemplateId(templateDonnees, (err, data) => {
-    console.log(req.body.nom_Template)
-    console.log(req)
-    console.log(req.body.id_Bibli)
-    if (err) {
-      res.status(500).send({
-        message: "Marche pas"
-      });
-    }
-    else {
-      res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
-    }
-  });
-};
+// exports.findTemplateId = (req, res) => {
+//   bibliotheques.findTemplateId(JSON.parse(req.params.donnees).id_Bibli, JSON.parse(req.params.donnees).nom_Template, (err, data) => {
+//     console.log(JSON.parse(req.params.donnees).id_Bibli)
+//     console.log(JSON.parse(req.params.donnees).nom_Template)
+//     //console.log(req)
+//     //console.log(req.params.donnees[6])
+//     if (err) {
+//       res.status(500).send({
+//         message: "Marche pas"
+//       });
+//     }
+//     else {
+//       res.header("Access-Control-Allow-Origin", "*");
+//       console.log("marche oui oui");
+//       res.send(data);
+//     }
+//   });
+// };

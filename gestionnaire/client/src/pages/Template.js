@@ -22,6 +22,14 @@ class Template extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    showModal = () => {
+        this.setState({ show: true });
+    };
+
+    hideModal = () => {
+        this.setState({ show: false });
+    };
+
     async templatePost(event) {
         event.preventDefault()
         await fetch('http://localhost:5000/ajoutTemplate', {
@@ -38,9 +46,15 @@ class Template extends React.Component {
 
             }),
         })
-            .then(res => res.text())
-            .then(text => console.log(text))
+            //.then(res => res.text())
+            //.then(text => console.log(text))
             .then(response => response.json())
+            .then(json => {
+                this.setState({ id_Template: json[0].id_Template })
+                console.log(this.state.id_Template)
+            }).catch((error) => {
+                console.log(error)
+            })
             .then(
                 fetch(`http://localhost:5000/findBiblioCollectionPossedee/${this.state.id_Bibli}`)
                     .then(response => response.json())
@@ -49,33 +63,22 @@ class Template extends React.Component {
                         console.log(this.state.donneesCollection)
                     })
             )
-            .then(
-                fetch('http://localhost:5000/findTemplateId', {
-                    method: 'GET',
-                    headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                        "Access-Control-Allow-Origin": "true"
-                    },
-                    body: JSON.stringify({
+            // .then(
+            //     this.showModal(),
+            //     await fetch(`http://localhost:5000/findTemplateId/${JSON.stringify({
+            //         nom_Template: this.state.nom_Template,
+            //         id_Bibli: this.state.id_Bibli
+            //     }
+            //     )}
 
-                        nom_Template: this.state.nom_Template,
-                        id_Bibli: this.state.id_Bibli,
-
-                    }),
-                })
-                    .then(response => response.json())
-                    .then(json => {
-                        this.setState({ donneesCollection: json[0].id_Template })
-                        console.log(this.state.id_Template)
-                    })
-            )
-            .then(json => {
-
-
-            }).catch((error) => {
-                console.log(error)
-            });
+            //         `)
+            //         .then(response => response.json())
+            //         .then(json => {
+            //             this.setState({ id_Template: json[0].id_Template })
+            //             console.log(this.state.id_Template)
+            //         })
+            // )
+            ;
     }
 
 
@@ -118,6 +121,7 @@ class Template extends React.Component {
 
                 test : {secureLocalStorage.getItem("secureBiblioId")}
                 test test
+                {this.state.id_Template}
 
                 <form style={{ textAlign: "center" }} onSubmit={this.templatePost}>
                     <label>
@@ -161,15 +165,20 @@ class Template extends React.Component {
                         ))}
                     </Carousel>
                 }
-                {/* <span>{this.state.donneesCollection}</span>
-                <button onClick={() => this.setState({ count: this.state.count - 1 })}>
-                    -1
-                </button>
-                <button onClick={() => this.setState({ count: this.state.count + 1 })}>
-                    +1
-                </button> */}
 
+                <Modal show={this.state.show} onHide={this.hideModal}  >
+                    <Modal.Header closeButton>
+                        Voulez vous ajouter une valeur d'entrée a vos objets actuellement possédées ?
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Row>
 
+                            <Col style={{ textAlign: 'center' }}>
+                                <button type="button" class="btn btn-outline-success" onClick={this.hideModal} > quitter </button>
+                            </Col>
+                        </Row>
+                    </Modal.Body>
+                </Modal>
             </div >
         );
     }
