@@ -366,7 +366,33 @@ exports.ajoutTemplate = (req, res) => {
   };
 
   bibliotheques.ajoutTemplate(template, (err, data) => {
-    console.log(req.body.nom_Template)
+    //console.log(req.body.nom_Template)
+    //console.log(req)
+    //console.log(req.body.id_Bibli)
+    if (err) {
+      res.status(500).send({
+        message: "Marche pas"
+      });
+    }
+    else {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.send(data);
+    }
+  });
+};
+
+exports.ajoutDonneesTemplate = (req, res) => {
+
+  const dataTemplate = {
+    donneesTemplate: req.body.donneesTemplate,
+    idObjet: req.body.idObjet,
+    id_Template: req.body.id_Template,
+  };
+
+  bibliotheques.ajoutDonneesTemplate(dataTemplate, (err, data) => {
+    console.log(req.body.donneesTemplate)
+    console.log(req.body.idObjet)
+    console.log(req.body.id_Template)
     //console.log(req)
     //console.log(req.body.id_Bibli)
     if (err) {

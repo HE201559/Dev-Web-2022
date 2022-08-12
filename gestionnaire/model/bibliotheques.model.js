@@ -240,6 +240,21 @@ bibliotheques.ajoutTemplate = (template, result) => {
     })
 };
 
+bibliotheques.ajoutDonneesTemplate = (dataTemplate, result) => {
+  var requete = `INSERT INTO tb_DonneesTemplate (donneesTemplate, idObjet, id_Template) VALUES  ('${dataTemplate.donneesTemplate}', '${dataTemplate.idObjet}', '${dataTemplate.id_Template}')`;
+  //var values = [[template.nom_Template, template.id_Bibli]];
+  sql.query(requete,
+    (err, res) => {
+      if (err) {
+        console.log("error : ", err);
+        result(null, err);
+        return;
+      }
+      console.log("Marche", res);
+      result(null, res);
+    })
+};
+
 // bibliotheques.ajoutTemplate = (template, result) => {
 //   var requete = "INSERT INTO tb_Template (nom_Template, id_Bibli) VALUES ?  ";
 //   var values = [[template.nom_Template, template.id_Bibli]];

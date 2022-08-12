@@ -14,7 +14,8 @@ class Template extends React.Component {
             nom_Template: '',
             id_Bibli: secureLocalStorage.getItem("secureBiblioId"),
             donneesCollection: [],
-            id_Template: ''
+            id_Template: '',
+            donneesTemplate: ''
             // personne: []
         };
         this.templatePost = this.templatePost.bind(this);
@@ -81,6 +82,32 @@ class Template extends React.Component {
             ;
     }
 
+    async donneesTemplatePost(event, idObjet) {
+        event.preventDefault()
+        await fetch('http://localhost:5000/ajoutDonneesTemplate', {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "true"
+            },
+            body: JSON.stringify({
+
+                donneesTemplate: this.state.donneesTemplate,
+                idObjet: idObjet,
+                id_Template: this.state.id_Template
+
+            }),
+        })
+            .then(res => res.text())
+            .then(text => console.log(text))
+            .then(response => response.json())
+            .then(json => {
+
+            }).catch((error) => {
+                console.log(error)
+            })
+    }
 
 
 
@@ -145,10 +172,10 @@ class Template extends React.Component {
                                             </Card.Text>
                                         </Card.Header>
                                         <Card.Body>
-                                            <form style={{ textAlign: 'center' }} onSubmit={event => this.handleSubmitModele(event, collection.idObjet)}>
+                                            <form style={{ textAlign: 'center' }} onSubmit={event => this.donneesTemplatePost(event, collection.idObjet)}>
                                                 <label style={{ marginRight: '1%' }}>
                                                     Donnée de template: {this.state.id_Template}
-                                                    <input type="text" value={this.state.donneModele} onChange={text => this.setState({ donneModele: text.target.value })} />
+                                                    <input type="text" value={this.state.donneesTemplate} onChange={text => this.setState({ donneesTemplate: text.target.value })} />
                                                 </label>
                                                 <br></br>
                                                 <input style={{ marginTop: '5%' }} type="submit" class="btn btn-outline-primary" value={"Ajouter"} />
