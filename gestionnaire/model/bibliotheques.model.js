@@ -255,6 +255,18 @@ bibliotheques.ajoutDonneesTemplate = (dataTemplate, result) => {
     })
 };
 
+
+bibliotheques.findTemplate = (idBiblio, result) => {
+  sql.query(`SELECT tb_Template.nom_Template, tb_DonneesTemplate.donneesTemplate, tb_DonneesTemplate.idObjet  FROM tb_Template JOIN tb_DonneesTemplate ON tb_Template.id_Template = tb_DonneesTemplate.id_Template WHERE tb_Template.id_Bibli=${idBiblio}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    console.log("contacts :", res);
+    result(null, res);
+  });
+};
 // bibliotheques.ajoutTemplate = (template, result) => {
 //   var requete = "INSERT INTO tb_Template (nom_Template, id_Bibli) VALUES ?  ";
 //   var values = [[template.nom_Template, template.id_Bibli]];

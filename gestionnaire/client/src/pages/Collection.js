@@ -33,6 +33,7 @@ class Collection extends Component {
       nomModele: '',
       donneModele: '',
       champsPersos: [],
+      donneTemplate: []
     };
 
     this.showModal = this.showModal.bind(this);
@@ -98,7 +99,12 @@ class Collection extends Component {
         this.setState({ champsPersos: json })
         console.log(this.state.champsPersos)
       })
-
+    await fetch(`http://localhost:5000/findTemplate/${this.state.biblioId}`)
+      .then(response => response.json())
+      .then(json => {
+        this.setState({ donneTemplate: json })
+        console.log(this.state.donneTemplate)
+      })
 
   }
 
@@ -261,6 +267,10 @@ class Collection extends Component {
                         {this.state.champsPersos.filter(champs => champs.idObjet === collection.idObjet).map(filterChamps => (
 
                           <ListGroupItem> {filterChamps.nomModele} : {filterChamps.donneModele} </ListGroupItem>
+                        ))}
+                        {this.state.donneTemplate.filter(champsTemplate => champsTemplate.idObjet === collection.idObjet).map(filterChampsTemplate => (
+
+                          <ListGroupItem> {filterChampsTemplate.nom_Template} : {filterChampsTemplate.donneesTemplate} </ListGroupItem>
                         ))}
                       </ListGroup>
 

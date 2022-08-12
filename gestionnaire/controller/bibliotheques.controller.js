@@ -366,7 +366,7 @@ exports.ajoutTemplate = (req, res) => {
   };
 
   bibliotheques.ajoutTemplate(template, (err, data) => {
-    //console.log(req.body.nom_Template)
+    console.log(req.body.nom_Template)
     //console.log(req)
     //console.log(req.body.id_Bibli)
     if (err) {
@@ -406,6 +406,25 @@ exports.ajoutDonneesTemplate = (req, res) => {
     }
   });
 };
+
+exports.findTemplate = (req, res) => {
+  bibliotheques.findTemplate(req.params.biblioId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+        });
+      } else {
+        res.status(500).send({
+
+        });
+      }
+    } else {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.send(data);
+    }
+  });
+
+}
 
 // exports.findTemplateId = (req, res) => {
 //   bibliotheques.findTemplateId(JSON.parse(req.params.donnees).id_Bibli, JSON.parse(req.params.donnees).nom_Template, (err, data) => {
