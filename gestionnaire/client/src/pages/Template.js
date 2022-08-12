@@ -1,7 +1,7 @@
 import React from 'react';
 import Navigation from "../component/Navigation";
 import secureLocalStorage from "react-secure-storage";
-import { Row, Col, Container, Card, ListGroup, ListGroupItem, Modal, Button, Carousel } from 'react-bootstrap'
+import { Row, Col, Container, Card, ListGroup, ListGroupItem, Modal, Button, Carousel, Alert } from 'react-bootstrap'
 import Popup from 'reactjs-popup';
 import dateFormat from 'dateformat';
 // import { Carousel } from '@trendyol-js/react-carousel';
@@ -15,7 +15,8 @@ class Template extends React.Component {
             id_Bibli: secureLocalStorage.getItem("secureBiblioId"),
             donneesCollection: [],
             id_Template: '',
-            donneesTemplate: ''
+            donneesTemplate: '',
+            reussi: ''
             // personne: []
         };
         this.templatePost = this.templatePost.bind(this);
@@ -99,13 +100,15 @@ class Template extends React.Component {
 
             }),
         })
-            .then(res => res.text())
-            .then(text => console.log(text))
+            // .then(res => res.text())
+            // .then(text => console.log(text))
             .then(response => response.json())
+            .then(this.setState({ reussi: 'reussi' }))
             .then(json => {
 
             }).catch((error) => {
                 console.log(error)
+                this.setState({ reussi: 'rate' })
             })
     }
 
@@ -192,6 +195,18 @@ class Template extends React.Component {
                         ))}
                     </Carousel>
                 }
+                {this.state.reussi === 'reussi' && (
+                    <Alert variant="success" style={{ marginLeft: '5%', marginRight: '5%', marginTop: '1%', marginBottom: '1%' }}>
+                        <Alert.Heading>La donnée "{this.state.donneesTemplate}" a bien été ajoutée</Alert.Heading>
+                    </Alert>
+                )}
+                {this.state.reussi === 'rate' && (
+                    <Alert variant="danger" style={{ marginLeft: '5%', marginRight: '5%', marginTop: '1%', marginBottom: '1%' }}>
+                        <Alert.Heading>Une érreure c'est produite, veuillez réessayer. </Alert.Heading>
+                    </Alert>
+                )}
+
+
 
                 <Modal show={this.state.show} onHide={this.hideModal}  >
                     <Modal.Header closeButton>

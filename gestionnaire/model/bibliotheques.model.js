@@ -241,7 +241,7 @@ bibliotheques.ajoutTemplate = (template, result) => {
 };
 
 bibliotheques.ajoutDonneesTemplate = (dataTemplate, result) => {
-  var requete = `INSERT INTO tb_DonneesTemplate (donneesTemplate, idObjet, id_Template) VALUES  ('${dataTemplate.donneesTemplate}', '${dataTemplate.idObjet}', '${dataTemplate.id_Template}')`;
+  var requete = `INSERT INTO tb_DonneesTemplate (donneesTemplate, idObjet, id_Template) VALUES  ('${dataTemplate.donneesTemplate}', '${dataTemplate.idObjet}', '${dataTemplate.id_Template}') RETURNING id_Template`;
   //var values = [[template.nom_Template, template.id_Bibli]];
   sql.query(requete,
     (err, res) => {
