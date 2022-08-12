@@ -16,6 +16,7 @@ class Template extends React.Component {
             donneesCollection: [],
             id_Template: '',
             donneesTemplate: '',
+            donneesTemplateTemp: '',
             reussi: ''
             // personne: []
         };
@@ -104,6 +105,8 @@ class Template extends React.Component {
             // .then(text => console.log(text))
             .then(response => response.json())
             .then(this.setState({ reussi: 'reussi' }))
+            .then(this.setState({ donneesTemplateTemp: this.state.donneesTemplate }))
+            .then(this.setState({ donneesTemplate: '' }))
             .then(json => {
 
             }).catch((error) => {
@@ -197,7 +200,7 @@ class Template extends React.Component {
                 }
                 {this.state.reussi === 'reussi' && (
                     <Alert variant="success" style={{ marginLeft: '5%', marginRight: '5%', marginTop: '1%', marginBottom: '1%' }}>
-                        <Alert.Heading>La donnée "{this.state.donneesTemplate}" a bien été ajoutée</Alert.Heading>
+                        <Alert.Heading>La donnée "{this.state.donneesTemplateTemp}" a bien été ajoutée</Alert.Heading>
                     </Alert>
                 )}
                 {this.state.reussi === 'rate' && (
