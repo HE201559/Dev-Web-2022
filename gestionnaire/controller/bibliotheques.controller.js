@@ -424,7 +424,26 @@ exports.findTemplate = (req, res) => {
     }
   });
 
-}
+};
+
+exports.findTemplateId = (req, res) => {
+  bibliotheques.findTemplateId(req.params.biblioId, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+        });
+      } else {
+        res.status(500).send({
+
+        });
+      }
+    } else {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.send(data);
+    }
+  });
+
+};
 
 // exports.findTemplateId = (req, res) => {
 //   bibliotheques.findTemplateId(JSON.parse(req.params.donnees).id_Bibli, JSON.parse(req.params.donnees).nom_Template, (err, data) => {

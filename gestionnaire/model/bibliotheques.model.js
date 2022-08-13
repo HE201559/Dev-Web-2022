@@ -267,6 +267,18 @@ bibliotheques.findTemplate = (idBiblio, result) => {
     result(null, res);
   });
 };
+
+bibliotheques.findTemplateId = (idBiblio, result) => {
+  sql.query(`SELECT nom_Template, id_Template  FROM tb_Template WHERE id_Bibli=${idBiblio}`, (err, res) => {
+    if (err) {
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    }
+    console.log("contacts :", res);
+    result(null, res);
+  });
+};
 // bibliotheques.ajoutTemplate = (template, result) => {
 //   var requete = "INSERT INTO tb_Template (nom_Template, id_Bibli) VALUES ?  ";
 //   var values = [[template.nom_Template, template.id_Bibli]];
