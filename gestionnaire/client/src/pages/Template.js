@@ -148,17 +148,11 @@ class Template extends React.Component {
         return (
             <div>
                 <Navigation />
-                hello
-                <br />
-                {/* <button onClick={() => this.testApi()}>oui</button> */}
 
-                test : {secureLocalStorage.getItem("secureBiblioId")}
-                test test
-                {this.state.id_Template}
 
                 <form style={{ textAlign: "center" }} onSubmit={this.templatePost}>
                     <label>
-                        <h3 style={{ fontSize: '180%' }}> Nom de la Template a ajouter a la bibliotheque {secureLocalStorage.getItem("secureBiblioId")} :</h3>
+                        <h3 style={{ fontSize: '180%', marginTop: '5%' }}> Nom de la Template a ajouter a la bibliotheque {secureLocalStorage.getItem("secureBiblioId")} :</h3>
                         <input type="text" style={{ marginTop: '6%' }} value={this.state.nom_Template} onChange={this.handleChange} />
                     </label>
                     <br />
@@ -180,7 +174,7 @@ class Template extends React.Component {
                                         <Card.Body>
                                             <form style={{ textAlign: 'center' }} onSubmit={event => this.donneesTemplatePost(event, collection.idObjet)}>
                                                 <label style={{ marginRight: '1%' }}>
-                                                    Donnée de template: {this.state.id_Template}
+                                                    Donnée de template:
                                                     <input type="text" value={this.state.donneesTemplate} onChange={text => this.setState({ donneesTemplate: text.target.value })} />
                                                 </label>
                                                 <br></br>

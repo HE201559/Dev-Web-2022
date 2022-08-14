@@ -241,10 +241,8 @@ class Collection extends Component {
                 <h3 style={{ fontSize: '180%', marginBottom: '3%', marginTop: '5%' }}> Objets de collection</h3>
               </Col>
               <Col md={6} style={{ textAlign: 'right', paddingTop: '1%', paddingRight: '0.5%' }}>
-                <button type="button" style={{ fontSize: '140%' }} class="btn btn-success" onClick={this.navTemplate}> Ajouter une template </button>
-              </Col>
-              <Col md={6} style={{ textAlign: 'right', paddingTop: '1%', paddingRight: '0.5%' }}>
-                <button type="button" style={{ fontSize: '140%' }} class="btn btn-success" onClick={this.navAjoutObjet}> Ajouter un objet </button>
+                <button type="button" style={{ fontSize: '140%', marginRight: '5%' }} class="btn btn-success" onClick={this.navTemplate}> Ajouter une template </button>
+                <button type="button" style={{ fontSize: '140%', marginLeft: '2%' }} class="btn btn-success" onClick={this.navAjoutObjet}> Ajouter un objet </button>
               </Col>
             </Row>
             {this.state.donneesCollection.map(collection => (
