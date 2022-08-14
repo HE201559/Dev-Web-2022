@@ -13,11 +13,13 @@ class Template extends React.Component {
             value: '',
             nom_Template: '',
             id_Bibli: secureLocalStorage.getItem("secureBiblioId"),
+            biblioNom: localStorage.getItem('nomBibli'),
             donneesCollection: [],
             id_Template: '',
             donneesTemplate: '',
             donneesTemplateTemp: '',
-            reussi: ''
+            reussi: '',
+            show: false
             // personne: []
         };
         this.templatePost = this.templatePost.bind(this);
@@ -33,86 +35,86 @@ class Template extends React.Component {
         this.setState({ show: false });
     };
 
+    navCollection = () => {
+        window.location.href = "http://localhost:3000/Collection"
+    };
+
     async templatePost(event) {
         event.preventDefault()
-        await fetch('http://localhost:5000/ajoutTemplate', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                "Access-Control-Allow-Origin": "true"
-            },
-            body: JSON.stringify({
+        if (this.state.nom_Template.length > 50 || this.state.nom_Template === '') {
+            alert("votre nom de template n'a pas été acceptée, merci de réessayer.")
+        }
+        else {
+            await fetch('http://localhost:5000/ajoutTemplate', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "true"
+                },
+                body: JSON.stringify({
 
-                nom_Template: this.state.nom_Template,
-                id_Bibli: this.state.id_Bibli,
+                    nom_Template: this.state.nom_Template,
+                    id_Bibli: this.state.id_Bibli,
 
-            }),
-        })
-            //.then(res => res.text())
-            //.then(text => console.log(text))
-            .then(response => response.json())
-            .then(json => {
-                this.setState({ id_Template: json[0].id_Template })
-                console.log(this.state.id_Template)
-            }).catch((error) => {
-                console.log(error)
+                }),
             })
-            .then(
-                fetch(`http://localhost:5000/findBiblioCollectionPossedee/${this.state.id_Bibli}`)
-                    .then(response => response.json())
-                    .then(json => {
-                        this.setState({ donneesCollection: json })
-                        console.log(this.state.donneesCollection)
-                    })
-            )
-            // .then(
-            //     this.showModal(),
-            //     await fetch(`http://localhost:5000/findTemplateId/${JSON.stringify({
-            //         nom_Template: this.state.nom_Template,
-            //         id_Bibli: this.state.id_Bibli
-            //     }
-            //     )}
-
-            //         `)
-            //         .then(response => response.json())
-            //         .then(json => {
-            //             this.setState({ id_Template: json[0].id_Template })
-            //             console.log(this.state.id_Template)
-            //         })
-            // )
-            ;
+                //.then(res => res.text())
+                //.then(text => console.log(text))
+                .then(response => response.json())
+                .then(json => {
+                    this.setState({ id_Template: json[0].id_Template })
+                    console.log(this.state.id_Template)
+                    this.setState({ show: true });
+                }).catch((error) => {
+                    console.log(error)
+                    alert("Erreur, veuillez réessayer")
+                })
+                .then(
+                    fetch(`http://localhost:5000/findBiblioCollectionPossedee/${this.state.id_Bibli}`)
+                        .then(response => response.json())
+                        .then(json => {
+                            this.setState({ donneesCollection: json })
+                            console.log(this.state.donneesCollection)
+                        })
+                );
+        }
     }
 
     async donneesTemplatePost(event, idObjet) {
         event.preventDefault()
-        await fetch('http://localhost:5000/ajoutDonneesTemplate', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                "Access-Control-Allow-Origin": "true"
-            },
-            body: JSON.stringify({
+        if (this.state.donneesTemplate.length > 50 || this.state.donneesTemplate === '') {
+            alert("Cette donnée n'a pas été acceptée, merci de réessayer.")
+        }
+        else {
+            await fetch('http://localhost:5000/ajoutDonneesTemplate', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                    "Access-Control-Allow-Origin": "true"
+                },
+                body: JSON.stringify({
 
-                donneesTemplate: this.state.donneesTemplate,
-                idObjet: idObjet,
-                id_Template: this.state.id_Template
+                    donneesTemplate: this.state.donneesTemplate,
+                    idObjet: idObjet,
+                    id_Template: this.state.id_Template
 
-            }),
-        })
-            // .then(res => res.text())
-            // .then(text => console.log(text))
-            .then(response => response.json())
-            .then(this.setState({ reussi: 'reussi' }))
-            .then(this.setState({ donneesTemplateTemp: this.state.donneesTemplate }))
-            .then(this.setState({ donneesTemplate: '' }))
-            .then(json => {
-
-            }).catch((error) => {
-                console.log(error)
-                this.setState({ reussi: 'rate' })
+                }),
             })
+                // .then(res => res.text())
+                // .then(text => console.log(text))
+                .then(response => response.json())
+                .then(this.setState({ reussi: 'reussi' }))
+                .then(this.setState({ donneesTemplateTemp: this.state.donneesTemplate }))
+                .then(this.setState({ donneesTemplate: '' }))
+                .then(json => {
+
+                }).catch((error) => {
+                    console.log(error)
+                    this.setState({ reussi: 'rate' })
+                })
+        }
     }
 
 
@@ -128,21 +130,6 @@ class Template extends React.Component {
         event.preventDefault();
     }
 
-    // componentDidMount() {
-
-    //     fetch(`http://localhost:5000/findBiblioCollectionPossedee/${this.state.id_Bibli}`)
-    //         .then(response => response.json())
-    //         .then(json => {
-    //             this.setState({ donneesCollection: json })
-    //             console.log(this.state.donneesCollection)
-    //         })
-    // }
-    // testApi = async () => {
-    //     let data = await api.get('findAllObjets').then(({ data }) => data);
-    //     this.setState({ personne: data });
-    //     console.log(this.state.personne[2].prix);
-    // }
-
 
     render() {
         return (
@@ -151,14 +138,15 @@ class Template extends React.Component {
 
 
                 <form style={{ textAlign: "center" }} onSubmit={this.templatePost}>
+
                     <label>
-                        <h3 style={{ fontSize: '180%', marginTop: '5%' }}> Nom de la Template a ajouter a la bibliotheque {secureLocalStorage.getItem("secureBiblioId")} :</h3>
+                        <h3 style={{ fontSize: '180%', marginTop: '5%' }}> Nom de la Template a ajouter a la bibliotheque {this.state.biblioNom} :</h3>
                         <input type="text" style={{ marginTop: '6%' }} value={this.state.nom_Template} onChange={this.handleChange} />
                     </label>
                     <br />
-                    <input class="btn btn-success" type="submit" style={{ marginTop: '1%' }} value="Ajouter une template" />
+                    <input class="btn btn-success" type="submit" style={{ marginTop: '1.5%' }} value="Ajouter une template" />
                 </form>
-                {this.state.donneesCollection !== '' &&
+                {this.state.donneesCollection === '' &&
                     <Carousel>
                         {this.state.donneesCollection.map(collection => (
                             <Carousel.Item key={collection.idObjet}>
@@ -205,19 +193,26 @@ class Template extends React.Component {
 
 
 
-                <Modal show={this.state.show} onHide={this.hideModal}  >
+                <Modal show={this.state.show} onHide={this.hideModal} aria-labelledby="contained-modal-title-vcenter" centered>
                     <Modal.Header closeButton>
-                        Voulez vous ajouter une valeur d'entrée a vos objets actuellement possédées ?
+                        La template a bien été ajoutée, voulez vous ajouter une valeur d'entrée a vos objets actuellement possédées ?
                     </Modal.Header>
                     <Modal.Body>
                         <Row>
-
-                            <Col style={{ textAlign: 'center' }}>
-                                <button type="button" class="btn btn-outline-success" onClick={this.hideModal} > quitter </button>
+                            <Col style={{ textAlign: 'left' }}>
+                                <button type="button" class="btn btn-outline-danger" onClick={this.navCollection} > Non </button>
+                            </Col>
+                            <Col style={{ textAlign: 'right' }}>
+                                <button type="button" class="btn btn-outline-success" onClick={this.hideModal} > Oui </button>
                             </Col>
                         </Row>
                     </Modal.Body>
                 </Modal>
+                <Row>
+                    <Col style={{ position: 'absolute', textAlign: 'center', bottom: '3%' }}>
+                        <button type="button" class="btn btn-outline-success" onClick={this.navCollection} > Revenir a la collection </button>
+                    </Col>
+                </Row>
             </div >
         );
     }

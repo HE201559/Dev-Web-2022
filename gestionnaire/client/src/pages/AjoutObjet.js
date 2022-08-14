@@ -162,7 +162,7 @@ class AjoutObjet extends Component {
               .then(
                 Object.keys(this.state.ajoutTemplate).map((envoie) => {
 
-                  if (this.state.ajoutTemplate[envoie] !== '') {
+                  if (this.state.ajoutTemplate[envoie] !== '' && this.state.ajoutTemplate[envoie].length > 50) {
                     console.log(envoie);
                     fetch('http://localhost:5000/ajoutDonneesTemplate', {
                       method: 'POST',
