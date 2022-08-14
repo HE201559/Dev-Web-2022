@@ -160,9 +160,10 @@ class AjoutObjet extends Component {
                 console.log(error)
               })
               .then(
+
                 Object.keys(this.state.ajoutTemplate).map((envoie) => {
 
-                  if (this.state.ajoutTemplate[envoie] !== '' && this.state.ajoutTemplate[envoie].length > 50) {
+                  if (this.state.ajoutTemplate[envoie] !== '' && this.state.ajoutTemplate[envoie].length < 50) {
                     console.log(envoie);
                     fetch('http://localhost:5000/ajoutDonneesTemplate', {
                       method: 'POST',
@@ -185,6 +186,7 @@ class AjoutObjet extends Component {
 
                       }).catch((error) => {
                         console.log(error)
+                        alert("Une érreure c'est produite lors de l'ajout d'une template.")
                         this.setState({ reussi: 'rate' })
                       })
 
