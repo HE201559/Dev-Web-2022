@@ -29,13 +29,14 @@ class AjoutObjet extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange = (text, idObjet) => {
-    //this.setState({ ajoutTemplate: this.state.ajoutTemplate.concat([text.target.value], [idObjet]) });
-    this.setState(prevState => {
-      let ajoutTemplate = Object.assign({}, prevState.ajoutTemplate);  // creating copy of state variable jasper
-      ajoutTemplate[idObjet].nom_Template = text.target.value;                     // update the name property, assign a new value                 
-      return { ajoutTemplate };                                 // return new object jasper object
-    })
+  handleChange = (text, idTemplate) => {
+    let temp = this.state.ajoutTemplate;
+
+    temp[idTemplate] = text.target.value;
+
+    this.setState({ ajoutTemplate: temp });
+
+
   };
 
   componentDidMount() {
@@ -51,39 +52,17 @@ class AjoutObjet extends Component {
       .then(response => response.json())
       .then(json => {
         this.setState({ donneTemplate: json })
-        // console.log(this.state.donneTemplate)
-        //this.setState({ ajoutTemplate: json })
-        //console.log(this.state.donneTemplate)
-        //let items = {};
 
-        //console.log(this.state.ajoutTemplate)
-        //console.log(this.state.donneTemplate)
       })
       .then(() => {
-        //this.setState({ donneTemplate: this.state.ajoutTemplate })
-        //console.log(this.state.donneTemplate)
-        //let items = {};
-        //for (let oui in this.state.donneTemplate) {
-        //   //this.setState({ ajoutTemplate.nom_Template : ''})
-        //   // this.setState(prevState => ({
-        //   //   donneTemplate: [...prevState.donneTemplate, [oui.id_Template], ['']]
-        //   // }))
-        let oui = 0;
-        this.state.donneTemplate.map(arr => {
 
-          oui += oui;
-          this.setState(prevState => {
-            //for (let oui in this.state.donneTemplate) {
-            let ajoutTemplate = Object.assign({}, prevState.donneTemplate);  // creating copy of state variable jasper
-            ajoutTemplate[oui].id_Template = this.state.donneTemplate[oui].id_Template;                     // update the name property, assign a new value                 
-            ajoutTemplate[oui].nom_Template = 'oui';                     // update the name property, assign a new value                 
-            return { ajoutTemplate };                                 // return new object jasper object
-            //}
-          })
+        let items = {};
+        for (let oui in this.state.donneTemplate) {
+          items[this.state.donneTemplate[oui].id_Template] = ''
         }
-
-
-        );
+        this.setState({ ajoutTemplate: items });
+        console.log(this.state.ajoutTemplate);
+        //);
 
 
         //   //console.log(oui)
@@ -93,17 +72,23 @@ class AjoutObjet extends Component {
         //   //this.setState({ ajoutTemplate: this.state.ajoutTemplate.concat('pute') })
         //}
         //console.log(this.state.ajoutTemplate)
-        console.log(this.state.ajoutTemplate)
+        //console.log(this.state.ajoutTemplate)
       })
       .then(() => this.setState({ loading: false }));
   }
 
   async handleSubmit(event) {
     event.preventDefault()
-    for (let oui of this.state.ajoutTemplate) {
+    // for (let oui in this.state.ajoutTemplate) {
+    //   if (oui !== '') { console.log(oui); }
+    //console.log(oui);
+    Object.keys(this.state.ajoutTemplate).map((envoie) => {
 
-      console.log(oui);
+
+      if (this.state.ajoutTemplate[envoie] !== '') { console.log(envoie); }
+
     }
+    )
     // if (this.state.dateAcquisition > this.state.dateActuelle) {
     //   alert("La date du " + this.state.dateAcquisition + " n'est pas encore arrivée à moins que vous ne veniez du futur")
     // }
@@ -181,8 +166,8 @@ class AjoutObjet extends Component {
     //   window.location.href = "http://localhost:3000/Collection"
     // }
 
-
   };
+
 
 
 
@@ -230,32 +215,15 @@ class AjoutObjet extends Component {
             </label>
             <br /><br />
             {this.state.donneTemplate.map(template => (
-
-              <form style={{ textAlign: "center" }} key={template.id_Template}>
+              <>
                 <label>
                   {template.nom_Template} :
-                  {/* {
-                    this.state.donneTemplate.findIndex(obj => {
-                      return obj.id_Template === template.id_Template;
-                    })
-                  } */}
-                  {this.state.ajoutTemplate[
-                    this.state.donneTemplate.findIndex(obj => {
-                      return obj.id_Template === template.id_Template;
-                    })
-                  ].nom_Template}
-                  {/* {this.state.ajoutTemplate[
-                    0
-                  ].nom_Template} */}
-                  {/* {this.state.ajoutTemplate.filter(obj => {
-                    return obj === template.id_Template;
-                  })} */}
-                  {/* <input type="text" value={this.state.ajoutTemplate[this.state.ajoutTemplate.find(obj => {
-                    return obj.id_Template === template.id_Template;
-                  })][1]} onChange={text => this.handleChange(text, template.id_Template)} /> */}
+
+                  <input type="text" value={this.state.ajoutTemplate[template.id_Template]} onChange={text => this.handleChange(text, template.id_Template)} />
                 </label>
                 <br /><br />
-              </form>
+
+              </>
 
             ))}
             <input type="submit" style={{ marginBottom: '4.5%' }} class="btn btn-success" value="Ajouter un objet" />

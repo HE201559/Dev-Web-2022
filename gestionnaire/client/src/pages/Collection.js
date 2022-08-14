@@ -9,6 +9,7 @@ import secureLocalStorage from "react-secure-storage";
 
 secureLocalStorage.setItem("secureBiblioId", secureLocalStorage.getItem('biblioId'));
 secureLocalStorage.setItem("donneesCollection", secureLocalStorage.getItem('donneesCollection'));
+
 class Collection extends Component {
 
   constructor(props) {
