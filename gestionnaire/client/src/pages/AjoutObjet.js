@@ -144,7 +144,7 @@ class AjoutObjet extends Component {
                 etat: this.state.etat,
                 edition: this.state.edition,
                 //biblioId: this.state.biblioId,
-                objetId: Number(this.state.objetId),
+                objetId: this.state.objetId,
                 image: this.state.image,
               }),
 

@@ -28,11 +28,11 @@ class Template extends React.Component {
     }
 
     showModal = () => {
-        this.setState({ show: true });
+        this.setState({ show: !this.state.show });
     };
 
     hideModal = () => {
-        this.setState({ show: false });
+        this.setState({ show: !this.state.show });
     };
 
     navCollection = () => {
@@ -146,8 +146,8 @@ class Template extends React.Component {
                     <br />
                     <input class="btn btn-success" type="submit" style={{ marginTop: '1.5%' }} value="Ajouter une template" />
                 </form>
-                {this.state.donneesCollection === '' &&
-                    <Carousel>
+                {this.state.donneesCollection.length !== 0 &&
+                    <Carousel show={this.state.show}>
                         {this.state.donneesCollection.map(collection => (
                             <Carousel.Item key={collection.idObjet}>
                                 {/* <Button>{collection.nom}</Button> */}
@@ -193,7 +193,7 @@ class Template extends React.Component {
 
 
 
-                <Modal show={this.state.show} onHide={this.hideModal} aria-labelledby="contained-modal-title-vcenter" centered>
+                <Modal show={this.state.show ? this.state.show : undefined} onHide={this.hideModal} aria-labelledby="contained-modal-title-vcenter" centered>
                     <Modal.Header closeButton>
                         La template a bien été ajoutée, voulez vous ajouter une valeur d'entrée a vos objets actuellement possédées ?
                     </Modal.Header>
