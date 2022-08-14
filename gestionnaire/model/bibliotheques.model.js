@@ -91,9 +91,9 @@ bibliotheques.findBibliotheques = (email, result) => {
   },
 
   bibliotheques.creationObjetTbBiblio = (objet, result) => {
-    var requete = "INSERT INTO tb_Bibliotheque (biblioId) VALUES ? ";
-    var values = [[objet.biblioId]];
-    sql.query(requete, [values],
+    var requete = `INSERT INTO tb_Bibliotheque (biblioId) VALUES  ('${objet.biblioId}') RETURNING idObjet`;
+    //var values = [[objet.biblioId]];
+    sql.query(requete,
       (err, res) => {
         if (err) {
           console.log("error : ", err);
@@ -106,9 +106,9 @@ bibliotheques.findBibliotheques = (email, result) => {
   },
 
   bibliotheques.creationObjetTbObjets = (objet, result) => {
-    var requete = "INSERT INTO tb_Objets (idObjet,prix,nom,description,dateAcquisition,etat,edition, image) VALUES ? ";
-    var values = [[objet.objetId, objet.prix, objet.nom, objet.description, objet.dateAcquisition, objet.etat, objet.edition, objet.image]];
-    sql.query(requete, [values],
+    var requete = `INSERT INTO tb_Objets (idObjet,prix,nom,description,dateAcquisition,etat,edition, image) VALUES ('${objet.objetId}','${objet.prix}','${objet.nom}','${objet.description}','${objet.dateAcquisition}','${objet.etat}','${objet.edition}','${objet.image}') RETURNING idObjet`;
+    //var values = [[objet.prix, objet.nom, objet.description, objet.dateAcquisition, objet.etat, objet.edition, objet.image]];
+    sql.query(requete,
       (err, res) => {
         if (err) {
           console.log("error : ", err);

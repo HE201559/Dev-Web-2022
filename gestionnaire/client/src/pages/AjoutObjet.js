@@ -77,94 +77,130 @@ class AjoutObjet extends Component {
       .then(() => this.setState({ loading: false }));
   }
 
-  async handleSubmit(event) {
+  handleSubmit(event) {
     event.preventDefault()
-    // for (let oui in this.state.ajoutTemplate) {
-    //   if (oui !== '') { console.log(oui); }
-    //console.log(oui);
-    Object.keys(this.state.ajoutTemplate).map((envoie) => {
 
-
-      if (this.state.ajoutTemplate[envoie] !== '') { console.log(envoie); }
-
+    if (this.state.dateAcquisition > this.state.dateActuelle) {
+      alert("La date du " + this.state.dateAcquisition + " n'est pas encore arrivée à moins que vous ne veniez du futur")
     }
-    )
-    // if (this.state.dateAcquisition > this.state.dateActuelle) {
-    //   alert("La date du " + this.state.dateAcquisition + " n'est pas encore arrivée à moins que vous ne veniez du futur")
-    // }
 
-    // else if (this.state.nom === '' || this.state.description === '' || this.state.prix === '' || this.state.dateAcquisition === '' || this.state.etat === '' || this.state.edition === '') {
-    //   alert("Vous n'avez pas rempli tous les champs")
-    // }
+    else if (this.state.nom === '' || this.state.description === '' || this.state.prix === '' || this.state.dateAcquisition === '' || this.state.etat === '' || this.state.edition === '') {
+      alert("Vous n'avez pas rempli tous les champs obligatoire (template exclues)")
+    }
 
-    // else {
-    //   console.log(this.state.objetId)
-    //   await fetch('http://localhost:5000/ajoutObjetTbBiblio', {
+    else {
 
-    //     method: 'POST',
-    //     headers: {
-    //       Accept: 'application/json',
-    //       'Content-Type': 'application/json',
-    //       "Access-Control-Allow-Origin": "true"
-    //     },
-    //     body: JSON.stringify({
-    //       // nom:this.state.nom,
-    //       // description:this.state.description,
-    //       // prix:this.state.prix,      
-    //       // dateAcquisition:this.state.dateAcquisition,
-    //       // etat:this.state.etat,
-    //       // edition:this.state.edition,
-    //       biblioId: this.state.biblioId,
-    //       //objetId:Number(this.state.objetId),
-    //     }),
+      fetch(`http://localhost:5000/findAllBiblioCollection`)
+        .then(response => response.json())
+        .then(json => {
+          this.setState({ objetId: 1 + json[0].max })
+          console.log(this.state.objetId)
+        })
+        .then(fetch('http://localhost:5000/ajoutObjetTbBiblio', {
 
-
-    //   })
-    //     .then(res => res.text())
-    //     .then(text => console.log(text))
-    //     .then(response => response.json())
-    //     .then(json => {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            "Access-Control-Allow-Origin": "true"
+          },
+          body: JSON.stringify({
+            // nom:this.state.nom,
+            // description:this.state.description,
+            // prix:this.state.prix,      
+            // dateAcquisition:this.state.dateAcquisition,
+            // etat:this.state.etat,
+            // edition:this.state.edition,
+            biblioId: this.state.biblioId,
+            //objetId:Number(this.state.objetId),
+          }),
 
 
-    //     }).catch((error) => {
-    //       console.log(error)
-    //     });
+        })
+          .then(res => res.text())
+          .then(text => console.log(text))
+          .then(response => response.json())
+          .then(json => {
+
+            this.setState({ objetId: json[0].idObjet })
+          }).catch((error) => {
+            console.log(error)
+          })
+          .then(
+
+            fetch('http://localhost:5000/ajoutObjetTbObjets', {
+
+              method: 'POST',
+              headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "true"
+              },
+              body: JSON.stringify({
+                nom: this.state.nom,
+                description: this.state.description,
+                prix: this.state.prix,
+                dateAcquisition: this.state.dateAcquisition,
+                etat: this.state.etat,
+                edition: this.state.edition,
+                //biblioId: this.state.biblioId,
+                objetId: Number(this.state.objetId),
+                image: this.state.image,
+              }),
 
 
-    //   await fetch('http://localhost:5000/ajoutObjetTbObjets', {
+            })
+              .then(res => res.text())
+              .then(text => console.log(text))
+              .then(response => response.json())
+              .then(json => {
+                this.setState({ objetId: json[0].idObjet })
 
-    //     method: 'POST',
-    //     headers: {
-    //       Accept: 'application/json',
-    //       'Content-Type': 'application/json',
-    //       "Access-Control-Allow-Origin": "true"
-    //     },
-    //     body: JSON.stringify({
-    //       nom: this.state.nom,
-    //       description: this.state.description,
-    //       prix: this.state.prix,
-    //       dateAcquisition: this.state.dateAcquisition,
-    //       etat: this.state.etat,
-    //       edition: this.state.edition,
-    //       //biblioId: this.state.biblioId,
-    //       objetId: Number(this.state.objetId),
-    //       image: this.state.image,
-    //     }),
+              }).catch((error) => {
+                console.log(error)
+              })
+              .then(
+                Object.keys(this.state.ajoutTemplate).map((envoie) => {
+
+                  if (this.state.ajoutTemplate[envoie] !== '') {
+                    console.log(envoie);
+                    fetch('http://localhost:5000/ajoutDonneesTemplate', {
+                      method: 'POST',
+                      headers: {
+                        Accept: 'application/json',
+                        'Content-Type': 'application/json',
+                        "Access-Control-Allow-Origin": "true"
+                      },
+                      body: JSON.stringify({
+
+                        donneesTemplate: this.state.ajoutTemplate[envoie],
+                        idObjet: this.state.objetId,
+                        id_Template: envoie
+
+                      }),
+                    })
+
+                      .then(response => response.json())
+                      .then(json => {
+
+                      }).catch((error) => {
+                        console.log(error)
+                        this.setState({ reussi: 'rate' })
+                      })
+
+                  }
+
+                }
+                )
+              )
+          )
 
 
-    //   })
-    //     .then(res => res.text())
-    //     .then(text => console.log(text))
-    //     .then(response => response.json())
-    //     .then(json => {
+        )
+      console.log(this.state.objetId)
 
-
-    //     }).catch((error) => {
-    //       console.log(error)
-    //     });
-
-    //   window.location.href = "http://localhost:3000/Collection"
-    // }
+      window.location.href = "http://localhost:3000/Collection"
+    }
 
   };
 
