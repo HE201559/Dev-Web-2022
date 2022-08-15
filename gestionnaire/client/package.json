@@ -30,7 +30,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "HTTPS=true SSL_CRT_FILE=certificate.crt SSL_KEY_FILE=private.key PORT=443 react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
