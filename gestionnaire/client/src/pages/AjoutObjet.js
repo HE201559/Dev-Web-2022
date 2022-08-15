@@ -23,7 +23,8 @@ class AjoutObjet extends Component {
       dateActuelle: moment().format("YYYY-MM-DD"),
       ajoutTemplate: [],
       donneTemplate: [],
-      loading: true
+      loading: false,
+      errorCount: 0
 
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -79,7 +80,7 @@ class AjoutObjet extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-
+    this.setState({ loading: !this.state.loading });
     if (this.state.dateAcquisition > this.state.dateActuelle) {
       alert("La date du " + this.state.dateAcquisition + " n'est pas encore arrivée à moins que vous ne veniez du futur")
     }
@@ -89,7 +90,7 @@ class AjoutObjet extends Component {
     }
 
     else {
-
+      //this.setState({ show: !this.state.loading });
       fetch(`http://localhost:5000/findAllBiblioCollection`)
         .then(response => response.json())
         .then(json => {
@@ -158,6 +159,7 @@ class AjoutObjet extends Component {
 
               }).catch((error) => {
                 console.log(error)
+                this.setState({ errorCount: this.state.errorCount + 1 });
               })
               .then(
 
@@ -186,8 +188,9 @@ class AjoutObjet extends Component {
 
                       }).catch((error) => {
                         console.log(error)
-                        alert("Une érreure c'est produite lors de l'ajout d'une template.")
-                        this.setState({ reussi: 'rate' })
+                        this.setState({ errorCount: this.state.errorCount + 2 });
+                        //alert("Une érreure c'est produite lors de l'ajout d'une template.")
+                        //this.setState({ reussi: 'rate' })
                       })
 
                   }
@@ -199,9 +202,20 @@ class AjoutObjet extends Component {
 
 
         )
-      console.log(this.state.objetId)
+      //console.log(this.state.objetId)
+      console.log(this.state.errorCount)
+      if (this.state.errorCount === 0) {
+        window.location.href = "http://localhost:3000/Collection";
+      }
+      else if (this.state.errorCount === 1) {
+        alert("Échêc de l'ajout de votre objet, la cause est due a une érreure serveur.");
 
-      window.location.href = "http://localhost:3000/Collection"
+      }
+      else if (this.state.errorCount % 2 === 0) {
+        alert("Échêc de l'ajout d'une ou plusieurs donnée(s) de template. En outre, votre objet a bien été enregistrer.");
+        window.location.href = "http://localhost:3000/Collection";
+      }
+
     }
 
   };
@@ -212,14 +226,16 @@ class AjoutObjet extends Component {
 
 
   render() {
-    if (this.state.loading) {
-      return <Spinner /> // or whatever you want to show if the app is loading
-    }
+    // if (this.state.loading) {
+    //   return <Spinner show={this.state.show ? this.state.show : undefined} /> // or whatever you want to show if the app is loading
+    // }
     return (
       <div>
         <Navigation />
+        {/* <Spinner show={this.state.loading ? this.state.loading : undefined} /> */}
+
         <Container>
-          <h2 style={{ textAlign: "center" }}> Ajoutez un nouvel objet à votre collection {localStorage.getItem('nomBibli')} </h2>
+          <h2 style={{ textAlign: "center", marginTop: '3%' }}> Ajoutez un nouvel objet à votre collection {localStorage.getItem('nomBibli')} </h2>
           <form style={{ textAlign: "center" }} onSubmit={this.handleSubmit}>
             <label>
               Nom :
@@ -254,7 +270,7 @@ class AjoutObjet extends Component {
             <br /><br />
             {this.state.donneTemplate.map(template => (
               <>
-                <label>
+                <label key={template.id_Template} >
                   {template.nom_Template} :
 
                   <input type="text" value={this.state.ajoutTemplate[template.id_Template]} onChange={text => this.handleChange(text, template.id_Template)} />
@@ -264,10 +280,16 @@ class AjoutObjet extends Component {
               </>
 
             ))}
-            <input type="submit" style={{ marginBottom: '4.5%' }} class="btn btn-success" value="Ajouter un objet" />
+            <input type="submit" class="btn btn-success" value="Ajouter un objet" />
+            <br />
+            {this.state.loading && (<Spinner style={{ textAlign: "center", marginTop: '1%' }} animation="border" size='xl' role="status" >
+              <span className="visually-hidden">Loading...</span>
+            </Spinner>)}
+
           </form>
         </Container>
-      </div>
+
+      </div >
     );
   }
 }
