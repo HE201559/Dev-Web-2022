@@ -205,7 +205,7 @@ class AjoutObjet extends Component {
       //console.log(this.state.objetId)
       console.log(this.state.errorCount)
       if (this.state.errorCount === 0) {
-        window.location.href = "http://localhost:3000/Collection";
+        window.location.href = "https://www.ucollect.fun/Collection";
       }
       else if (this.state.errorCount === 1) {
         alert("Échêc de l'ajout de votre objet, la cause est due a une érreure serveur.");
@@ -213,7 +213,7 @@ class AjoutObjet extends Component {
       }
       else if (this.state.errorCount % 2 === 0) {
         alert("Échêc de l'ajout d'une ou plusieurs donnée(s) de template. En outre, votre objet a bien été enregistrer.");
-        window.location.href = "http://localhost:3000/Collection";
+        window.location.href = "https://www.ucollect.fun/Collection";
       }
 
     }

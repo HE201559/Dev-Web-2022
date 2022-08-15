@@ -107,7 +107,7 @@ class Inscription extends Component {
 
 
     };
-    window.location.href = "http://localhost:3000/PostInscription"
+    window.location.href = "https://www.ucollect.fun/PostInscription"
   }
 
 

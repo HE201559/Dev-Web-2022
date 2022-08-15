@@ -57,7 +57,7 @@ class Login extends Component {
                     console.log(secureLocalStorage.getItem('Connecte'))
                     secureLocalStorage.setItem('Connecte', true)
                     console.log(secureLocalStorage.getItem('Connecte'))
-                    window.location.href = "http://localhost:3000/"
+                    window.location.href = "https://www.ucollect.fun/"
                 }
                 else {
                     alert("Mot de passe incorrect")

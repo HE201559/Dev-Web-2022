@@ -87,7 +87,7 @@ class Admin extends Component {
             }).catch((error) => {
 
             });
-        window.location.href = "http://localhost:3000/Admin"
+        window.location.href = "https://www.ucollect.fun/Admin"
     }
 
 
@@ -168,7 +168,7 @@ class Admin extends Component {
 
             );
         }
-        else { window.location.href = "http://localhost:3000" }
+        else { window.location.href = "https://www.ucollect.fun/" }
     }
 };
 

@@ -11,7 +11,7 @@ const PostInscription = () => {
             <h3 style={{ marginTop: '2.5%', textAlign: 'center' }}>Vous pouvez a présent vous connecter.</h3>
             <Row>
                 <Col style={{ position: 'absolute', textAlign: 'center', marginTop: '2.5%' }}>
-                    <Button variant="success" onClick={() => window.location.href = "http://localhost:3000/Connexion"} > Connexion </Button>
+                    <Button variant="success" onClick={() => window.location.href = "https://www.ucollect.fun/Connexion"} > Connexion </Button>
                 </Col>
             </Row>
 

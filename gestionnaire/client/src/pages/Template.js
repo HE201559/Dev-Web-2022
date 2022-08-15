@@ -36,7 +36,7 @@ class Template extends React.Component {
     };
 
     navCollection = () => {
-        window.location.href = "http://localhost:3000/Collection"
+        window.location.href = "https://www.ucollect.fun/Collection"
     };
 
     async templatePost(event) {

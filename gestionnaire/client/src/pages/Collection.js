@@ -110,11 +110,11 @@ class Collection extends Component {
   }
 
   navAjoutObjet() {
-    window.location.href = "http://localhost:3000/AjoutObjet"
+    window.location.href = "https://www.ucollect.fun/AjoutObjet"
   }
 
   navTemplate() {
-    window.location.href = "http://localhost:3000/Template"
+    window.location.href = "https://www.ucollect.fun/Template"
   }
 
   async handleSubmit(event, idObjetAvendre) {
@@ -145,7 +145,7 @@ class Collection extends Component {
 
       });
 
-    window.location.href = "http://localhost:3000/Collection"
+    window.location.href = "https://www.ucollect.fun/Collection"
 
 
   }
@@ -176,7 +176,7 @@ class Collection extends Component {
 
       });
 
-    window.location.href = "http://localhost:3000/Collection"
+    window.location.href = "https://www.ucollect.fun/Collection"
   };
   async handleSubmitModele(event, idObjetModele) {
     event.preventDefault()
@@ -207,7 +207,7 @@ class Collection extends Component {
 
       });
 
-    window.location.href = "http://localhost:3000/Collection"
+    window.location.href = "https://www.ucollect.fun/Collection"
 
 
   }

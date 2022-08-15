@@ -22,7 +22,7 @@ class Navigation extends Component {
         console.log(this.state.connecte)
         secureLocalStorage.setItem('EmailUtilisateur', 'null')
 
-        window.location.href = "http://localhost:3000/";
+        window.location.href = "https://www.ucollect.fun/";
     }
 
     render() {

@@ -37,7 +37,7 @@ class Bibliothèques extends Component {
   };
 
   navCollection = () => {
-    window.location.href = "http://localhost:3000/Collection"
+    window.location.href = "https://www.ucollect.fun/Collection"
   };
 
 
@@ -84,7 +84,7 @@ class Bibliothèques extends Component {
           console.log(error)
         });
 
-      window.location.href = "http://localhost:3000/Bibliotheques"
+      window.location.href = "https://www.ucollect.fun/Bibliotheques"
 
     }
 
@@ -117,7 +117,7 @@ class Bibliothèques extends Component {
 
       });
 
-    window.location.href = "http://localhost:3000/Bibliotheques"
+    window.location.href = "https://www.ucollect.fun/Bibliotheques"
   };
 
 
