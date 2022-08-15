@@ -15,9 +15,9 @@ class Collection extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      email: localStorage.getItem('EmailUtilisateur'),
+      email: secureLocalStorage.getItem('EmailUtilisateur'),
       biblioId: secureLocalStorage.getItem('biblioId'),
-      biblioNom: localStorage.getItem('nomBibli'),
+      biblioNom: secureLocalStorage.getItem('nomBibli'),
       toutesBibliotheques: [],
       donneesCollection: [],
       donneesCollectionVendu: [],

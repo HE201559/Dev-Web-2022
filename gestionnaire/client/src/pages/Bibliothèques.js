@@ -13,10 +13,10 @@ class Bibliothèques extends Component {
     super(props);
     this.state = {
       toutesBibliotheques: [],
-      email: localStorage.getItem('EmailUtilisateur'),
+      email: secureLocalStorage.getItem('EmailUtilisateur'),
       nombreCollection: 1,
       show: false,
-      emailUser: localStorage.getItem('EmailUtilisateur'),
+      emailUser: secureLocalStorage.getItem('EmailUtilisateur'),
       nomBibli: '',
       biblioDateCre: moment().format("YYYY-MM-DD"),
       biblioId: secureLocalStorage.getItem('biblioId'),
@@ -146,7 +146,7 @@ class Bibliothèques extends Component {
               <Col lg={4} xs={4} style={{ textAlign: 'center' }}>
 
                 <NavLink id="texte" style={{ width: 'auto', marginTop: '20%' }} onClick={() => secureLocalStorage.setItem('biblioId', bibli.biblioId)} to="/Collection" className={(nav) => (nav.isActive ? "nav-active" : "nav")}>
-                  <li onClick={() => localStorage.setItem('nomBibli', bibli.nomBibli)} style={{ fontSize: '170%', fontWeight: 'bold', color: 'black' }}> {bibli.nomBibli}</li>
+                  <li onClick={() => secureLocalStorage.setItem('nomBibli', bibli.nomBibli)} style={{ fontSize: '170%', fontWeight: 'bold', color: 'black' }}> {bibli.nomBibli}</li>
                 </NavLink>
 
               </Col>

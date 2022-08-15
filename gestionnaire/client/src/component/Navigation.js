@@ -1,31 +1,32 @@
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom";
 // import Button from "react-bootstrap";
+import secureLocalStorage from "react-secure-storage";
 
 class Navigation extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            connecte: localStorage.getItem('Connecte'),
+            connecte: secureLocalStorage.getItem('Connecte'),
         }
     }
 
     handleDeconnect = () => {
 
 
-        localStorage.setItem('Connecte', false)
+        secureLocalStorage.setItem('Connecte', false)
         console.log(this.state.connecte)
         // this.state.connecte = 'false'
         this.setState({ comment: 'false' })
         console.log(this.state.connecte)
-        localStorage.setItem('EmailUtilisateur', 'null')
+        secureLocalStorage.setItem('EmailUtilisateur', 'null')
 
         window.location.href = "http://localhost:3000/";
     }
 
     render() {
-        if (this.state.connecte === "true") {
+        if (this.state.connecte) {
             return (
                 <div className="navigation">
                     <div className='logo'><a className="logo-text" href="/">Ucollect</a></div>

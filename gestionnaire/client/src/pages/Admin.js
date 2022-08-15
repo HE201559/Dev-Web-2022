@@ -4,6 +4,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import TreeItem from '@material-ui/lab/TreeItem';
 import { Row, Col } from 'react-bootstrap';
+import secureLocalStorage from "react-secure-storage";
 
 
 class Admin extends Component {
@@ -67,26 +68,26 @@ class Admin extends Component {
 
             method: 'DELETE',
             headers: {
-              Accept: 'application/json',
-              'Content-Type': 'application/json',
-              "Access-Control-Allow-Origin": "true"
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin": "true"
             },
             body: JSON.stringify({
-              email: { email },
+                email: { email },
             }),
-      
-      
-          })
+
+
+        })
             .then(res => res.text())
             .then(text => console.log(text))
             .then(response => response.json())
             .then(json => {
-      
-      
+
+
             }).catch((error) => {
-      
+
             });
-            window.location.href = "http://localhost:3000/Admin"
+        window.location.href = "http://localhost:3000/Admin"
     }
 
 
@@ -94,74 +95,81 @@ class Admin extends Component {
 
 
     render() {
-        return (
-
-            <div>
-                <Row>
-                    <Col>
-                        <p> Nombre d'utilisateurs : {this.state.tousEmailsArray.length} </p>
-                    </Col>
-                    <Col>
-                        <p> Nombre de collections  : {this.state.toutesBibliotheques.length} </p>
-                    </Col>
-                    <Col>
-                        <p> Nombre d'objets  : {this.state.allObjets.length} </p>
-                    </Col>
-                </Row>
-                <TreeView
-                    aria-label="multi-select"
-                    defaultCollapseIcon={<ExpandMoreIcon />}
-                    defaultExpandIcon={<ChevronRightIcon />}
-                    multiSelect
-                    sx={{ height: 240, flexGrow: 1, maxWidth: 400 }}
-                >
-                    {this.state.tousEmails.map(email => (
-
-                        <TreeItem nodeId={email.Id} label={email.email}>
-                            <button type="button" class="btn btn-outline-danger" onClick={() => { this.supprimerUtilisateur(email.email) }} > Supprimer l'utilisateur {email.email} </button>
-                            {this.state.toutesBibliotheques.filter(bibliotheque => bibliotheque.emailUser === email.email).map(filterbibliotheques => (
-
-                                <TreeItem nodeId={this.state.nodeDeuxiemeTree} label={filterbibliotheques.nomBibli} >
-                                    {/* <button type="button" class="btn btn-outline-danger"> Supprimer la collection {filterbibliotheques.nomBibli} </button> */}
-                                    <script>
-                                        {this.state.nodeDeuxiemeTree = 1 + this.state.nodeDeuxiemeTree}
-                                        {/* {this.setState({ nodeDeuxiemeTree: this.state.nodeDeuxiemeTree + 1 })} */}
-                                        {/* {this.setState((state) => { return { nodeDeuxiemeTree: state.nodeDeuxiemeTree + 1 } })} */}
+        if (secureLocalStorage.getItem('EmailUtilisateur') === "jarodfgu@gmail.com") {
+            return (
 
 
+                <div>
 
-                                    </script>
-                                    {
-                                        this.state.allObjets.filter(Objets => Objets.biblioId === filterbibliotheques.biblioId).map(filterObjets => (
-                                            <TreeItem nodeId={this.state.nodeTroisiemeTree} label={filterObjets.nom} >
-                                                {/* <button type="button" class="btn btn-outline-danger"> Supprimer l'objet {filterObjets.nom} </button> */}
-                                                <script>
-                                                    {this.state.nodeTroisiemeTree = 1 + this.state.nodeTroisiemeTree}
-                                                    {/* {this.setState({ nodeTroisiemeTree: this.state.nodeTroisiemeTree + 1 })} */}
-                                                    {/* {this.setState((state) => { return { nodeTroisiemeTree: state.nodeTroisiemeTree + 1 } })} */}
+                    <Row>
+                        <Col>
+                            <p> Nombre d'utilisateurs : {this.state.tousEmailsArray.length} </p>
+                        </Col>
+                        <Col>
+                            <p> Nombre de collections  : {this.state.toutesBibliotheques.length} </p>
+                        </Col>
+                        <Col>
+                            <p> Nombre d'objets  : {this.state.allObjets.length} </p>
+                        </Col>
+                    </Row>
+                    <TreeView
+                        aria-label="multi-select"
+                        defaultCollapseIcon={<ExpandMoreIcon />}
+                        defaultExpandIcon={<ChevronRightIcon />}
+                        multiSelect
+                        sx={{ height: 240, flexGrow: 1, maxWidth: 400 }}
+                    >
+                        {this.state.tousEmails.map(email => (
+
+                            <TreeItem nodeId={email.Id} label={email.email}>
+                                <button type="button" class="btn btn-outline-danger" onClick={() => { this.supprimerUtilisateur(email.email) }} > Supprimer l'utilisateur {email.email} </button>
+                                {this.state.toutesBibliotheques.filter(bibliotheque => bibliotheque.emailUser === email.email).map(filterbibliotheques => (
+
+                                    <TreeItem nodeId={this.state.nodeDeuxiemeTree} label={filterbibliotheques.nomBibli} >
+                                        {/* <button type="button" class="btn btn-outline-danger"> Supprimer la collection {filterbibliotheques.nomBibli} </button> */}
+                                        <script>
+                                            {this.state.nodeDeuxiemeTree = 1 + this.state.nodeDeuxiemeTree}
+                                            {/* {this.setState({ nodeDeuxiemeTree: this.state.nodeDeuxiemeTree + 1 })} */}
+                                            {/* {this.setState((state) => { return { nodeDeuxiemeTree: state.nodeDeuxiemeTree + 1 } })} */}
 
 
-                                                </script>
-                                            </TreeItem>
-                                        ))
-                                    }
-                                </TreeItem>
-                            ))}
 
-                        </TreeItem>
+                                        </script>
+                                        {
+                                            this.state.allObjets.filter(Objets => Objets.biblioId === filterbibliotheques.biblioId).map(filterObjets => (
+                                                <TreeItem nodeId={this.state.nodeTroisiemeTree} label={filterObjets.nom} >
+                                                    {/* <button type="button" class="btn btn-outline-danger"> Supprimer l'objet {filterObjets.nom} </button> */}
+                                                    <script>
+                                                        {this.state.nodeTroisiemeTree = 1 + this.state.nodeTroisiemeTree}
+                                                        {/* {this.setState({ nodeTroisiemeTree: this.state.nodeTroisiemeTree + 1 })} */}
+                                                        {/* {this.setState((state) => { return { nodeTroisiemeTree: state.nodeTroisiemeTree + 1 } })} */}
 
-                    ))}
 
-                    {/* <TreeItem nodeId="5" label="Documents">
+                                                    </script>
+                                                </TreeItem>
+                                            ))
+                                        }
+                                    </TreeItem>
+                                ))}
+
+                            </TreeItem>
+
+                        ))}
+
+                        {/* <TreeItem nodeId="5" label="Documents">
                         <TreeItem nodeId="10" label="OSS" />
                         <TreeItem nodeId="6" label="MUI">
                             <TreeItem nodeId="8" label="index.js" />
                         </TreeItem>
                     </TreeItem> */}
-                </TreeView>
-            </div >
-        );
-    };
+                    </TreeView>
+
+                </div >
+
+            );
+        }
+        else { window.location.href = "http://localhost:3000" }
+    }
 };
 
 

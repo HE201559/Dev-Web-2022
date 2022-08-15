@@ -13,7 +13,7 @@ class Template extends React.Component {
             value: '',
             nom_Template: '',
             id_Bibli: secureLocalStorage.getItem("secureBiblioId"),
-            biblioNom: localStorage.getItem('nomBibli'),
+            biblioNom: secureLocalStorage.getItem('nomBibli'),
             donneesCollection: [],
             id_Template: '',
             donneesTemplate: '',

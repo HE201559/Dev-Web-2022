@@ -235,7 +235,7 @@ class AjoutObjet extends Component {
         {/* <Spinner show={this.state.loading ? this.state.loading : undefined} /> */}
 
         <Container>
-          <h2 style={{ textAlign: "center", marginTop: '3%' }}> Ajoutez un nouvel objet à votre collection {localStorage.getItem('nomBibli')} </h2>
+          <h2 style={{ textAlign: "center", marginTop: '3%' }}> Ajoutez un nouvel objet à votre collection {secureLocalStorage.getItem('nomBibli')} </h2>
           <form style={{ textAlign: "center" }} onSubmit={this.handleSubmit}>
             <label>
               Nom :
