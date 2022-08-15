@@ -30,7 +30,7 @@ class Inscription extends Component {
   }
   async componentDidMount() {
 
-    await fetch(`http://localhost:5000/findTousUtilisateurs`)
+    await fetch(`https://whale-app-k7hlb.ondigitalocean.app/findTousUtilisateurs`)
       .then(response => response.json())
       .then(json => {
         this.setState({ tousEmails: json })
@@ -77,7 +77,7 @@ class Inscription extends Component {
 
 
 
-      await fetch('http://localhost:5000/inscription', {
+      await fetch('https://whale-app-k7hlb.ondigitalocean.app/inscription', {
 
         method: 'POST',
         headers: {

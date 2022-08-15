@@ -42,14 +42,14 @@ class AjoutObjet extends Component {
 
   componentDidMount() {
 
-    fetch(`http://localhost:5000/findAllBiblioCollection`)
+    fetch(`https://whale-app-k7hlb.ondigitalocean.app/findAllBiblioCollection`)
       .then(response => response.json())
       .then(json => {
         this.setState({ objetId: 1 + json[0].max })
         console.log(this.state.objetId)
       })
 
-    fetch(`http://localhost:5000/findTemplateId/${this.state.biblioId}`)
+    fetch(`https://whale-app-k7hlb.ondigitalocean.app/findTemplateId/${this.state.biblioId}`)
       .then(response => response.json())
       .then(json => {
         this.setState({ donneTemplate: json })
@@ -91,13 +91,13 @@ class AjoutObjet extends Component {
 
     else {
       //this.setState({ show: !this.state.loading });
-      fetch(`http://localhost:5000/findAllBiblioCollection`)
+      fetch(`https://whale-app-k7hlb.ondigitalocean.app/findAllBiblioCollection`)
         .then(response => response.json())
         .then(json => {
           this.setState({ objetId: 1 + json[0].max })
           console.log(this.state.objetId)
         })
-        .then(fetch('http://localhost:5000/ajoutObjetTbBiblio', {
+        .then(fetch('https://whale-app-k7hlb.ondigitalocean.app/ajoutObjetTbBiblio', {
 
           method: 'POST',
           headers: {
@@ -129,7 +129,7 @@ class AjoutObjet extends Component {
           })
           .then(
 
-            fetch('http://localhost:5000/ajoutObjetTbObjets', {
+            fetch('https://whale-app-k7hlb.ondigitalocean.app/ajoutObjetTbObjets', {
 
               method: 'POST',
               headers: {
@@ -167,7 +167,7 @@ class AjoutObjet extends Component {
 
                   if (this.state.ajoutTemplate[envoie] !== '' && this.state.ajoutTemplate[envoie].length < 50) {
                     console.log(envoie);
-                    fetch('http://localhost:5000/ajoutDonneesTemplate', {
+                    fetch('https://whale-app-k7hlb.ondigitalocean.app/ajoutDonneesTemplate', {
                       method: 'POST',
                       headers: {
                         Accept: 'application/json',

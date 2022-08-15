@@ -44,7 +44,7 @@ class Bibliothèques extends Component {
 
   async componentDidMount() {
 
-    await fetch(`http://localhost:5000/findBibliotheques/${this.state.email}`)
+    await fetch(`https://whale-app-k7hlb.ondigitalocean.app/findBibliotheques/${this.state.email}`)
       .then(response => response.json())
       .then(json => {
         this.setState({ toutesBibliotheques: json })
@@ -60,7 +60,7 @@ class Bibliothèques extends Component {
 
     else {
 
-      await fetch('http://localhost:5000/ajoutBibliotheque', {
+      await fetch('https://whale-app-k7hlb.ondigitalocean.app/ajoutBibliotheque', {
 
         method: 'POST',
         headers: {
@@ -93,7 +93,7 @@ class Bibliothèques extends Component {
 
   handleSuppressionBiblio(idBibliASupp) {
     console.log(idBibliASupp)
-    fetch(`http://localhost:5000/supprimerBiblio/${idBibliASupp}`, {
+    fetch(`https://whale-app-k7hlb.ondigitalocean.app/supprimerBiblio/${idBibliASupp}`, {
 
       method: 'DELETE',
       headers: {

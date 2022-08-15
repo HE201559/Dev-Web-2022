@@ -29,7 +29,7 @@ class Admin extends Component {
 
     async componentDidMount() {
 
-        await fetch(`http://localhost:5000/findTousUtilisateurs`)
+        await fetch(`https://whale-app-k7hlb.ondigitalocean.app/findTousUtilisateurs`)
             .then(response => response.json())
             .then(json => {
                 this.setState({ tousEmails: json })
@@ -43,14 +43,14 @@ class Admin extends Component {
 
         console.log(this.state.tousEmails)
 
-        await fetch(`http://localhost:5000/findAllBibliotheques`)
+        await fetch(`https://whale-app-k7hlb.ondigitalocean.app/findAllBibliotheques`)
             .then(response => response.json())
             .then(json => {
                 this.setState({ toutesBibliotheques: json })
                 console.log(this.state.toutesBibliotheques)
             })
 
-        await fetch(`http://localhost:5000/findAllObjets`)
+        await fetch(`https://whale-app-k7hlb.ondigitalocean.app/findAllObjets`)
             .then(response => response.json())
             .then(json => {
                 this.setState({ allObjets: json })
@@ -64,7 +64,7 @@ class Admin extends Component {
 
     supprimerUtilisateur(email) {
         console.log(email)
-        fetch(`http://localhost:5000/supprimerUtilisateur/${email}`, {
+        fetch(`https://whale-app-k7hlb.ondigitalocean.app/supprimerUtilisateur/${email}`, {
 
             method: 'DELETE',
             headers: {

@@ -57,21 +57,21 @@ class Collection extends Component {
 
   async componentDidMount() {
 
-    await fetch(`http://localhost:5000/findBiblioCollectionPossedee/${this.state.biblioId}`)
+    await fetch(`https://whale-app-k7hlb.ondigitalocean.app/findBiblioCollectionPossedee/${this.state.biblioId}`)
       .then(response => response.json())
       .then(json => {
         this.setState({ donneesCollection: json })
         console.log(this.state.donneesCollection)
       })
 
-    await fetch(`http://localhost:5000/findBiblioCollectionVendu/${this.state.biblioId}`)
+    await fetch(`https://whale-app-k7hlb.ondigitalocean.app/findBiblioCollectionVendu/${this.state.biblioId}`)
       .then(response => response.json())
       .then(json => {
         this.setState({ donneesCollectionVendu: json })
         console.log(this.state.donneesCollectionVendu)
       })
 
-    await fetch(`http://localhost:5000/findBibliothequesDateCrea/${this.state.biblioId}`)
+    await fetch(`https://whale-app-k7hlb.ondigitalocean.app/findBibliothequesDateCrea/${this.state.biblioId}`)
       .then(response => response.json())
       .then(json => {
         this.setState({ toutesBibliotheques: json })
@@ -79,7 +79,7 @@ class Collection extends Component {
         console.log(this.state.biblioDateCre)
       })
 
-    await fetch(`http://localhost:5000/findCollectionInfos/${this.state.biblioId}`)
+    await fetch(`https://whale-app-k7hlb.ondigitalocean.app/findCollectionInfos/${this.state.biblioId}`)
       .then(response => response.json())
       .then(json => {
         this.setState({ valeurCollection: json[0].valeur })
@@ -87,20 +87,20 @@ class Collection extends Component {
         //this.setState({ biblioDateCre: json[0].biblioDateCre })
       })
 
-    await fetch(`http://localhost:5000/findBenefices/${this.state.biblioId}`)
+    await fetch(`https://whale-app-k7hlb.ondigitalocean.app/findBenefices/${this.state.biblioId}`)
       .then(response => response.json())
       .then(json => {
         this.setState({ benefices: json[0].benefice })
         console.log(this.state.benefices)
       })
 
-    await fetch(`http://localhost:5000/findChampsPersos`)
+    await fetch(`https://whale-app-k7hlb.ondigitalocean.app/findChampsPersos`)
       .then(response => response.json())
       .then(json => {
         this.setState({ champsPersos: json })
         console.log(this.state.champsPersos)
       })
-    await fetch(`http://localhost:5000/findTemplate/${this.state.biblioId}`)
+    await fetch(`https://whale-app-k7hlb.ondigitalocean.app/findTemplate/${this.state.biblioId}`)
       .then(response => response.json())
       .then(json => {
         this.setState({ donneTemplate: json })
@@ -119,7 +119,7 @@ class Collection extends Component {
 
   async handleSubmit(event, idObjetAvendre) {
     event.preventDefault()
-    await fetch(`http://localhost:5000/vendreObjet/${idObjetAvendre}`, {
+    await fetch(`https://whale-app-k7hlb.ondigitalocean.app/vendreObjet/${idObjetAvendre}`, {
 
       method: 'POST',
       headers: {
@@ -152,7 +152,7 @@ class Collection extends Component {
 
   handleSuppressionObjet(idObjetAsupp) {
     console.log(idObjetAsupp)
-    fetch(`http://localhost:5000/supprimerObjet/${idObjetAsupp}`, {
+    fetch(`https://whale-app-k7hlb.ondigitalocean.app/supprimerObjet/${idObjetAsupp}`, {
 
       method: 'DELETE',
       headers: {
@@ -180,7 +180,7 @@ class Collection extends Component {
   };
   async handleSubmitModele(event, idObjetModele) {
     event.preventDefault()
-    await fetch(`http://localhost:5000/ajoutModele/${idObjetModele}`, {
+    await fetch(`https://whale-app-k7hlb.ondigitalocean.app/ajoutModele/${idObjetModele}`, {
 
       method: 'POST',
       headers: {

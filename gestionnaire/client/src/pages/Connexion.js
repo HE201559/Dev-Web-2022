@@ -21,7 +21,7 @@ class Login extends Component {
 
     async componentDidMount() {
 
-        await fetch(`http://localhost:5000/findTousUtilisateurs`)
+        await fetch(`https://whale-app-k7hlb.ondigitalocean.app/findTousUtilisateurs`)
             .then(response => response.json())
             .then(json => {
                 this.setState({ tousEmails: json })
@@ -44,7 +44,7 @@ class Login extends Component {
         }
         else {
             //alert('Email OK')
-            await fetch(`http://localhost:5000/connexion/${this.state.email}`)
+            await fetch(`https://whale-app-k7hlb.ondigitalocean.app/connexion/${this.state.email}`)
                 .then(response => response.json())
                 .then(json => {
                     this.setState({ utilisateur: json })

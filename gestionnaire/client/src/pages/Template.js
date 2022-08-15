@@ -45,7 +45,7 @@ class Template extends React.Component {
             alert("votre nom de template n'a pas été acceptée, merci de réessayer.")
         }
         else {
-            await fetch('http://localhost:5000/ajoutTemplate', {
+            await fetch('https://whale-app-k7hlb.ondigitalocean.app/ajoutTemplate', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
@@ -71,7 +71,7 @@ class Template extends React.Component {
                     alert("Erreur, veuillez réessayer")
                 })
                 .then(
-                    fetch(`http://localhost:5000/findBiblioCollectionPossedee/${this.state.id_Bibli}`)
+                    fetch(`https://whale-app-k7hlb.ondigitalocean.app/findBiblioCollectionPossedee/${this.state.id_Bibli}`)
                         .then(response => response.json())
                         .then(json => {
                             this.setState({ donneesCollection: json })
@@ -87,7 +87,7 @@ class Template extends React.Component {
             alert("Cette donnée n'a pas été acceptée, merci de réessayer.")
         }
         else {
-            await fetch('http://localhost:5000/ajoutDonneesTemplate', {
+            await fetch('https://whale-app-k7hlb.ondigitalocean.app/ajoutDonneesTemplate', {
                 method: 'POST',
                 headers: {
                     Accept: 'application/json',
