@@ -49,7 +49,7 @@ class AjoutObjet extends Component {
         //console.log(this.state.objetId)
       })
 
-    fetch(`https://whale-app-k7hlb.ondigitalocean.app/${this.state.biblioId}`)
+    fetch(`https://whale-app-k7hlb.ondigitalocean.app/findTemplateId/${this.state.biblioId}`)
       .then(response => response.json())
       .then(json => {
         this.setState({ donneTemplate: json })
