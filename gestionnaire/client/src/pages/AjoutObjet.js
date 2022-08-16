@@ -46,10 +46,10 @@ class AjoutObjet extends Component {
       .then(response => response.json())
       .then(json => {
         this.setState({ objetId: 1 + json[0].max })
-        console.log(this.state.objetId)
+        //console.log(this.state.objetId)
       })
 
-    fetch(`https://whale-app-k7hlb.ondigitalocean.app/findTemplateId/${this.state.biblioId}`)
+    fetch(`https://whale-app-k7hlb.ondigitalocean.app/${this.state.biblioId}`)
       .then(response => response.json())
       .then(json => {
         this.setState({ donneTemplate: json })
@@ -62,7 +62,7 @@ class AjoutObjet extends Component {
           items[this.state.donneTemplate[oui].id_Template] = ''
         }
         this.setState({ ajoutTemplate: items });
-        console.log(this.state.ajoutTemplate);
+        //console.log(this.state.ajoutTemplate);
         //);
 
 
@@ -78,7 +78,7 @@ class AjoutObjet extends Component {
       .then(() => this.setState({ loading: false }));
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault()
     this.setState({ loading: !this.state.loading });
     if (this.state.dateAcquisition > this.state.dateActuelle) {
@@ -91,130 +91,136 @@ class AjoutObjet extends Component {
 
     else {
       //this.setState({ show: !this.state.loading });
-      fetch(`https://whale-app-k7hlb.ondigitalocean.app/findAllBiblioCollection`)
+      await fetch(`https://whale-app-k7hlb.ondigitalocean.app/findAllBiblioCollection`)
         .then(response => response.json())
         .then(json => {
           this.setState({ objetId: 1 + json[0].max })
           console.log(this.state.objetId)
         })
-        .then(fetch('https://whale-app-k7hlb.ondigitalocean.app/ajoutObjetTbBiblio', {
+        .then(
+          await fetch('https://whale-app-k7hlb.ondigitalocean.app/ajoutObjetTbBiblio', {
 
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            "Access-Control-Allow-Origin": "true"
-          },
-          body: JSON.stringify({
-            // nom:this.state.nom,
-            // description:this.state.description,
-            // prix:this.state.prix,      
-            // dateAcquisition:this.state.dateAcquisition,
-            // etat:this.state.etat,
-            // edition:this.state.edition,
-            biblioId: this.state.biblioId,
-            //objetId:Number(this.state.objetId),
-          }),
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+              "Access-Control-Allow-Origin": "true"
+            },
+            body: JSON.stringify({
+              // nom:this.state.nom,
+              // description:this.state.description,
+              // prix:this.state.prix,      
+              // dateAcquisition:this.state.dateAcquisition,
+              // etat:this.state.etat,
+              // edition:this.state.edition,
+              biblioId: this.state.biblioId,
+              //objetId:Number(this.state.objetId),
+            }),
 
 
-        })
-          .then(res => res.text())
-          .then(text => console.log(text))
-          .then(response => response.json())
-          .then(json => {
-
-            this.setState({ objetId: json[0].idObjet })
-          }).catch((error) => {
-            console.log(error)
           })
-          .then(
+            .then(response => response.json())
+            .then(json => {
 
-            fetch('https://whale-app-k7hlb.ondigitalocean.app/ajoutObjetTbObjets', {
-
-              method: 'POST',
-              headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                "Access-Control-Allow-Origin": "true"
-              },
-              body: JSON.stringify({
-                nom: this.state.nom,
-                description: this.state.description,
-                prix: this.state.prix,
-                dateAcquisition: this.state.dateAcquisition,
-                etat: this.state.etat,
-                edition: this.state.edition,
-                //biblioId: this.state.biblioId,
-                objetId: this.state.objetId,
-                image: this.state.image,
-              }),
-
-
+              this.setState({ objetId: json[0].idObjet })
+              //console.log("passage 1")
+            }).catch((error) => {
+              console.log(error)
             })
-              .then(res => res.text())
-              .then(text => console.log(text))
-              .then(response => response.json())
-              .then(json => {
-                this.setState({ objetId: json[0].idObjet })
+            .then(
+              fetch('https://whale-app-k7hlb.ondigitalocean.app/ajoutObjetTbObjets', {
 
-              }).catch((error) => {
-                console.log(error)
-                this.setState({ errorCount: this.state.errorCount + 1 });
+                method: 'POST',
+                headers: {
+                  Accept: 'application/json',
+                  'Content-Type': 'application/json',
+                  "Access-Control-Allow-Origin": "true"
+                },
+                body: JSON.stringify({
+                  nom: this.state.nom,
+                  description: this.state.description,
+                  prix: this.state.prix,
+                  dateAcquisition: this.state.dateAcquisition,
+                  etat: this.state.etat,
+                  edition: this.state.edition,
+                  //biblioId: this.state.biblioId,
+                  objetId: this.state.objetId,
+                  image: this.state.image,
+                }),
+
+
               })
-              .then(
+                .then(response => response.json())
+                .then(json => {
+                  this.setState({ objetId: json[0].idObjet })
+                  //console.log("passage 2")
 
-                Object.keys(this.state.ajoutTemplate).map((envoie) => {
+                }).catch((error) => {
+                  console.log(error)
 
-                  if (this.state.ajoutTemplate[envoie] !== '' && this.state.ajoutTemplate[envoie].length < 50) {
-                    console.log(envoie);
-                    fetch('https://whale-app-k7hlb.ondigitalocean.app/ajoutDonneesTemplate', {
-                      method: 'POST',
-                      headers: {
-                        Accept: 'application/json',
-                        'Content-Type': 'application/json',
-                        "Access-Control-Allow-Origin": "true"
-                      },
-                      body: JSON.stringify({
+                  this.setState({ errorCount: 1 + this.state.errorCount });
+                })
+                .then(
 
-                        donneesTemplate: this.state.ajoutTemplate[envoie],
-                        idObjet: this.state.objetId,
-                        id_Template: envoie
+                  Object.keys(this.state.ajoutTemplate).map((envoie) => {
 
-                      }),
-                    })
+                    if (this.state.ajoutTemplate[envoie] !== '' && this.state.ajoutTemplate[envoie].length < 50) {
+                      console.log(envoie);
+                      fetch('https://whale-app-k7hlb.ondigitalocean.app/ajoutDonneesTemplate', {
+                        method: 'POST',
+                        headers: {
+                          Accept: 'application/json',
+                          'Content-Type': 'application/json',
+                          "Access-Control-Allow-Origin": "true"
+                        },
+                        body: JSON.stringify({
 
-                      .then(response => response.json())
-                      .then(json => {
+                          donneesTemplate: this.state.ajoutTemplate[envoie],
+                          idObjet: this.state.objetId,
+                          id_Template: envoie
 
-                      }).catch((error) => {
-                        console.log(error)
-                        this.setState({ errorCount: this.state.errorCount + 2 });
-                        //alert("Une érreure c'est produite lors de l'ajout d'une template.")
-                        //this.setState({ reussi: 'rate' })
+                        }),
                       })
 
-                  }
+                        .then(response => response.json())
+                        .then(json => {
 
-                }
+                        }).catch((error) => {
+                          console.log(error)
+                          this.setState({ errorCount: 2 + this.state.errorCount });
+
+                          //alert("Une érreure c'est produite lors de l'ajout d'une template.")
+                          //this.setState({ reussi: 'rate' })
+                        })
+
+
+                    }
+
+                  }
+                  )
                 )
-              )
-          )
+
+            )
 
 
         )
+        .then(() => {
+          console.log(this.state.errorCount)
+          if (this.state.errorCount === 0) {
+            window.location.href = "https://www.ucollect.fun/Collection";
+          }
+          else if (this.state.errorCount === 1) {
+            alert("Échêc de l'ajout de votre objet, la cause est due a une érreure serveur.");
+            this.setState({ loading: false })
+          }
+          else if (this.state.errorCount % 2 === 0) {
+            alert("Échêc de l'ajout d'une ou plusieurs donnée(s) de template. En outre, votre objet a bien été enregistrer.");
+            window.location.href = "https://www.ucollect.fun/Collection";
+          }
+        }
+        )
       //console.log(this.state.objetId)
-      console.log(this.state.errorCount)
-      if (this.state.errorCount === 0) {
-        window.location.href = "https://www.ucollect.fun/Collection";
-      }
-      else if (this.state.errorCount === 1) {
-        alert("Échêc de l'ajout de votre objet, la cause est due a une érreure serveur.");
 
-      }
-      else if (this.state.errorCount % 2 === 0) {
-        alert("Échêc de l'ajout d'une ou plusieurs donnée(s) de template. En outre, votre objet a bien été enregistrer.");
-        window.location.href = "https://www.ucollect.fun/Collection";
-      }
 
     }
 
