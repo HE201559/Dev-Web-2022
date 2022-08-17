@@ -211,7 +211,7 @@ class AjoutObjet extends Component {
           }
           else if (this.state.errorCount === 1) {
             this.setState({ errorCount: 0 });
-            this.handleSubmit();
+            this.handleSubmit(event);
           }
           else if (this.state.errorCount % 2 === 0) {
             alert("Échêc de l'ajout d'une ou plusieurs donnée(s) de template. En outre, votre objet a bien été enregistrer.");
