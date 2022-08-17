@@ -140,7 +140,7 @@ class Template extends React.Component {
                 <form style={{ textAlign: "center" }} onSubmit={this.templatePost}>
 
                     <label>
-                        <h3 style={{ fontSize: '180%', marginTop: '5%' }}> Nom de la Template a ajouter a la bibliotheque {this.state.biblioNom} :</h3>
+                        <h3 style={{ fontSize: '180%', marginTop: '5%' }}> Nom de la Template à ajouter à la bibliotheque {this.state.biblioNom} :</h3>
                         <input type="text" style={{ marginTop: '6%' }} value={this.state.nom_Template} onChange={this.handleChange} />
                     </label>
                     <br />
@@ -195,7 +195,7 @@ class Template extends React.Component {
 
                 <Modal show={this.state.show ? this.state.show : undefined} onHide={this.hideModal} aria-labelledby="contained-modal-title-vcenter" centered>
                     <Modal.Header closeButton>
-                        La template a bien été ajoutée, voulez vous ajouter une valeur d'entrée a vos objets actuellement possédées ?
+                        La template a bien été ajoutée, voulez-vous insérer une nouvelle donnée à vos objets actuellement possédées ?
                     </Modal.Header>
                     <Modal.Body>
                         <Row>
