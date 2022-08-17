@@ -210,8 +210,8 @@ class AjoutObjet extends Component {
             window.location.href = "http://localhost:3000/Collection";
           }
           else if (this.state.errorCount === 1) {
-            alert("Échêc de l'ajout de votre objet, la cause est due a une érreure serveur.");
-            this.setState({ loading: false })
+            this.setState({ errorCount: 0 });
+            this.handleSubmit(event);
           }
           else if (this.state.errorCount % 2 === 0) {
             alert("Échêc de l'ajout d'une ou plusieurs donnée(s) de template. En outre, votre objet a bien été enregistrer.");
