@@ -14,7 +14,7 @@ exports.findBibliotheques = (req, res) => {
       }
     } else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 
@@ -32,7 +32,7 @@ exports.findAllBibliotheques = (req, res) => {
       }
     } else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 
@@ -51,7 +51,7 @@ exports.findAllBiblioCollection = (req, res) => {
       }
     } else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 
@@ -70,7 +70,7 @@ exports.findAllObjets = (req, res) => {
       }
     } else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 
@@ -91,7 +91,7 @@ exports.findBiblioCollectionPossedee = (req, res) => {
       }
     } else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 
@@ -110,7 +110,7 @@ exports.findBiblioCollectionVendu = (req, res) => {
       }
     } else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 
@@ -129,7 +129,7 @@ exports.findBenefices = (req, res) => {
       }
     } else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 
@@ -149,7 +149,7 @@ exports.findBibliothequesDateCrea = (req, res) => {
       }
     } else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 
@@ -173,7 +173,7 @@ exports.creationBibliotheque = (req, res) => {
     }
     else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 };
@@ -199,7 +199,7 @@ exports.creationObjetTbBiblio = (req, res) => {
     }
     else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 };
@@ -225,7 +225,7 @@ exports.creationObjetTbObjets = (req, res) => {
     }
     else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 };
@@ -244,7 +244,7 @@ exports.findCollectionInfos = (req, res) => {
       }
     } else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 
@@ -263,7 +263,7 @@ exports.findChampsPersos = (req, res) => {
       }
     } else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 
@@ -283,7 +283,7 @@ exports.supprimerBiblio = (req, res) => {
       }
     } else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 };
@@ -306,7 +306,7 @@ exports.vendreObjet = (req, res) => {
       }
     } else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 };
@@ -326,7 +326,7 @@ exports.supprimerObjet = (req, res) => {
       }
     } else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 };
@@ -353,7 +353,7 @@ exports.ajoutModele = (req, res) => {
       }
     } else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 };
@@ -376,7 +376,7 @@ exports.ajoutTemplate = (req, res) => {
     }
     else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 };
@@ -402,7 +402,7 @@ exports.ajoutDonneesTemplate = (req, res) => {
     }
     else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 };
@@ -420,7 +420,7 @@ exports.findTemplate = (req, res) => {
       }
     } else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 
@@ -439,7 +439,7 @@ exports.findTemplateId = (req, res) => {
       }
     } else {
       res.header("Access-Control-Allow-Origin", "*");
-      res.send(data);
+      res.status(200).send(data);
     }
   });
 
@@ -459,7 +459,7 @@ exports.findTemplateId = (req, res) => {
 //     else {
 //       res.header("Access-Control-Allow-Origin", "*");
 //       console.log("marche oui oui");
-//       res.send(data);
+//       res.status(200).send(data);
 //     }
 //   });
 // };
