@@ -1,5 +1,5 @@
 const http = require('http');
-const hostname = '127.0.0.1';
+const hostname = 'localhost';
 const port = 5000;
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
